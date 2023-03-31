@@ -1,41 +1,61 @@
 import { Link, useMatch, useResolvedPath } from "react-router-dom"
-import { useState } from "react"
+import { useState, useContext } from "react"
+import LanguageSelector from "./LanguageSelector"
+import { LanguageContext } from "./LanguageContext"
 
 export default function Navbar() {
-    const [isOpen, setIsOpen] = useState(false)
-    const toggleSideNav = () => {
-        setIsOpen(!isOpen)
-    }
-    return <>
+  const { language, setLanguage } = useContext(LanguageContext)
+  const [isOpen, setIsOpen] = useState(false)
 
-    <nav class="black small-margin-top">
-        <div className={`${!isOpen ? 'nav-links' : 'nav-links-2'}`}>
-            <i class="fa fa-times" onClick={toggleSideNav}></i>
-            <ul id="navLinks" class="right center">
-                <li onClick={toggleSideNav}><CustomLink to="/"><img className="header-logo" src="HHlogo.jpg" alt="" /></CustomLink></li>
-                <li onClick={toggleSideNav}><CustomLink className="btn yellow black-text custom-buttons" to="/tarinamme">TARINAMME</CustomLink></li>
-                <li onClick={toggleSideNav}><CustomLink className="btn yellow black-text custom-buttons" to="/tuotteemme">TUOTTEEMME</CustomLink></li>
-                <li onClick={toggleSideNav}><a href="https://holvi.com/shop/WbXD2B/" class="btn yellow black-text custom-buttons" target="_blank">VERKKOKAUPPA</a></li>
-             </ul>
+  const toggleSideNav = () => {
+    setIsOpen(!isOpen)
+  }
+
+  return (
+    <>
+      <nav className="black small-margin-top">
+        <div className={`${!isOpen ? "nav-links" : "nav-links-2"}`}>
+          <i className="fa fa-times" onClick={toggleSideNav}></i>
+          <ul id="navLinks" className="right center">
+            <li onClick={toggleSideNav}>
+              <CustomLink to="/">
+                <img className="header-logo" src="HHlogo.jpg" alt="" />
+              </CustomLink>
+            </li>
+            <li onClick={toggleSideNav}>
+              <CustomLink className="btn yellow black-text custom-buttons" to="/tarinamme">
+                {language === "fi" ? "TARINAMME" : "OUR STORY"}
+              </CustomLink>
+            </li>
+            <li onClick={toggleSideNav}>
+              <CustomLink className="btn yellow black-text custom-buttons" to="/tuotteemme">
+                {language === "fi" ? "TUOTTEEMME" : "PRODUCTS"}
+              </CustomLink>
+            </li>
+            <li onClick={toggleSideNav}>
+              <a href="https://holvi.com/shop/WbXD2B/" className="btn yellow black-text custom-buttons" target="_blank">
+                {language === "fi" ? "VERKKOKAUPPA" : "ONLINE SHOP"}
+              </a>
+            </li>
+            <li>
+                <LanguageSelector setLanguage={setLanguage} />
+            </li>
+          </ul>
         </div>
-        <i class="fa fa-bars right" onClick={toggleSideNav}></i>
-     </nav>
-    <br />
-    <br />
-    <br />
-    <br />
+        <i className="fa fa-bars right" onClick={toggleSideNav}></i>
+      </nav>
+      <br /><br /><br /><br />
     </>
+  )
 }
 
 function CustomLink({ to, children, ...props }) {
-    const resolvedPath = useResolvedPath(to)
-    const isActive = useMatch({ path: resolvedPath.pathname, end: true })
+  const resolvedPath = useResolvedPath(to)
+  const isActive = useMatch({ path: resolvedPath.pathname, end: true })
 
-    return (
-        <li className={isActive ? "active" : ""}>
-            <Link to={to} {...props}>
-                {children}
-            </Link>
-        </li>
-    )
+  return (
+    <Link to={to} className={isActive ? "active" : ""} {...props}>
+      {children}
+    </Link>
+  )
 }

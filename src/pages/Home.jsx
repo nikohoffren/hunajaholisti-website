@@ -1,23 +1,24 @@
+import React, { useContext } from "react";
+import { LanguageContext } from "/src/LanguageContext";
+
 export default function Home() {
+    const { language } = useContext(LanguageContext)
     return <>
 
-    <main class="center margin">
-        <div class="padding"></div>
+    <main className="center margin">
+        <div className="padding"></div>
 
-        <div class= "text-box">
-            <h1>Hunajaholistin Hunaja</h1>
-            <h5>Pienen mehiläistarhan hunajaa</h5>
-
-            <div class="padding"></div>
-
-            <a href="https://holvi.com/shop/WbXD2B/" className="hero-btn ff-accent" target="_blank">KATSO TÄSTÄ TUOTTEEMME</a>
+        <div className= "text-box">
+            <h1>{language === "fi" ? "HUNAJAHOLISTIN HUNAJA" : "HONEYHOLIC'S HONEY"}</h1>
+            <h5>{language === "fi" ? "Pienen mehiläistarhan hunajaa" : "Honey from a small bee farm"}</h5>
+            <div className="padding"></div>
+            <a href="https://holvi.com/shop/WbXD2B/" className="hero-btn ff-accent" target="_blank">{language === "fi" ? "KATSO TÄSTÄ TUOTTEEMME" : "CHECK OUT OUR PRODUCTS HERE"}</a>
         </div>
 
-        <div class="huge-padding"></div>
+        <div className="huge-padding"></div>
     </main>
 
     </>
-
 }
 
 
