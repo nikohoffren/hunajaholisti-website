@@ -99,22 +99,30 @@ export default function Tuotteemme() {
                 <img className="product-image" src="HHkuvaSiitepoly.jpeg" alt="Siitepöly" />
                 <div className="card-content center">
 
-                    <h5 className="grey-text text-darken-3">SIITEPÖLY 250g</h5>
+                    <h5 className="grey-text text-darken-3">{language === "fi" ? "SIITEPÖLY 250g" : "POLLEN 250g"}</h5>
                     <br />
 
-                    <p className="black-text">Mehiläisten keräämä siitepöly sisältää ainakin proteiinia, aminohappoja, rasvoja, aminohappoja, A-, B-, C- ja E- vitamiineja,
-                    mineraalea, fytosteroleita, flavonoideja ja hiilihydraatteja.
-                    Mehiläiset keräävät tätä proteeini-pitoista ruokaa toukilleen ruuaksi.
-                    Mehiläispesä tarvitsee siitepölyä noin 30-40kg vuodessa.
-                    Ihminenkin voi käyttää siitepölyä proteeinin lähteenä. Itse sekoittelen aamujogurttiini siitepölyä pari teelusikallista iltasella tekeytymään.
-                    Lisätietoa siitepölystä saa esimerkiksi täältä:
-                    <a href="https://arkisto.hunaja.net/muita-mehilaistuotteita/siitepoly/index.html" target="_blank" className="ff-accent"> https://arkisto.hunaja.net/muita-mehilaistuotteita/siitepoly/index.html</a>
-                    <br />
-                    (Tulossa lisää 2023!)
+                    <p className="black-text">
+                      {language === "fi"
+                        ? (
+                          <>
+                            Mehiläisten keräämä siitepöly sisältää ainakin proteiinia, aminohappoja, rasvoja, aminohappoja, A-, B-, C- ja E- vitamiineja, mineraalea, fytosteroleita, flavonoideja ja hiilihydraatteja. Mehiläiset keräävät tätä proteiinipitoista ruokaa toukilleen ruuaksi. Mehiläispesä tarvitsee siitepölyä noin 30-40kg vuodessa. Ihminenkin voi käyttää siitepölyä proteiinin lähteenä. Itse sekoittelen aamujogurttiini siitepölyä pari teelusikallista iltasella tekeytymään. Lisätietoa siitepölystä saa esimerkiksi täältä:{' '}
+                            <a href="https://hunaja.net/hunajatietoa/muut-mehilaistuotteet/siitepoly/" target="_blank" className="ff-accent">https://hunaja.net/hunajatietoa/muut-mehilaistuotteet/siitepoly/</a>
+                            <br /><br />(Tulossa lisää 2023!)<br /><br />
+                          </>
+                        )
+                        : (
+                          <>
+                            Bees collect pollen as food for their larvae. Bees need pollen for about 30-40kg per year. Humans can also use pollen as a protein source. I mix a couple of teaspoons of pollen into my morning yogurt to ferment in the evening. <br /><br />More information about pollen can be found here:{' '}
+                            <a href="https://hunaja.net/hunajatietoa/muut-mehilaistuotteet/siitepoly/" target="_blank" className="ff-accent">https://hunaja.net/hunajatietoa/muut-mehilaistuotteet/siitepoly/</a>
+                            <br /><br />(Coming soon 2023!)<br /><br />
+                          </>
+                        )
+                      }
                     </p>
                 </div>
                 <div className="card-action right-align">
-                    <a href="https://holvi.com/shop/WbXD2B/" target="_blank">TULOSSA 2023</a>
+                    <a href="https://holvi.com/shop/WbXD2B/" target="_blank">{language === "fi" ? "TULOSSA 2023" : "COMING IN 2023"}</a>
                 </div>
             </div>
         </div>
@@ -124,31 +132,31 @@ export default function Tuotteemme() {
             <div className="card">
                 <img className="product-image" src="HHlogo.jpg" alt="Propolis" />
                 <div className="card-content center">
-
                     <h5 className="grey-text text-darken-3">PROPOLIS</h5>
-                    <p className="grey-text smaller-text">Myyn propolista lastuina</p>
+                    <p className="grey-text smaller-text">{language === "fi" ? "Myyn propolista lastuina" : "I sell propolis as chips"}</p>
                     <br />
-
                     <p className="black-text">
-                    Propolikseksi sanotaan ainetta jolla mehiläiset kittaavat turhat raot pesässä. Propoliksella on desinfioiva vaikutus mehiläispesässä.
-                    Mehiläiset keräävät aineksia propolikseen pensaiden ja puiden silmuista.
-                    Silmut erittävät pihkamaisia ja tuoksuvia hartsimaisia aineita.
-                    <br /> <br />
-                    Lisätietoa voit lukea esimerkiksi täältä:
-                    <a href="https://arkisto.hunaja.net/muita-mehilaistuotteita/propolis/index.html" target="_blank" className="ff-accent"> https://arkisto.hunaja.net/muita-mehilaistuotteita/propolis/index.html</a>
-                    <br /> <br />
-                    (Tulossa lisää 2023!)
+                      {language === "fi"
+                        ? (
+                          <>
+                          Propolikseksi sanotaan ainetta jolla mehiläiset kittaavat turhat raot pesässä. Propoliksella on desinfioiva vaikutus mehiläispesässä. Mehiläiset keräävät aineksia propolikseen pensaiden ja puiden silmuista. Silmut erittävät pihkamaisia ja tuoksuvia hartsimaisia aineita.<br /><br />Lisätietoa propoliksesta voit lukea esimerkiksi täältä: <a href="https://hunaja.net/hunajatietoa/muut-mehilaistuotteet/propolis/" target="_blank" className="ff-accent">https://hunaja.net/hunajatietoa/muut-mehilaistuotteet/propolis/</a><br /><br />(Tulossa lisää 2023!)
+                          </>
+                        )
+                        : (
+                          <>
+                          Propolis is a substance bees use to seal off unwanted holes in the hive. Propolis has a disinfectant effect in the beehive. Bees collect the ingredients for propolis from the buds of trees and shrubs. Buds secrete resinous and fragrant resinous substances.<br /><br />More information about propolis can be found here: <a href="https://hunaja.net/hunajatietoa/muut-mehilaistuotteet/propolis/" target="_blank" className="ff-accent">https://hunaja.net/hunajatietoa/muut-mehilaistuotteet/propolis/</a><br /><br />(Coming soon 2023!)
+                          </>
+                        )
+                      }
                     </p>
                 </div>
                 <div className="card-action right-align">
-                    <a href="https://holvi.com/shop/WbXD2B/" target="_blank">TULOSSA 2023</a>
+                    <a href="https://holvi.com/shop/WbXD2B/" target="_blank">{language === "fi" ? "TULOSSA 2023" : "COMING IN 2023"}</a>
                 </div>
             </div>
+          </div>
         </div>
-
-    </div>
-</div>
-
+      </div>
     </>
   )
 }

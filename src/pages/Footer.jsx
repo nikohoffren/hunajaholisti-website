@@ -33,7 +33,7 @@ export default function Footer() {
 
                 </p>
                 <p className="footer-text">
-                    <strong>{language === "fi" ? "Business ID: " : "Y-tunnus: "}3163385-5</strong>
+                    <strong>{language === "fi" ? "Y-tunnus: " : "Business ID: "}3163385-5</strong>
                 </p>
             </div>
 

@@ -28,6 +28,17 @@ form {
   padding: 20px;
 }
 
+button {
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  margin-right: 2px;
+  margin-left: 2px;
+}
+button:focus {
+  background-color: yellow;
+}
+
 html, body {
   line-height: 1.4;
   scroll-behavior: smooth;
@@ -63,6 +74,17 @@ p {
   color: white;
 }
 
+.language-selector {
+  position: relative;
+  top: 0.8em;
+  margin-left: 0.9rem;
+}
+.language-flag {
+  height: 1.2rem;
+  width: 1.7rem;
+  border-radius: 1%;
+}
+
 .logos {
   height: 1rem;
   will-change: filter;
@@ -71,7 +93,6 @@ p {
 .logos:hover {
   filter: drop-shadow(0 0 2em #646cffaa);
 }
-
 
 @keyframes logos-spin {
   from {
