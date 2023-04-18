@@ -1,10 +1,12 @@
 import React, { useContext } from "react";
-import { LanguageContext } from "/src/LanguageContext";
+import { LanguageContext } from "src/LanguageContext";
 
 export default function Tarinamme() {
-    const { language } = useContext(LanguageContext)
-
-    return (
+  const { language } = useContext(LanguageContext) as {
+    language: string;
+    setLanguage: (language: string) => void;
+  };
+  return (
       <>
         <div className="container center">
           <h3>{language === "fi" ? "TARINAMME" : "OUR STORY"}</h3>

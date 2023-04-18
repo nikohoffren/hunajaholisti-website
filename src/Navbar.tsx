@@ -1,15 +1,21 @@
-import { Link, useMatch, useResolvedPath } from "react-router-dom"
-import { useState, useContext } from "react"
-import LanguageSelector from "./LanguageSelector"
-import { LanguageContext } from "./LanguageContext"
+import { useState, useContext } from "react";
+import { Link, useMatch, useResolvedPath } from "react-router-dom";
+import LanguageSelector from "./LanguageSelector";
+import { LanguageContext } from "./LanguageContext";
+
+interface CustomLinkProps {
+  to: string;
+  children: React.ReactNode;
+  className?: string;
+  onClick?: () => void;
+}
 
 export default function Navbar() {
-  const { language, setLanguage } = useContext(LanguageContext)
-  const [isOpen, setIsOpen] = useState(false)
-
+  const { language, setLanguage } = useContext(LanguageContext);
+  const [isOpen, setIsOpen] = useState(false);
   const toggleSideNav = () => {
-    setIsOpen(!isOpen)
-  }
+    setIsOpen(!isOpen);
+  };
 
   return (
     <>
@@ -49,13 +55,13 @@ export default function Navbar() {
   )
 }
 
-function CustomLink({ to, children, ...props }) {
-  const resolvedPath = useResolvedPath(to)
-  const isActive = useMatch({ path: resolvedPath.pathname, end: true })
+function CustomLink({ to, children, ...props }: CustomLinkProps) {
+  const resolvedPath = useResolvedPath(to);
+  const isActive = useMatch({ path: resolvedPath.pathname, end: true });
 
   return (
     <Link to={to} className={isActive ? "active" : ""} {...props}>
       {children}
     </Link>
-  )
+  );
 }

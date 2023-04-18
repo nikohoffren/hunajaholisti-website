@@ -1,9 +1,11 @@
 import React, { useContext } from "react";
-import { LanguageContext } from "/src/LanguageContext";
+import { LanguageContext } from "src/LanguageContext";
 
 export default function Tuotteemme() {
-  const { language } = useContext(LanguageContext);
-
+  const { language } = useContext(LanguageContext) as {
+    language: string;
+    setLanguage: (language: string) => void;
+  };
   return (
     <>
       <div className="container center">
