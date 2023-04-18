@@ -41,7 +41,7 @@ export default function Footer() {
             </div>
 
             <footer className="section">
-                <div className="grey-text center">Copyright &#169; 2023 Niko Hoffrén<br />Coded with React <a href="https://reactjs.org/" target="_blank"><img src="/react.svg" className="logos" alt="React logo" /></a> + Vite <a href="https://vitejs.dev/" target="_blank"><img src="/vite.svg" className="logos" alt="Vite logo" /></a> + TypeScript & Hosted by Netlify</div>
+                <div className="grey-text center">{language === "fi" ? "Tekijänoikeus" : "Copyright"} &#169; 2021-2023 Niko Hoffrén<br />Coded with React <a href="https://reactjs.org/" target="_blank"><img src="/react.svg" className="logos" alt="React logo" /></a> + Vite <a href="https://vitejs.dev/" target="_blank"><img src="/vite.svg" className="logos" alt="Vite logo" /></a> + TypeScript & Hosted by Netlify</div>
             </footer>
         </div>
     </>
