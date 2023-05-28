@@ -1,19 +1,19 @@
 {
     "compilerOptions": {
-      "target": "esnext",
-      "module": "esnext",
-      "jsx": "react-jsx",
-      "jsxImportSource": "react",
-      "strict": true,
-      "moduleResolution": "node",
-      "esModuleInterop": true,
-      "skipLibCheck": true,
-      "baseUrl": ".",
-      "paths": {
-        "src/*": ["src/*"]
-      },
-      "forceConsistentCasingInFileNames": true
+        "target": "esnext",
+        "module": "esnext",
+        "jsx": "react-jsx",
+        "jsxImportSource": "react",
+        "strict": true,
+        "moduleResolution": "node",
+        "esModuleInterop": true,
+        "skipLibCheck": true,
+        "baseUrl": ".",
+        "paths": {
+            "src/*": ["src/*"]
+        },
+        "forceConsistentCasingInFileNames": true
     },
     "include": ["src/**/*.ts", "src/**/*.tsx"],
     "exclude": ["node_modules"]
-  }
+}
