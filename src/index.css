@@ -6,6 +6,7 @@
     --ff-primary: "Cuprum", sans-serif;
     --ff-header: "Amatic SC", sans-serif;
     --fz-header-900: 6rem;
+    --fz-header-600: 4rem;
 }
 
 html,
@@ -49,4 +50,12 @@ h1
 {
     font-family: var(--ff-header);
     font-size: var(--fz-header-900) !important;
+}
+
+@media (max-width: 800px) {
+    h1
+{
+
+    font-size: var(--fz-header-600) !important;
+}
 }
