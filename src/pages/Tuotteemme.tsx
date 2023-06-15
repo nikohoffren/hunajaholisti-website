@@ -177,7 +177,7 @@ export default function Tuotteemme() {
                                         <a
                                             href="https://hunaja.net/hunajatietoa/muut-mehilaistuotteet/siitepoly/"
                                             target="_blank"
-                                            className="ff-accent"
+                                            className="text-yellow-600 hover:text-yellow-800"
                                         >
                                             https://hunaja.net/hunajatietoa/muut-mehilaistuotteet/siitepoly/
                                         </a>
@@ -202,7 +202,7 @@ export default function Tuotteemme() {
                                         <a
                                             href="https://hunaja.net/hunajatietoa/muut-mehilaistuotteet/siitepoly/"
                                             target="_blank"
-                                            className="ff-accent"
+                                            className="text-yellow-600 hover:text-yellow-800"
                                         >
                                             https://hunaja.net/hunajatietoa/muut-mehilaistuotteet/siitepoly/
                                         </a>
@@ -242,11 +242,14 @@ export default function Tuotteemme() {
                             <h5 className="text-2xl font-semibold text-gray-900">
                                 PROPOLIS
                             </h5>
-                            <p className="grey-text smaller-text">
+
+
+                            <p className="grey-text smaller-text font-semibold">
                                 {language === "fi"
                                     ? "Myyn propolista lastuina"
                                     : "I sell propolis as chips"}
                             </p>
+                            <p className="mt-4 text-gray-700">
                             {language === "fi" ? (
                                 <>
                                     Propolikseksi sanotaan ainetta jolla
@@ -263,7 +266,7 @@ export default function Tuotteemme() {
                                     <a
                                         href="https://hunaja.net/hunajatietoa/muut-mehilaistuotteet/propolis/"
                                         target="_blank"
-                                        className="ff-accent"
+                                        className="text-yellow-600 hover:text-yellow-800"
                                     >
                                         https://hunaja.net/hunajatietoa/muut-mehilaistuotteet/propolis/
                                     </a>
@@ -286,7 +289,7 @@ export default function Tuotteemme() {
                                     <a
                                         href="https://hunaja.net/hunajatietoa/muut-mehilaistuotteet/propolis/"
                                         target="_blank"
-                                        className="ff-accent"
+                                        className="text-yellow-600 hover:text-yellow-800"
                                     >
                                         https://hunaja.net/hunajatietoa/muut-mehilaistuotteet/propolis/
                                     </a>
@@ -295,6 +298,7 @@ export default function Tuotteemme() {
                                     (Coming soon 2023!)
                                 </>
                             )}
+                            </p>
                             <div className="mt-4 text-right">
                                 <a
                                     href="https://holvi.com/shop/WbXD2B/"

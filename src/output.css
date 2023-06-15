@@ -1005,6 +1005,10 @@ select {
   --tw-text-opacity: 1;
   color: rgb(250 204 21 / var(--tw-text-opacity));
 }
+.text-yellow-600 {
+  --tw-text-opacity: 1;
+  color: rgb(202 138 4 / var(--tw-text-opacity));
+}
 .underline {
   text-decoration-line: underline;
 }
@@ -1079,18 +1083,15 @@ body {
     }
 }
 
-h1
-{
+h1 {
     font-family: var(--ff-header);
     font-size: var(--fz-header-900) !important;
 }
 
 @media (max-width: 800px) {
-    h1
-{
-
-    font-size: var(--fz-header-600) !important;
-}
+    h1 {
+        font-size: var(--fz-header-600) !important;
+    }
 }
 
 .hover\:scale-105:hover {
@@ -1132,6 +1133,11 @@ h1
 .hover\:text-white:hover {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+
+.hover\:text-yellow-800:hover {
+  --tw-text-opacity: 1;
+  color: rgb(133 77 14 / var(--tw-text-opacity));
 }
 
 .hover\:shadow-lg:hover {
