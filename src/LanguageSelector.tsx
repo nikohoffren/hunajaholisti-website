@@ -3,9 +3,13 @@ import { LanguageContext } from "./LanguageContext";
 
 interface LanguageSelectorProps {
     setLanguage: (language: string) => void;
+    hoverClass: string;
 }
 
-const LanguageSelector: React.FC<LanguageSelectorProps> = ({ setLanguage }) => {
+const LanguageSelector: React.FC<LanguageSelectorProps> = ({
+    setLanguage,
+    hoverClass,
+}) => {
     const { language } = useContext(LanguageContext);
 
     const handleClick = (lang: string) => {
@@ -13,25 +17,29 @@ const LanguageSelector: React.FC<LanguageSelectorProps> = ({ setLanguage }) => {
     };
 
     return (
-        <div className="language-selector">
+        <div className="flex space-x-2">
             <button
                 onClick={() => handleClick("fi")}
-                className={language === "fi" ? "active" : ""}
+                className={`focus:outline-none ${
+                    language === "fi" ? hoverClass : ""
+                }`}
             >
                 <img
                     src="./Flag_of_Finland.svg.png"
                     alt=""
-                    className="language-flag"
+                    className="cursor-pointer h-6 w-10 transition-transform duration-200 ease-in-out transform hover:scale-105"
                 />
             </button>
             <button
                 onClick={() => handleClick("en")}
-                className={language === "en" ? "active" : ""}
+                className={`focus:outline-none ${
+                    language === "en" ? hoverClass : ""
+                }`}
             >
                 <img
                     src="./Flag_of_the_United_Kingdom_(1-2).svg.png"
                     alt=""
-                    className="language-flag"
+                    className="cursor-pointer h-6 w-10 transition-transform duration-200 ease-in-out transform hover:scale-105"
                 />
             </button>
         </div>

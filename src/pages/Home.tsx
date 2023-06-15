@@ -2,21 +2,41 @@ import React, { useContext } from "react";
 import { LanguageContext } from "src/LanguageContext";
 
 export default function Home() {
-  const { language } = useContext(LanguageContext) as {
-    language: string;
-    setLanguage: (language: string) => void;
-  };
-  return <>
-        <main className="center margin">
-            <div className="padding"></div>
-            <div className= "text-box">
-                <h1>{language === "fi" ? "HUNAJAHOLISTIN HUNAJA" : "HONEYHOLIC'S HONEY"}</h1>
-                <h5 className="white-text">{language === "fi" ? "Pienen mehiläistarhan hunajaa" : "Honey from a small bee farm"}</h5>
-                <div className="padding"></div>
-                <a href="https://holvi.com/shop/WbXD2B/" className="hero-btn ff-accent" target="_blank">{language === "fi" ? "KATSO TÄSTÄ TUOTTEEMME" : "CHECK OUT OUR PRODUCTS HERE"}</a>
-            </div>
+    const { language } = useContext(LanguageContext) as {
+        language: string;
+        setLanguage: (language: string) => void;
+    };
+    return (
+        <>
+            <main className="flex flex-col items-center my-20">
+                <div className="py-20"></div>
+                <div className="py-5"></div>
+                <div className="text-center">
+                    <h1 className="text-5xl font-semibold text-yellow-400 mb-5">
+                        {language === "fi"
+                            ? "HUNAJAHOLISTIN HUNAJA"
+                            : "HONEYHOLIC'S HONEY"}
+                    </h1>
 
-            <div className="huge-padding"></div>
-        </main>
-    </>
+                    <h5 className="text-yellow-200 mt-2 text-lg">
+                        {language === "fi"
+                            ? "Pienen mehiläistarhan hunajaa"
+                            : "Honey from a small bee farm"}
+                    </h5>
+                    <div className="py-5"></div>
+                    <a
+                        href="https://holvi.com/shop/WbXD2B/"
+                        className="inline-block px-8 py-4 text-lg text-white bg-yellow-500 rounded-lg transform transition-all duration-200 hover:bg-yellow-600 hover:scale-105"
+                        target="_blank"
+                    >
+                        {language === "fi"
+                            ? "KATSO TÄSTÄ TUOTTEEMME"
+                            : "CHECK OUT OUR PRODUCTS HERE"}
+                    </a>
+                </div>
+
+                <div className="my-28"></div>
+            </main>
+        </>
+    );
 }

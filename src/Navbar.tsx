@@ -19,57 +19,69 @@ export default function Navbar() {
 
     return (
         <>
-            <nav className="black small-margin-top">
-                <div className={`${!isOpen ? "nav-links" : "nav-links-2"}`}>
-                    <i className="fa fa-times" onClick={toggleSideNav}></i>
-                    <ul id="navLinks" className="right center">
-                        <li onClick={toggleSideNav}>
-                            <CustomLink to="/">
+            <nav className="bg-black bg-opacity-75 p-3 pl-8 pr-8 fixed flex items-center justify-between top-0 w-full z-50">
+                <div className="flex justify-between items-center w-full lg:w-auto"> {/* Add flex and justify-between here */}
+                    <div className="group">
+                        <Link to="/" onClick={toggleSideNav}>
+                            <div className="group-hover:border-white">
                                 <img
-                                    className="header-logo"
+                                    className="header-logo h-12 w-12 transition-transform duration-200 ease-in-out transform hover:scale-105"
                                     src="HHlogo.jpg"
                                     alt=""
                                 />
-                            </CustomLink>
-                        </li>
-                        <li onClick={toggleSideNav}>
-                            <CustomLink
-                                className="btn yellow black-text custom-buttons"
-                                to="/tarinamme"
-                            >
-                                {language === "fi" ? "TARINAMME" : "OUR STORY"}
-                            </CustomLink>
-                        </li>
-                        <li onClick={toggleSideNav}>
-                            <CustomLink
-                                className="btn yellow black-text custom-buttons"
-                                to="/tuotteemme"
-                            >
-                                {language === "fi" ? "TUOTTEEMME" : "PRODUCTS"}
-                            </CustomLink>
-                        </li>
-                        <li onClick={toggleSideNav}>
-                            <a
-                                href="https://holvi.com/shop/WbXD2B/"
-                                className="btn yellow black-text custom-buttons"
-                                target="_blank"
-                            >
-                                {language === "fi"
-                                    ? "VERKKOKAUPPA"
-                                    : "ONLINE SHOP"}
-                            </a>
-                        </li>
-                        <li>
-                            <LanguageSelector setLanguage={setLanguage} />
-                        </li>
-                    </ul>
+                            </div>
+                        </Link>
+                    </div>
+                    <button
+                        className="inline-block lg:hidden w-8 h-8 bg-black-500 text-white p-1 ml-3"
+                        onClick={toggleSideNav}
+                        id="toggleButton"
+                    >
+                        {isOpen ? "X" : <i className="fa fa-bars"></i>}
+                    </button>
                 </div>
-                <i className="fa fa-bars right" onClick={toggleSideNav}></i>
+
+                <ul
+                    className={`fixed transform top-0 left-0 w-full h-full bg-black bg-opacity-75 text-white pt-20 pb-5 space-y-3 transition-transform duration-200 ease-in-out overflow-auto ${
+                        isOpen ? "translate-x-0" : "-translate-x-full"
+                    } lg:static lg:translate-x-0 lg:flex lg:items-center lg:w-auto lg:space-y-0 lg:space-x-10 lg:pt-0 lg:pb-0 lg:bg-transparent`}
+                >
+                    <li>
+                        <Link
+                            className="block px-6 mx-2 py-3 transition-colors duration-200 ease-in-out hover:bg-gray-800 hover:text-white lg:px-0 lg:py-0 lg:hover:bg-transparent lg:hover:text-yellow-300 hover:scale-105"
+                            to="/tarinamme"
+                            onClick={toggleSideNav}
+                        >
+                            {language === "fi" ? "TARINAMME" : "OUR STORY"}
+                        </Link>
+                    </li>
+                    <li>
+                        <Link
+                            className="block px-6 mx-2 py-3 transition-colors duration-200 ease-in-out hover:bg-gray-800 hover:text-white lg:px-0 lg:py-0 lg:hover:bg-transparent lg:hover:text-yellow-300 hover:scale-105"
+                            to="/tuotteemme"
+                            onClick={toggleSideNav}
+                        >
+                            {language === "fi" ? "TUOTTEEMME" : "PRODUCTS"}
+                        </Link>
+                    </li>
+                    <li>
+                        <a
+                            className="block px-6 mx-2 py-3 transition-colors duration-200 ease-in-out hover:bg-gray-800 hover:text-white lg:px-0 lg:py-0 lg:hover:bg-transparent lg:hover:text-yellow-300 hover:scale-105"
+                            href="https://holvi.com/shop/WbXD2B/"
+                            target="_blank"
+                            onClick={toggleSideNav}
+                        >
+                            {language === "fi" ? "VERKKOKAUPPA" : "ONLINE SHOP"}
+                        </a>
+                    </li>
+                    <li className="px-5 py-3 lg:px-0 lg:py-0">
+                        <LanguageSelector
+                            setLanguage={setLanguage}
+                            hoverClass="hover:shadow-lg"
+                        />
+                    </li>
+                </ul>
             </nav>
-            <br />
-            <br />
-            <br />
-            <br />
         </>
     );
 }

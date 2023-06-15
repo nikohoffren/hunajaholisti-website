@@ -5,7 +5,8 @@ import Tarinamme from "./pages/Tarinamme";
 import Tuotteemme from "./pages/Tuotteemme";
 import { Route, Routes } from "react-router-dom";
 import Footer from "./pages/Footer";
-import "./index.css";
+import './output.css';
+
 import { LanguageContext } from "./LanguageContext";
 
 function App() {
