@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import { Link } from "react-router-dom";
 import { LanguageContext } from "src/LanguageContext";
 
 export default function Tarinamme() {
@@ -53,11 +54,26 @@ export default function Tarinamme() {
                             ? "Tällä hetkellä mehiläistarhani sijaitsee Pohjois-Savossa."
                             : "Currently, my bee farm is located in Northern Savonia."}
                     </p>
-                    <p className="mb-2">
-                        {language === "fi"
-                            ? "Mehiläistarhauksen arkea pääset vakoilemaan seuraamalla Instagramissa tiliä Hunajaholisti."
-                            : "You can spy on everyday life in beekeeping by following Hunajaholisti on Instagram."}
-                    </p>
+                    {language === "fi" ? (
+                        <p className="mb-2">
+                            Mehiläistarhauksen arkea pääset vakoilemaan
+                            seuraamalla Instagramissa tiliä{" "}
+                            <a href="https://www.instagram.com/hunajaholisti" target="_blank" className="text-blue-500 hover:text-blue-700">
+                                Hunajaholisti
+                            </a>
+                            .
+                        </p>
+                    ) : (
+                        <p className="mb-2">
+                            You can spy on everyday life in beekeeping by
+                            following{" "}
+                            <a href="https://www.instagram.com/hunajaholisti" target="_blank" className="text-blue-500 hover:text-blue-700">
+                                Hunajaholisti
+                            </a>{" "}
+                            on Instagram.
+                        </p>
+                    )}
+
                     <br />
                     <br />
                     <p>

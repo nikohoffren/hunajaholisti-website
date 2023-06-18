@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { LanguageContext } from "src/LanguageContext";
+import { Link } from "react-router-dom";
 
 export default function Footer() {
     const { language } = useContext(LanguageContext) as {
@@ -8,46 +9,63 @@ export default function Footer() {
     };
 
     return (
-        <div className="bg-black bg-opacity-60 text-white py-4 px-8">
-            <div className="container mx-auto">
-                <div className="flex flex-col items-center mt-4 space-y-4">
-                    <div className="flex space-x-6 mb-4">
-                        <a
-                            href="https://www.facebook.com/hunajaholisti"
-                            target="_blank"
-                            rel="noreferrer"
-                            className="text-white hover:text-blue-600 text-4xl transition-transform duration-200 ease-in-out transform hover:scale-105"
-                        >
-                            <i className="fa fa-facebook"></i>
-                        </a>
-                        <a
-                            href="https://www.instagram.com/hunajaholisti"
-                            target="_blank"
-                            rel="noreferrer"
-                            className="text-white hover:text-purple-600 text-4xl transition-transform duration-200 ease-in-out transform hover:scale-105"
-                        >
-                            <i className="fa fa-instagram"></i>
-                        </a>
+        <div className="bg-black bg-opacity-75 text-white py-4 px-8 ">
+            <div className="container mx-auto space-y-4">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div className="text-center">
+                        <p className="mb-2 font-bold">
+                            Hunajaholistin Hunaja
+                        </p>
+                        <p className="mb-1">Liitokuja 4 C, 03100 VIHTI</p>
+                        <p className="mb-1">hunajaholisti@gmail.com</p>
+                        <p className="mb-1">
+                            {language === "fi" ? "puh. 0" : "+358 "}44 0550575
+                        </p>
+                        <p className="mb-1">
+                            {language === "fi" ? "Y-tunnus: " : "Business ID: "}
+                            3163385-5
+                        </p>
                     </div>
+                    <div className="text-center">
+                        <Link
+                            to="/myyntiehdot"
+                            className="text-white hover:text-blue-600"
+                        >
+                            {language === "fi"
+                                ? "Myynti- ja toimitusehdot"
+                                : "Sales and delivery conditions"}
+                        </Link>
+                        <br />
+                        <Link
+                            to="/tietosuojaseloste"
+                            className="text-white hover:text-blue-600"
+                        >
+                            {language === "fi"
+                                ? "Tietosuojaseloste"
+                                : "Privacy Policy"}
+                        </Link>
+                    </div>
+                    <div className="text-center">
 
-                    <p className="mb-2 font-bold">
-                        {language === "fi"
-                            ? "Hunajaholistin Hunaja"
-                            : "Honeyholic's Honey"}
-                    </p>
-
-                    <p className="mb-1 font-bold">Liitokuja 4 C, 03100 VIHTI</p>
-
-                    <p className="mb-1 font-bold">hunajaholisti@gmail.com</p>
-
-                    <p className="mb-1 font-bold">
-                        {language === "fi" ? "puh. 0" : "+358 "}44 0550575
-                    </p>
-
-                    <p className="mb-1 font-bold">
-                        {language === "fi" ? "Y-tunnus: " : "Business ID: "}
-                        3163385-5
-                    </p>
+                        <div className="mt-4">
+                            <a
+                                href="https://www.facebook.com/hunajaholisti"
+                                target="_blank"
+                                rel="noreferrer"
+                                className="text-white hover:text-blue-600 text-4xl transition-transform duration-200 ease-in-out transform hover:scale-105 px-4"
+                            >
+                                <i className="fa fa-facebook"></i>
+                            </a>
+                            <a
+                                href="https://www.instagram.com/hunajaholisti"
+                                target="_blank"
+                                rel="noreferrer"
+                                className="text-white hover:text-purple-600 text-4xl transition-transform duration-200 ease-in-out transform hover:scale-105 px-4"
+                            >
+                                <i className="fa fa-instagram"></i>
+                            </a>
+                        </div>
+                    </div>
                 </div>
 
                 <footer className="mt-8 text-center text-sm text-gray-200">
@@ -95,7 +113,7 @@ export default function Footer() {
                     </a>
                     + Tailwind CSS
                     <a
-                        href=" https://tailwindcss.com/"
+                        href="https://tailwindcss.com/"
                         target="_blank"
                         rel="noreferrer"
                         className="inline-flex items-center text-gray-500 hover:text-gray-700"

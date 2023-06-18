@@ -13,9 +13,7 @@ export default function Home() {
                 <div className="py-5"></div>
                 <div className="text-center">
                     <h1 className="text-5xl font-semibold text-yellow-400 mb-5">
-                        {language === "fi"
-                            ? "HUNAJAHOLISTIN HUNAJA"
-                            : "HONEYHOLIC'S HONEY"}
+                        HUNAJAHOLISTIN HUNAJA
                     </h1>
 
                     <h5 className="text-yellow-200 mt-2 text-lg">
