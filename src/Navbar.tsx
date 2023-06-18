@@ -20,18 +20,7 @@ export default function Navbar() {
     return (
         <>
             <nav className="bg-black bg-opacity-75 p-3 pl-8 pr-8 fixed flex items-center justify-between top-0 w-full z-50">
-                <div className="flex justify-between items-center w-full lg:w-auto"> {/* Add flex and justify-between here */}
-                    <div className="group">
-                        <Link to="/" onClick={toggleSideNav}>
-                            <div className="group-hover:border-white">
-                                <img
-                                    className="header-logo h-12 w-12 transition-transform duration-200 ease-in-out transform hover:scale-105"
-                                    src="HHlogo.jpg"
-                                    alt=""
-                                />
-                            </div>
-                        </Link>
-                    </div>
+                <div className="flex justify-between items-center w-full lg:w-auto">
                     <button
                         className="inline-block lg:hidden w-8 h-8 bg-black-500 text-white p-1 ml-3"
                         onClick={toggleSideNav}
@@ -46,6 +35,17 @@ export default function Navbar() {
                         isOpen ? "translate-x-0" : "-translate-x-full"
                     } lg:static lg:translate-x-0 lg:flex lg:items-center lg:w-auto lg:space-y-0 lg:space-x-10 lg:pt-0 lg:pb-0 lg:bg-transparent`}
                 >
+                    <li className="mobile-img">
+                        <Link to="/" onClick={toggleSideNav}>
+                            <div className="group-hover:border-white">
+                                <img
+                                    className="header-logo h-12 w-12 transition-transform duration-200 ease-in-out transform hover:scale-105"
+                                    src="HHlogo.jpg"
+                                    alt="Hunajaholistin Hunaja logo"
+                                />
+                            </div>
+                        </Link>
+                    </li>
                     <li>
                         <Link
                             className="block px-6 mx-2 py-3 transition-colors duration-200 ease-in-out hover:bg-gray-800 hover:text-white lg:px-0 lg:py-0 lg:hover:bg-transparent lg:hover:text-yellow-300 hover:scale-105"
@@ -74,7 +74,7 @@ export default function Navbar() {
                             {language === "fi" ? "VERKKOKAUPPA" : "ONLINE SHOP"}
                         </a>
                     </li>
-                    <li className="px-5 py-3 lg:px-0 lg:py-0">
+                    <li className="px-5 py-3 lg:px-0 lg:py-0 mobile-img-flag">
                         <LanguageSelector
                             setLanguage={setLanguage}
                             hoverClass="hover:shadow-lg"
