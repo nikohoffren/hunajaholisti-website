@@ -28,8 +28,8 @@ export default function Home() {
                         target="_blank"
                     >
                         {language === "fi"
-                            ? "KATSO TÄSTÄ TUOTTEEMME"
-                            : "CHECK OUT OUR PRODUCTS HERE"}
+                            ? "SIIRRY TÄSTÄ VERKKOKAUPPAAN"
+                            : "GO TO ONLINE STORE"}
                     </a>
                 </div>
 

@@ -13,40 +13,18 @@ export default function Footer() {
             <div className="container mx-auto space-y-4">
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                     <div className="text-center">
-                        <p className="mb-2 font-bold">
-                            Hunajaholistin Hunaja
-                        </p>
-                        <p className="mb-1">Liitokuja 4 C, 03100 VIHTI</p>
-                        <p className="mb-1">hunajaholisti@gmail.com</p>
-                        <p className="mb-1">
+                        <p className="mb-1 font-bold">Hunajaholistin Hunaja</p>
+                        <p className="">Liitokuja 4 C, 03100 VIHTI</p>
+                        <p className="">hunajaholisti@gmail.com</p>
+                        <p className="">
                             {language === "fi" ? "puh. 0" : "+358 "}44 0550575
                         </p>
-                        <p className="mb-1">
+                        <p className="">
                             {language === "fi" ? "Y-tunnus: " : "Business ID: "}
                             3163385-5
                         </p>
                     </div>
-                    <div className="text-center">
-                        <Link
-                            to="/myyntiehdot"
-                            className="text-white hover:text-blue-600"
-                        >
-                            {language === "fi"
-                                ? "Myynti- ja toimitusehdot"
-                                : "Sales and delivery conditions"}
-                        </Link>
-                        <br />
-                        <Link
-                            to="/tietosuojaseloste"
-                            className="text-white hover:text-blue-600"
-                        >
-                            {language === "fi"
-                                ? "Tietosuojaseloste"
-                                : "Privacy Policy"}
-                        </Link>
-                    </div>
-                    <div className="text-center">
-
+                    <div className="text-center mt-4">
                         <div className="mt-4">
                             <a
                                 href="https://www.facebook.com/hunajaholisti"
@@ -65,6 +43,48 @@ export default function Footer() {
                                 <i className="fa fa-instagram"></i>
                             </a>
                         </div>
+                    </div>
+                    <div className="text-center mt-4">
+                        <Link
+                            to="/myyntiehdot"
+                            className="text-white hover:text-blue-600 py-2"
+                        >
+                            {language === "fi"
+                                ? "Myynti- ja toimitusehdot"
+                                : "Sales and delivery conditions"}
+                        </Link>
+
+                        <br />
+                        <Link
+                            to="/tietosuojaseloste"
+                            className="text-white hover:text-blue-600 py-2"
+                        >
+                            {language === "fi"
+                                ? "Tietosuojaseloste"
+                                : "Privacy Policy"}
+                        </Link>
+                        <br />
+                        <a
+                            href="https://hunaja.fi/hunajasta-ja-mehilaisista/lisatietoja-hunajasta/"
+                            className="text-white hover:text-blue-600 py-2"
+                            target="_blank"
+                            rel="noreferrer"
+                        >
+                            {language === "fi"
+                                ? "Tietoa hunajasta"
+                                : "Honey information"}
+                        </a>
+                        <br />
+                        <a
+                            href="https://hunaja.fi/reseptit/"
+                            className="text-white hover:text-blue-600 py-2"
+                            target="_blank"
+                            rel="noreferrer"
+                        >
+                            {language === "fi"
+                                ? "Hunajareseptejä"
+                                : "Honey receipts"}
+                        </a>
                     </div>
                 </div>
 

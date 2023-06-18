@@ -80,7 +80,7 @@ export default function Tarinamme() {
                         <span className="font-bold">
                             {language === "fi"
                                 ? "Hunajaisin terveisin, Heidi"
-                                : "Best regards, Heidi"}
+                                : "With honey-filled regards, Heidi"}
                         </span>
                     </p>
                     <div className="container mx-auto my-5 px-4 md:w-1/4">
