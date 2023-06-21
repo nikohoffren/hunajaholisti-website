@@ -1115,6 +1115,10 @@ h1 {
     h1 {
         font-size: var(--fz-header-600) !important;
     }
+    .py-5 {
+        padding-bottom: 0!important;
+        padding-top: 0!important;
+    }
 }
 
 @media (max-width: 1100px) {
