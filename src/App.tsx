@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 import Navbar from "./Navbar";
 import Home from "./pages/Home";
 import Tarinamme from "./pages/Tarinamme";
@@ -13,9 +13,11 @@ import { LanguageContext } from "./LanguageContext";
 function App() {
     const [language, setLanguage] = useState("fi");
 
+    const contextValue = useMemo(() => ({ language, setLanguage }), [language, setLanguage]);
+
     return (
         <>
-            <LanguageContext.Provider value={{ language, setLanguage }}>
+            <LanguageContext.Provider value={contextValue}>
                 <Navbar />
                 <Routes>
                     <Route path="/" element={<Home />} />
@@ -34,3 +36,4 @@ function App() {
 }
 
 export default App;
+
