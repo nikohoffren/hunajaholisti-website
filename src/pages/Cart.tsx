@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { CartContext } from "src/CartContext";
+import { LanguageContext } from "src/LanguageContext";
 
 interface IItem {
     id: string;
@@ -17,12 +18,18 @@ const Cart = () => {
         dispatch({ type: "REMOVE", id });
     };
 
+    const { language } = useContext(LanguageContext) as {
+        language: string;
+        setLanguage: (language: string) => void;
+    };
+
     return (
         <>
             <div className="py-20"></div>
             <div className="container mx-auto p-6 bg-white shadow-md rounded-lg">
+
                 <h2 className="text-2xl font-bold mb-4 text-gray-700">
-                    Your Cart
+                    {language === "fi" ? "Ostoskorisi" : "Your Cart"}
                 </h2>
                 <div className="space-y-4">
                     {cartItems &&
@@ -42,7 +49,7 @@ const Cart = () => {
                                         onClick={() => handleRemove(item.id)}
                                         className="text-sm text-red-500"
                                     >
-                                        Remove
+                                        {language === "fi" ? "Poista" : "Remove"}
                                     </button>
                                 </div>
                             </div>
@@ -51,7 +58,7 @@ const Cart = () => {
                 {cartItems && cartItems.length > 0 && (
                     <div className="flex justify-between items-center mt-6 pt-6 border-t">
                         <div className="flex items-center">
-                            <span className="text-gray-600">Total:</span>
+                            <span className="text-gray-600">{language === "fi" ? "Yhteensä:" : "Total:"}</span>
                             <span className="text-gray-700 font-bold text-lg ml-2">
                                 ${total}
                             </span>
@@ -60,7 +67,7 @@ const Cart = () => {
                             to="/checkout"
                             className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors duration-300"
                         >
-                            Proceed to Checkout
+                            {language === "fi" ? "Siirry kassalle" : "Proceed to Checkout"}
                         </Link>
                     </div>
                 )}
