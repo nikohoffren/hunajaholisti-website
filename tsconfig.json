@@ -12,8 +12,9 @@
         "paths": {
             "src/*": ["src/*"]
         },
-        "forceConsistentCasingInFileNames": true
+        "forceConsistentCasingInFileNames": true,
+        "typeRoots": ["./src/types", "node_modules/@types"]
     },
-    "include": ["src/**/*.ts", "src/**/*.tsx", "**/*.d.ts"],
+    "include": ["src/**/*.ts", "src/**/*.tsx", "**/*.d.ts", "src/firebase.ts"],
     "exclude": ["node_modules"]
 }

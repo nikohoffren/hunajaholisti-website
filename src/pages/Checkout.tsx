@@ -9,6 +9,8 @@ import {
 import Spinner from "../Spinner";
 import { CartContext } from "src/CartContext";
 import { LanguageContext } from "src/LanguageContext";
+import { collection, addDoc } from "firebase/firestore";
+import db from "src/firebase";
 
 const Checkout = () => {
     type Errors = {
@@ -41,6 +43,23 @@ const Checkout = () => {
     const { language } = useContext(LanguageContext) as {
         language: string;
         setLanguage: (language: string) => void;
+    };
+    const addOrderToFirestore = async () => {
+        try {
+            const docRef = await addDoc(collection(db, "orders"), {
+                name: customerDetails.name,
+                address: customerDetails.address,
+                zip: customerDetails.zip,
+                city: customerDetails.city,
+                email: customerDetails.email,
+                phone: customerDetails.phone,
+                totalAmount,
+                products: state.cartItems,
+            });
+            console.log("Document written with ID: ", docRef.id);
+        } catch (e) {
+            console.error("Error adding document: ", e);
+        }
     };
 
     const handleSubmit = async (event: React.FormEvent) => {
@@ -108,6 +127,7 @@ const Checkout = () => {
             } else {
                 if (result.paymentIntent.status === "succeeded") {
                     console.log("Payment succeeded!");
+                    addOrderToFirestore();
                     dispatch({ type: "CLEAR" });
                     navigate("/success");
                 }
@@ -126,6 +146,7 @@ const Checkout = () => {
     const handleApprove = (data: any, actions: any) => {
         return actions.order.capture().then((details: any) => {
             console.log(details);
+            addOrderToFirestore();
             dispatch({ type: "CLEAR" });
             navigate("/success");
         });
