@@ -9,6 +9,7 @@
         "preview": "vite preview"
     },
     "dependencies": {
+        "@paypal/react-paypal-js": "^8.0.0",
         "@stripe/react-stripe-js": "^2.1.1",
         "@stripe/stripe-js": "^1.54.1",
         "@tailwindcss/aspect-ratio": "^0.4.2",

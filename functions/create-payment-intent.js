@@ -5,12 +5,20 @@ exports.handler = async function(event, context) {
         return { statusCode: 405, body: "Method Not Allowed" };
     }
 
-    const data = JSON.parse(event.body);
+    const { amount, customerDetails } = JSON.parse(event.body);
 
     const payment = await stripe.paymentIntents.create({
-        amount: data.amount,
+        amount: amount,
         currency: "eur",
         payment_method_types: ["card"],
+        metadata: {
+            customerName: customerDetails.name,
+            customerAddress: customerDetails.address,
+            customerZip: customerDetails.zip,
+            customerCity: customerDetails.city,
+            customerEmail: customerDetails.email,
+            customerPhone: customerDetails.phone,
+        },
     });
 
     return {

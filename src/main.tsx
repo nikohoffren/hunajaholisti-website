@@ -1,15 +1,19 @@
 import ReactDOM from "react-dom";
 import { BrowserRouter } from "react-router-dom";
 import App from "./App";
-import './output.css';
-
+import { PayPalScriptProvider } from "@paypal/react-paypal-js";
+import "./output.css";
 
 const rootElement = document.getElementById("root");
 
 if (rootElement) {
     ReactDOM.render(
         <BrowserRouter>
-            <App />
+            <PayPalScriptProvider
+                options={{ clientId: import.meta.env.VITE_PAYPAL_CLIENT_ID }}
+            >
+                <App />
+            </PayPalScriptProvider>
         </BrowserRouter>,
         rootElement
     );

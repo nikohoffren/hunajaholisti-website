@@ -748,6 +748,9 @@ select {
 .mr-4 {
   margin-right: 1rem;
 }
+.mt-1 {
+  margin-top: 0.25rem;
+}
 .mt-2 {
   margin-top: 0.5rem;
 }
@@ -1018,6 +1021,9 @@ select {
 .pr-8 {
   padding-right: 2rem;
 }
+.pt-16 {
+  padding-top: 4rem;
+}
 .pt-20 {
   padding-top: 5rem;
 }
@@ -1087,6 +1093,10 @@ select {
 .text-red-500 {
   --tw-text-opacity: 1;
   color: rgb(239 68 68 / var(--tw-text-opacity));
+}
+.text-red-600 {
+  --tw-text-opacity: 1;
+  color: rgb(220 38 38 / var(--tw-text-opacity));
 }
 .text-white {
   --tw-text-opacity: 1;
