@@ -1,13 +1,16 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 import Spinner from "../Spinner";
+import { CartContext } from "src/CartContext";
 
 const Checkout = () => {
     const stripe = useStripe();
     const elements = useElements();
     const navigate = useNavigate();
     const [loading, setLoading] = useState(false);
+    const { state, dispatch } = useContext(CartContext);
+    const totalAmount = state.total;
 
     const handleSubmit = async (event: React.FormEvent) => {
         event.preventDefault();
@@ -26,7 +29,7 @@ const Checkout = () => {
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify({ amount: 1000 }), // replace this with your total amount
+                body: JSON.stringify({ amount: totalAmount }),
             }
         );
         const data = await response.json();
@@ -46,7 +49,7 @@ const Checkout = () => {
             } else {
                 if (result.paymentIntent.status === "succeeded") {
                     console.log("Payment succeeded!");
-                    // Add logic to clear cart and show a success message to the user.
+                    dispatch({ type: "CLEAR" });
                     navigate("/success");
                 }
             }
@@ -60,12 +63,15 @@ const Checkout = () => {
             <div className="py-20"></div>
             <div className="container mx-auto p-6 bg-white shadow-md rounded-lg">
                 <h2 className="text-2xl font-bold mb-4 text-gray-700">
-                    Checkout
+                    Kassa
                 </h2>
                 <form onSubmit={handleSubmit} className="space-y-4">
                     <div className="p-4 border border-gray-300 rounded-md">
                         <CardElement className="p-2" />
                     </div>
+                    <h2 className="font-bold mb-4 text-gray-700">
+                        Yhteensä: {totalAmount} €
+                    </h2>
                     <button
                         type="submit"
                         disabled={!stripe || loading}

@@ -46,7 +46,7 @@ export default function Tuotteemme() {
                                     : "Many people ask if our honey is good and the answer is of course: Yes, it's delicious! Our honey has also never been heated. If you like comb honey, you can inquire about it directly from us via Facebook private message."}
                             </p>
                             <div className="mt-4 text-right">
-                                {/* <a
+                                <a
                                     href="https://www.facebook.com/Hunajaholisti/"
                                     target="_blank"
                                     rel="noreferrer"
@@ -55,26 +55,7 @@ export default function Tuotteemme() {
                                     {language === "fi"
                                         ? "LÄHETÄ VIESTI"
                                         : "MESSAGE US"}
-                                </a> */}
-                                <button
-                                    onClick={() =>
-                                        dispatch({
-                                            type: "ADD",
-                                            item: {
-                                                id: "unique-product-id", // replace with actual product ID
-                                                name:
-                                                    language === "fi"
-                                                        ? "Product Name in Finnish"
-                                                        : "Product Name in English", // replace with actual product name
-                                                price: "product-price", // replace with actual product price
-                                            },
-                                        })
-                                    }
-                                >
-                                    {language === "fi"
-                                        ? "Lisää koriin"
-                                        : "Add to Cart"}
-                                </button>
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -106,14 +87,31 @@ export default function Tuotteemme() {
                                     : "Interested in beekeeping and love honey? Beehive is a great way to observe the life of a beehive for one season. It is also a great gift for someone interested in bees. When you buy a beehive, we will regularly send you updates from the beehive via email. Of course, at the end of the harvest season, we will collect the honey and deliver it to the recipient immediately after extraction. In addition to regular hive updates, the package includes 5 jars of honey (350g). The recipient will also receive a diploma of the beehive by mail."}
                             </p>
                             <div className="mt-4 text-right">
-                                <a
-                                    href="https://holvi.com/shop/WbXD2B/product/74a78df2a6bf30c97d4a5a6bbe3fbb25/"
-                                    target="_blank"
-                                    rel="noreferrer"
+                                <button
+                                    onClick={() => {
+                                        const itemToAdd = {
+                                            id: "1",
+                                            name:
+                                                language === "fi"
+                                                    ? "Iso kummipesä"
+                                                    : "Big beehive",
+                                            price: 49.0,
+                                        };
+                                        console.log(
+                                            "Adding to cart:",
+                                            itemToAdd
+                                        );
+                                        dispatch({
+                                            type: "ADD",
+                                            item: itemToAdd,
+                                        });
+                                    }}
                                     className="text-blue-500 hover:text-blue-700 underline"
                                 >
-                                    {language === "fi" ? "TILAA" : "ORDER NOW"}
-                                </a>
+                                    {language === "fi"
+                                        ? "LISÄÄ KORIIN"
+                                        : "ADD TO CART"}
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -145,14 +143,31 @@ export default function Tuotteemme() {
                                     : "Interested in beekeeping and love honey? Beehive is a great way to observe the life of a beehive for one season. It is also a great gift for someone interested in bees. When you buy a beehive, we will regularly send you updates from the beehive via email. Of course, at the end of the harvest season, we will collect the honey and deliver it to the recipient immediately after extraction. In addition to regular hive updates, the package includes 3 jars of honey (350g). The recipient will also receive a diploma of the beehive by mail."}
                             </p>
                             <div className="mt-4 text-right">
-                                <a
-                                    href="https://holvi.com/shop/WbXD2B/product/d216cdfbf6aeabecaa77955c217444c7/"
-                                    target="_blank"
-                                    rel="noreferrer"
+                                <button
+                                    onClick={() => {
+                                        const itemToAdd = {
+                                            id: "2",
+                                            name:
+                                                language === "fi"
+                                                    ? "Pieni kummipesä"
+                                                    : "Small beehive",
+                                            price: 35.0,
+                                        };
+                                        console.log(
+                                            "Adding to cart:",
+                                            itemToAdd
+                                        );
+                                        dispatch({
+                                            type: "ADD",
+                                            item: itemToAdd,
+                                        });
+                                    }}
                                     className="text-blue-500 hover:text-blue-700 underline"
                                 >
-                                    {language === "fi" ? "TILAA" : "ORDER NOW"}
-                                </a>
+                                    {language === "fi"
+                                        ? "LISÄÄ KORIIN"
+                                        : "ADD TO CART"}
+                                </button>
                             </div>
                         </div>
                     </div>

@@ -87,7 +87,7 @@ export default function Navbar() {
                             onClick={toggleSideNav}
                         >
                             <i className="fas fa-shopping-cart"></i>
-                            {language === "fi" ? " Ostoskori" : " Cart"}
+                            {/* {language === "fi" ? " Ostoskori" : " Cart"} */}
                         </Link>
                     </li>
                 </ul>
