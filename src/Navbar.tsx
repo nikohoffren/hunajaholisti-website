@@ -80,6 +80,16 @@ export default function Navbar() {
                             hoverClass="hover:shadow-lg"
                         />
                     </li>
+                    <li>
+                        <Link
+                            className="block px-6 mx-2 py-3 transition-colors duration-200 ease-in-out hover:bg-gray-800 hover:text-white lg:px-0 lg:py-0 lg:hover:bg-transparent lg:hover:text-yellow-300 hover:scale-105"
+                            to="/cart"
+                            onClick={toggleSideNav}
+                        >
+                            <i className="fas fa-shopping-cart"></i>
+                            {language === "fi" ? " Ostoskori" : " Cart"}
+                        </Link>
+                    </li>
                 </ul>
             </nav>
         </>

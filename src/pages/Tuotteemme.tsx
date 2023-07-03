@@ -1,11 +1,14 @@
 import React, { useContext } from "react";
 import { LanguageContext } from "src/LanguageContext";
+import { CartContext } from "src/CartContext";
 
 export default function Tuotteemme() {
     const { language } = useContext(LanguageContext) as {
         language: string;
         setLanguage: (language: string) => void;
     };
+    const { dispatch } = useContext(CartContext);
+
     return (
         <>
             <div className="container mx-auto text-center mt-20">
@@ -43,7 +46,7 @@ export default function Tuotteemme() {
                                     : "Many people ask if our honey is good and the answer is of course: Yes, it's delicious! Our honey has also never been heated. If you like comb honey, you can inquire about it directly from us via Facebook private message."}
                             </p>
                             <div className="mt-4 text-right">
-                                <a
+                                {/* <a
                                     href="https://www.facebook.com/Hunajaholisti/"
                                     target="_blank"
                                     rel="noreferrer"
@@ -52,7 +55,26 @@ export default function Tuotteemme() {
                                     {language === "fi"
                                         ? "LÄHETÄ VIESTI"
                                         : "MESSAGE US"}
-                                </a>
+                                </a> */}
+                                <button
+                                    onClick={() =>
+                                        dispatch({
+                                            type: "ADD",
+                                            item: {
+                                                id: "unique-product-id", // replace with actual product ID
+                                                name:
+                                                    language === "fi"
+                                                        ? "Product Name in Finnish"
+                                                        : "Product Name in English", // replace with actual product name
+                                                price: "product-price", // replace with actual product price
+                                            },
+                                        })
+                                    }
+                                >
+                                    {language === "fi"
+                                        ? "Lisää koriin"
+                                        : "Add to Cart"}
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -243,61 +265,62 @@ export default function Tuotteemme() {
                                 PROPOLIS
                             </h5>
 
-
                             <p className="grey-text smaller-text font-semibold">
                                 {language === "fi"
                                     ? "Myyn propolista lastuina"
                                     : "I sell propolis as chips"}
                             </p>
                             <p className="mt-4 text-gray-700">
-                            {language === "fi" ? (
-                                <>
-                                    Propolikseksi sanotaan ainetta jolla
-                                    mehiläiset kittaavat turhat raot pesässä.
-                                    Propoliksella on desinfioiva vaikutus
-                                    mehiläispesässä. Mehiläiset keräävät
-                                    aineksia propolikseen pensaiden ja puiden
-                                    silmuista. Silmut erittävät pihkamaisia ja
-                                    tuoksuvia hartsimaisia aineita.
-                                    <br />
-                                    <br />
-                                    Lisätietoa propoliksesta voit lukea
-                                    esimerkiksi täältä:{" "}
-                                    <a
-                                        href="https://hunaja.net/hunajatietoa/muut-mehilaistuotteet/propolis/"
-                                        target="_blank"
-                                        className="text-yellow-600 hover:text-yellow-800"
-                                    >
-                                        https://hunaja.net/hunajatietoa/muut-mehilaistuotteet/propolis/
-                                    </a>
-                                    <br />
-                                    <br />
-                                    (Tulossa lisää 2023!)
-                                </>
-                            ) : (
-                                <>
-                                    Propolis is a substance bees use to seal off
-                                    unwanted holes in the hive. Propolis has a
-                                    disinfectant effect in the beehive. Bees
-                                    collect the ingredients for propolis from
-                                    the buds of trees and shrubs. Buds secrete
-                                    resinous and fragrant resinous substances.
-                                    <br />
-                                    <br />
-                                    More information about propolis can be found
-                                    here:{" "}
-                                    <a
-                                        href="https://hunaja.net/hunajatietoa/muut-mehilaistuotteet/propolis/"
-                                        target="_blank"
-                                        className="text-yellow-600 hover:text-yellow-800"
-                                    >
-                                        https://hunaja.net/hunajatietoa/muut-mehilaistuotteet/propolis/
-                                    </a>
-                                    <br />
-                                    <br />
-                                    (Coming soon 2023!)
-                                </>
-                            )}
+                                {language === "fi" ? (
+                                    <>
+                                        Propolikseksi sanotaan ainetta jolla
+                                        mehiläiset kittaavat turhat raot
+                                        pesässä. Propoliksella on desinfioiva
+                                        vaikutus mehiläispesässä. Mehiläiset
+                                        keräävät aineksia propolikseen pensaiden
+                                        ja puiden silmuista. Silmut erittävät
+                                        pihkamaisia ja tuoksuvia hartsimaisia
+                                        aineita.
+                                        <br />
+                                        <br />
+                                        Lisätietoa propoliksesta voit lukea
+                                        esimerkiksi täältä:{" "}
+                                        <a
+                                            href="https://hunaja.net/hunajatietoa/muut-mehilaistuotteet/propolis/"
+                                            target="_blank"
+                                            className="text-yellow-600 hover:text-yellow-800"
+                                        >
+                                            https://hunaja.net/hunajatietoa/muut-mehilaistuotteet/propolis/
+                                        </a>
+                                        <br />
+                                        <br />
+                                        (Tulossa lisää 2023!)
+                                    </>
+                                ) : (
+                                    <>
+                                        Propolis is a substance bees use to seal
+                                        off unwanted holes in the hive. Propolis
+                                        has a disinfectant effect in the
+                                        beehive. Bees collect the ingredients
+                                        for propolis from the buds of trees and
+                                        shrubs. Buds secrete resinous and
+                                        fragrant resinous substances.
+                                        <br />
+                                        <br />
+                                        More information about propolis can be
+                                        found here:{" "}
+                                        <a
+                                            href="https://hunaja.net/hunajatietoa/muut-mehilaistuotteet/propolis/"
+                                            target="_blank"
+                                            className="text-yellow-600 hover:text-yellow-800"
+                                        >
+                                            https://hunaja.net/hunajatietoa/muut-mehilaistuotteet/propolis/
+                                        </a>
+                                        <br />
+                                        <br />
+                                        (Coming soon 2023!)
+                                    </>
+                                )}
                             </p>
                             <div className="mt-4 text-right">
                                 <a
