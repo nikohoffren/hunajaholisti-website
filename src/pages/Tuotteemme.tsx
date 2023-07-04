@@ -95,7 +95,7 @@ export default function Tuotteemme() {
                                                 language === "fi"
                                                     ? "Iso kummipesä"
                                                     : "Big beehive",
-                                            price: 49.0,
+                                            price: 4900,
                                         };
                                         console.log(
                                             "Adding to cart:",
@@ -151,7 +151,7 @@ export default function Tuotteemme() {
                                                 language === "fi"
                                                     ? "Pieni kummipesä"
                                                     : "Small beehive",
-                                            price: 35.0,
+                                            price: 3500,
                                         };
                                         console.log(
                                             "Adding to cart:",

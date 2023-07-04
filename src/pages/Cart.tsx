@@ -72,7 +72,7 @@ const Cart = () => {
                                 </div>
                                 <div className="flex items-center">
                                     <p className="font-bold text-gray-700 mr-4">
-                                        {item.price} € / kpl
+                                        {item.price / 100} € / kpl
                                     </p>
                                     <button
                                         onClick={() => handleRemove(item.id)}
@@ -93,7 +93,7 @@ const Cart = () => {
                                 {language === "fi" ? "Yhteensä:" : "Total:"}
                             </span>
                             <span className="text-gray-700 font-bold text-lg ml-2">
-                                {total} €
+                                {total / 100} €
                             </span>
                         </div>
                         <Link
