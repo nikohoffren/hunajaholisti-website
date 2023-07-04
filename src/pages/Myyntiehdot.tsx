@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { LanguageContext } from "src/LanguageContext";
+import { LanguageContext } from "../components/LanguageContext";
 
 export default function MyyntiEhdot() {
     const { language } = useContext(LanguageContext) as {

@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { LanguageContext } from "src/LanguageContext";
+import { LanguageContext } from "../components/LanguageContext";
 import { Link } from "react-router-dom";
 
 export default function Footer() {

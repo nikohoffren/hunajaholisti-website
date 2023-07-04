@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
-import { CartContext } from "src/CartContext";
-import { LanguageContext } from "src/LanguageContext";
+import { CartContext } from "../components/CartContext";
+import { LanguageContext } from "../components/LanguageContext";
 
 interface IItem {
     id: string;

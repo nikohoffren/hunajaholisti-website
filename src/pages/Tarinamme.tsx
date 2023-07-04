@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
-import { LanguageContext } from "src/LanguageContext";
+import { LanguageContext } from "../components/LanguageContext";
 
 export default function Tarinamme() {
     const { language } = useContext(LanguageContext) as {

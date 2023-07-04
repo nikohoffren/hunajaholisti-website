@@ -1,21 +1,21 @@
 import React, { useState, useMemo } from "react";
-import Navbar from "./Navbar";
+import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import Tarinamme from "./pages/Tarinamme";
 import Tuotteemme from "./pages/Tuotteemme";
 import Myyntiehdot from "./pages/Myyntiehdot";
 import Tietosuojaseloste from "./pages/Tietosuojaseloste";
-import Payment from "./pages/Payment";
+import Payment from "./Payment";
 import { Route, Routes } from "react-router-dom";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import Footer from "./pages/Footer";
 import "./output.css";
-import { LanguageContext } from "./LanguageContext";
+import { LanguageContext } from "./components/LanguageContext";
 import Cart from "./pages/Cart";
 import Checkout from "./pages/Checkout";
-import Success from "./Success";
-import { CartProvider } from "./CartContext";
+import Success from "./components/Success";
+import { CartProvider } from "./components/CartContext";
 
 //* Call loadStripe outside of a component's render to avoid recreating the Stripe object on every render.
 const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY ?? '');

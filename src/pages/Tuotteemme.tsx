@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
-import { LanguageContext } from "src/LanguageContext";
-import { CartContext } from "src/CartContext";
+import { LanguageContext } from "../components/LanguageContext";
+import { CartContext } from "../components/CartContext";
 
 export default function Tuotteemme() {
     const { language } = useContext(LanguageContext) as {
