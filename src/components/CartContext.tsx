@@ -1,40 +1,111 @@
-// CartContext.tsx
-import React, { createContext, useReducer, ReactNode } from 'react';
+import React, { createContext, useReducer, ReactNode } from "react";
 
 export const CartContext = createContext<any>(null);
 
-const initialState = {
-  cartItems: [],
-  total: 0
-};
+const savedState = localStorage.getItem("cartState");
+const initialState = savedState
+  ? JSON.parse(savedState)
+  : {
+      cartItems: [],
+      total: 0,
+    };
 
 function cartReducer(state: any, action: any) {
-    switch (action.type) {
-        case 'ADD':
-            return { ...state, cartItems: [...state.cartItems, action.item], total: state.total + action.item.price };
-        case 'REMOVE':
-            const index = state.cartItems.findIndex((item: any) => item.id === action.id);
-            if (index >= 0) {
-                const item = state.cartItems[index];
-                const newCartItems = [...state.cartItems];
-                newCartItems.splice(index, 1);
-                return { ...state, cartItems: newCartItems, total: state.total - item.price };
-            }
-            return state;
-        case 'CLEAR':
-            return { ...state, cartItems: [], total: 0 };
-        default:
-            throw new Error(`Unknown action: ${action.type}`);
-    }
+  let newState;
+  switch (action.type) {
+    case "ADD":
+      const existingCartItemIndex = state.cartItems.findIndex(
+        (item: any) => item.id === action.item.id
+      );
+
+      if (existingCartItemIndex >= 0) {
+        const newCartItems = [...state.cartItems];
+        newCartItems[existingCartItemIndex] = {
+          ...newCartItems[existingCartItemIndex],
+          quantity: newCartItems[existingCartItemIndex].quantity + 1,
+        };
+
+        newState = {
+          ...state,
+          cartItems: newCartItems,
+          total: state.total + action.item.price,
+        };
+      } else {
+        newState = {
+          ...state,
+          cartItems: [...state.cartItems, { ...action.item, quantity: 1 }],
+          total: state.total + action.item.price,
+        };
+      }
+      break;
+
+    case "REMOVE":
+      const index = state.cartItems.findIndex(
+        (item: any) => item.id === action.id
+      );
+      if (index >= 0) {
+        const item = state.cartItems[index];
+        const newCartItems = [...state.cartItems];
+        newCartItems.splice(index, 1);
+        newState = {
+          ...state,
+          cartItems: newCartItems,
+          total: state.total - item.price,
+        };
+      }
+      break;
+
+    case "INCREASE_QUANTITY":
+      newState = {
+        ...state,
+        cartItems: state.cartItems.map(
+          (item: { id: any; quantity: number; price: number }) =>
+            item.id === action.id
+              ? { ...item, quantity: item.quantity + 1 }
+              : item
+        ),
+        total:
+          state.total +
+          state.cartItems.find((item: { id: any }) => item.id === action.id)
+            ?.price,
+      };
+      break;
+
+    case "DECREASE_QUANTITY":
+      newState = {
+        ...state,
+        cartItems: state.cartItems.map(
+          (item: { id: any; quantity: number; price: number }) =>
+            item.id === action.id && item.quantity > 1
+              ? { ...item, quantity: item.quantity - 1 }
+              : item
+        ),
+        total:
+          state.total -
+          (state.cartItems.find(
+            (item: { id: any; quantity: number }) =>
+              item.id === action.id && item.quantity > 1
+          )?.price || 0),
+      };
+      break;
+
+    case "CLEAR":
+      newState = { ...state, cartItems: [], total: 0 };
+      break;
+    default:
+      throw new Error(`Unknown action: ${action.type}`);
+  }
+  // Save new state to localStorage
+  localStorage.setItem("cartState", JSON.stringify(newState));
+  return newState;
 }
 
-
 export const CartProvider = ({ children }: { children: ReactNode }) => {
-    const [state, dispatch] = useReducer(cartReducer, initialState);
+  const [state, dispatch] = useReducer(cartReducer, initialState);
 
-    return (
-        <CartContext.Provider value={{ state, dispatch }}>
-            {children}
-        </CartContext.Provider>
-    );
+  return (
+    <CartContext.Provider value={{ state, dispatch }}>
+      {children}
+    </CartContext.Provider>
+  );
 };
