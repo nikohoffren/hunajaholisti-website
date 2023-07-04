@@ -138,6 +138,19 @@ export default function Footer() {
             alt="Tailwind logo"
           />
         </a>
+        + Firebase
+        <a
+          href="https://firebase.google.com/?gad=1&gclid=Cj0KCQjwho-lBhC_ARIsAMpgMoc0M2B_wFfysfCjzTJA2VdnLLnINpcp_OU6cPLhzXvyl2_l-NieDOcaArpdEALw_wcB&gclsrc=aw.ds"
+          target="_blank"
+          rel="noreferrer"
+          className="inline-flex items-center text-gray-500 hover:text-gray-700"
+        >
+          <img
+            src="/firebase.png"
+            className="h-4 ml-1 mr-2"
+            alt="Firebase logo"
+          />
+        </a>
         & Hosted by Netlify
         <a
           href="https://www.netlify.com/"

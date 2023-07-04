@@ -2,6 +2,7 @@ import { useState, useContext } from "react";
 import { Link, useMatch, useResolvedPath } from "react-router-dom";
 import LanguageSelector from "./LanguageSelector";
 import { LanguageContext } from "./LanguageContext";
+import { CartContext } from "./CartContext";
 
 interface CustomLinkProps {
     to: string;
@@ -11,6 +12,8 @@ interface CustomLinkProps {
 }
 
 export default function Navbar() {
+    const { state } = useContext(CartContext);
+    const cartItemsCount = state.cartItems.length;
     const { language, setLanguage } = useContext(LanguageContext);
     const [isOpen, setIsOpen] = useState(false);
     const toggleSideNav = () => {
@@ -87,6 +90,12 @@ export default function Navbar() {
                             onClick={toggleSideNav}
                         >
                             <i className="fas fa-shopping-cart"></i>
+                            {/* Add the number of items in the cart */}
+                            {cartItemsCount > 0 && (
+                                <span className="bg-red-500 rounded-full text-white text-sm w-5 h-5 inline-flex justify-center items-center ml-1">
+                                    {cartItemsCount}
+                                </span>
+                            )}
                             {/* {language === "fi" ? " Ostoskori" : " Cart"} */}
                         </Link>
                     </li>
