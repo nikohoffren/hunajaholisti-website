@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { LanguageContext } from "../components/LanguageContext";
+import { Link } from "react-router-dom";
 
 export default function Home() {
     const { language } = useContext(LanguageContext) as {
@@ -22,15 +23,15 @@ export default function Home() {
                             : "Honey from a small bee farm"}
                     </h5>
                     <div className="py-5"></div>
-                    <a
-                        href="https://holvi.com/shop/WbXD2B/"
+                    <div className="py-5"></div>
+                    <Link
+                        to="/tuotteemme"
                         className="inline-block px-8 py-4 text-lg text-white bg-yellow-500 rounded-lg transform transition-all duration-200 hover:bg-yellow-600 hover:scale-105"
-                        target="_blank"
                     >
                         {language === "fi"
-                            ? "SIIRRY TÄSTÄ VERKKOKAUPPAAN"
-                            : "GO TO ONLINE STORE"}
-                    </a>
+                            ? "KATSO TÄSTÄ TUOTTEEMME"
+                            : "CHECK OUT OUR PRODUCTS HERE"}
+                    </Link>
                 </div>
 
                 <div className="my-28"></div>

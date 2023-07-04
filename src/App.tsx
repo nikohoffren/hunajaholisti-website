@@ -9,7 +9,7 @@ import Payment from "./Payment";
 import { Route, Routes } from "react-router-dom";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
-import Footer from "./pages/Footer";
+import Footer from "./components/Footer";
 import "./output.css";
 import { LanguageContext } from "./components/LanguageContext";
 import Cart from "./pages/Cart";
@@ -18,48 +18,48 @@ import Success from "./components/Success";
 import { CartProvider } from "./components/CartContext";
 
 //* Call loadStripe outside of a component's render to avoid recreating the Stripe object on every render.
-const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY ?? '');
+const stripePromise = loadStripe(
+  import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY ?? ""
+);
 
 function App() {
-    const [language, setLanguage] = useState("fi");
+  const [language, setLanguage] = useState("fi");
 
-    const contextValue = useMemo(
-        () => ({ language, setLanguage }),
-        [language, setLanguage]
-    );
+  const contextValue = useMemo(() => ({ language, setLanguage }), [
+    language,
+    setLanguage,
+  ]);
 
-    return (
-        <>
-            <CartProvider>
-                <LanguageContext.Provider value={contextValue}>
-                    <Navbar />
-                    <Elements stripe={stripePromise}>
-                        <Routes>
-                            <Route path="/" element={<Home />} />
-                            <Route path="/tarinamme" element={<Tarinamme />} />
-                            <Route
-                                path="/tuotteemme"
-                                element={<Tuotteemme />}
-                            />
-                            <Route
-                                path="/myyntiehdot"
-                                element={<Myyntiehdot />}
-                            />
-                            <Route
-                                path="/tietosuojaseloste"
-                                element={<Tietosuojaseloste />}
-                            />
-                            <Route path="/payment" element={<Payment />} />
-                            <Route path="/cart" element={<Cart />} />
-                            <Route path="/checkout" element={<Checkout />} />
-                            <Route path="/success" element={<Success />} />
-                        </Routes>
-                    </Elements>
-                    <Footer />
-                </LanguageContext.Provider>
-            </CartProvider>
-        </>
-    );
+  return (
+    <div className="relative min-h-screen">
+      <CartProvider>
+        <LanguageContext.Provider value={contextValue}>
+          <Navbar />
+          <div className="flex-grow">
+            <Elements stripe={stripePromise}>
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/tarinamme" element={<Tarinamme />} />
+                <Route path="/tuotteemme" element={<Tuotteemme />} />
+                <Route path="/myyntiehdot" element={<Myyntiehdot />} />
+                <Route
+                  path="/tietosuojaseloste"
+                  element={<Tietosuojaseloste />}
+                />
+                <Route path="/payment" element={<Payment />} />
+                <Route path="/cart" element={<Cart />} />
+                <Route path="/checkout" element={<Checkout />} />
+                <Route path="/success" element={<Success />} />
+              </Routes>
+            </Elements>
+          </div>
+          <div className="py-20"></div>
+          <div className="py-10"></div>
+          <Footer />
+        </LanguageContext.Provider>
+      </CartProvider>
+    </div>
+  );
 }
 
 export default App;

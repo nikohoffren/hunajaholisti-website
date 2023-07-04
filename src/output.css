@@ -682,6 +682,15 @@ select {
 .fixed {
   position: fixed;
 }
+.absolute {
+  position: absolute;
+}
+.relative {
+  position: relative;
+}
+.bottom-0 {
+  bottom: 0px;
+}
 .left-0 {
   left: 0px;
 }
@@ -805,6 +814,9 @@ select {
 .h-full {
   height: 100%;
 }
+.min-h-screen {
+  min-height: 100vh;
+}
 .w-1\/2 {
   width: 50%;
 }
@@ -825,6 +837,9 @@ select {
 }
 .max-w-md {
   max-width: 28rem;
+}
+.flex-grow {
+  flex-grow: 1;
 }
 .-translate-x-full {
   --tw-translate-x: -100%;
