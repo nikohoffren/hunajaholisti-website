@@ -5,7 +5,7 @@ const nodemailer = require('nodemailer');
 let transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
-        user: 'stolenornot.app@gmail.com',
+        user: 'hunajaholistinhunaja@gmail.com',
         pass: functions.config().nodemailer.password,
     }
 });
@@ -14,10 +14,10 @@ exports.sendOrderEmail = functions.firestore
     .document('orders/{orderId}')
     .onCreate((snap, context) => {
         const mailOptions = {
-            from: 'stolenornot.app@gmail.com',
+            from: 'hunajaholistinhunaja@gmail.com',
             to: snap.data().email,
-            subject: 'Order Confirmation',
-            text: `Thanks for your order! Your order number is ${snap.id}`
+            subject: 'Tilausvahvistus',
+            text: `Kiitos tilauksestasi! Tilausnumerosi on: ${snap.id}`
         };
 
         return transporter.sendMail(mailOptions, (error, data) => {
