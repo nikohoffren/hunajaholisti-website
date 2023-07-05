@@ -68,7 +68,7 @@ const Checkout = () => {
         //* Form validation
         let formErrors: Errors = {};
         if (customerDetails.name === "") {
-            formErrors.name = "Name is required!";
+            formErrors.name = "Name is required";
         }
         if (customerDetails.address === "") {
             formErrors.address = "Address is required";

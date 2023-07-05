@@ -173,6 +173,62 @@ export default function Tuotteemme() {
                     </div>
                 </div>
 
+                {/* TESTI */}
+                <div>
+                    <div className="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl">
+                        <img
+                            className="w-full h-48 object-cover"
+                            src="HHkuva5.jpg"
+                            alt="TEsti"
+                        />
+                        <div className="p-8">
+                            <h5 className="text-2xl font-semibold text-gray-900">
+                                {language === "fi"
+                                    ? "Testi"
+                                    : "Test"}
+                            </h5>
+                            <h6>35,00 €</h6>
+                            <p className="mt-4 text-gray-700">
+                                {language === "fi"
+                                    ? "Sis. ALV 24,00%"
+                                    : "VAT 24.00% included"}
+                            </p>
+                            <p className="mt-4 text-gray-700">
+                                {language === "fi"
+                                    ? "Kiinnostaako mehiläistarhaus ja pidät hunajasta? Kummipesä on hyvä vaihtoehto seurata mehiläispesän elämää yhden hoitokauden verran. Se sopii mainiosti lahjaksi mehiläisistä kiinnostuneelle. Ostaessasi kummipesän lähetämme säännöllisesti terveiset mehiläispesältä sähköpostiisi. Totta kai satokauden päätteeksi kerätään hunajat ja ne toimitetaan saajalle heti linkouksen jälkeen. Pakettiin kuuluu säännöllisten pesäterveisten lisäksi 3 purkkia hunajaa (350g). Näiden lisäksi saajalle toimitetaan diplomi kummipesästä postitse."
+                                    : "Interested in beekeeping and love honey? Beehive is a great way to observe the life of a beehive for one season. It is also a great gift for someone interested in bees. When you buy a beehive, we will regularly send you updates from the beehive via email. Of course, at the end of the harvest season, we will collect the honey and deliver it to the recipient immediately after extraction. In addition to regular hive updates, the package includes 3 jars of honey (350g). The recipient will also receive a diploma of the beehive by mail."}
+                            </p>
+                            <div className="mt-4 text-right">
+                                <button
+                                    onClick={() => {
+                                        const itemToAdd = {
+                                            id: "2",
+                                            name:
+                                                language === "fi"
+                                                    ? "Testi"
+                                                    : "Test",
+                                            price: 51,
+                                        };
+                                        console.log(
+                                            "Adding to cart:",
+                                            itemToAdd
+                                        );
+                                        dispatch({
+                                            type: "ADD",
+                                            item: itemToAdd,
+                                        });
+                                    }}
+                                    className="text-blue-500 hover:text-blue-700 underline"
+                                >
+                                    {language === "fi"
+                                        ? "LISÄÄ KORIIN"
+                                        : "ADD TO CART"}
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 {/* Siitepöly */}
                 <div>
                     <div className="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl">
