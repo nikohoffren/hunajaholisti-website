@@ -68,7 +68,7 @@ export default function Navbar() {
                             {language === "fi" ? "TUOTTEEMME" : "PRODUCTS"}
                         </Link>
                     </li>
-                    <li>
+                    {/* <li>
                         <a
                             className="block px-6 mx-2 py-3 transition-colors duration-200 ease-in-out hover:bg-gray-800 hover:text-white lg:px-0 lg:py-0 lg:hover:bg-transparent lg:hover:text-yellow-300 hover:scale-105"
                             href="https://holvi.com/shop/WbXD2B/"
@@ -77,7 +77,7 @@ export default function Navbar() {
                         >
                             {language === "fi" ? "VERKKOKAUPPA" : "ONLINE SHOP"}
                         </a>
-                    </li>
+                    </li> */}
                     <li className="px-5 py-3 lg:px-0 lg:py-0 mobile-img-flag">
                         <LanguageSelector
                             setLanguage={setLanguage}

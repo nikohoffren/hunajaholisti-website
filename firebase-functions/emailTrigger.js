@@ -1,7 +1,6 @@
 const functions = require('firebase-functions');
 const nodemailer = require('nodemailer');
 
-//* create reusable transporter object using the default SMTP transport
 let transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
@@ -13,11 +12,20 @@ let transporter = nodemailer.createTransport({
 exports.sendOrderEmail = functions.firestore
     .document('orders/{orderId}')
     .onCreate((snap, context) => {
+        const data = snap.data();
+        const products = data.products.map(product => `<li>${product.name}, Quantity: ${product.quantity}</li>`).join('');
+        const totalAmount = data.totalAmount;
+
         const mailOptions = {
             from: 'hunajaholistinhunaja@gmail.com',
-            to: snap.data().email,
+            to: data.email,
             subject: 'Tilausvahvistus',
-            text: `Kiitos tilauksestasi! Tilausnumerosi on: ${snap.id}`
+            html: `
+                <p>Kiitos tilauksestasi! Tilausnumerosi on: <strong>${snap.id}</strong></p>
+                <h3>Tilaamasi tuotteet:</h3>
+                <ul>${products}</ul>
+                <h3>Summa yhteensä: ${totalAmount / 100} €</h3>
+            `
         };
 
         return transporter.sendMail(mailOptions, (error, data) => {

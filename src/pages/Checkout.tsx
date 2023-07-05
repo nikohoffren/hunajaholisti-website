@@ -278,14 +278,16 @@ const Checkout = () => {
                         >
                             {loading ? (
                                 <Spinner />
+                            ) : language === "fi" ? (
+                                "Maksa"
                             ) : (
-                                "Proceed to Pay with Stripe"
+                                "Proceed to Pay"
                             )}
                         </button>
-                        <div className="mt-4">
-                            <h3 className="mb-3 text-gray-700">
+                        {/* <div className="mt-4">
+                            <h3 className="mb-3 text-gray-700 mt-4">
                                 {language === "fi"
-                                    ? "Tai maksa PayPalilla"
+                                    ? "Tai maksa PayPalilla:"
                                     : "Or Pay with PayPal:"}
                             </h3>
                             <PayPalButtons
@@ -295,7 +297,10 @@ const Checkout = () => {
                                         purchase_units: [
                                             {
                                                 amount: {
-                                                    value: totalAmount,
+                                                    value: (
+                                                        Number(totalAmount) /
+                                                        100
+                                                    ).toFixed(2),
                                                 },
                                             },
                                         ],
@@ -303,7 +308,7 @@ const Checkout = () => {
                                 }}
                                 onApprove={handleApprove}
                             />
-                        </div>
+                        </div> */}
                     </form>
                 </div>
             </div>
