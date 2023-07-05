@@ -10,6 +10,7 @@ This repository contains the code for our Hunajaholistin Hunaja E-commerce websi
 - [React](https://reactjs.org/)
 - [TypeScript](https://www.typescriptlang.org/)
 - [Tailwind CSS](https://tailwindcss.com/)
+- [Firebase](https://firebase.google.com/)
 - [Netlify Functions](https://netlify.com/)
 - [Stripe](https://stripe.com/)
 - [PayPal](https://paypal.com/)
