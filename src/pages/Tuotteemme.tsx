@@ -173,7 +173,7 @@ export default function Tuotteemme() {
                     </div>
                 </div>
 
-                {/* TESTI */}
+                {/* TESTI
                 <div>
                     <div className="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl">
                         <img
@@ -227,7 +227,7 @@ export default function Tuotteemme() {
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> */}
 
                 {/* Siitepöly */}
                 <div>
