@@ -19,47 +19,57 @@ import { CartProvider } from "./components/CartContext";
 
 //* Call loadStripe outside of a component's render to avoid recreating the Stripe object on every render
 const stripePromise = loadStripe(
-  import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY ?? ""
+    import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY ?? ""
 );
 
 function App() {
-  const [language, setLanguage] = useState("fi");
+    const [language, setLanguage] = useState("fi");
 
-  const contextValue = useMemo(() => ({ language, setLanguage }), [
-    language,
-    setLanguage,
-  ]);
+    const contextValue = useMemo(
+        () => ({ language, setLanguage }),
+        [language, setLanguage]
+    );
 
-  return (
-    <div className="relative min-h-screen">
-      <CartProvider>
-        <LanguageContext.Provider value={contextValue}>
-          <Navbar />
-          <div className="flex-grow">
-            <Elements stripe={stripePromise}>
-              <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/tarinamme" element={<Tarinamme />} />
-                <Route path="/tuotteemme" element={<Tuotteemme />} />
-                <Route path="/myyntiehdot" element={<Myyntiehdot />} />
-                <Route
-                  path="/tietosuojaseloste"
-                  element={<Tietosuojaseloste />}
-                />
-                <Route path="/payment" element={<Payment />} />
-                <Route path="/cart" element={<Cart />} />
-                <Route path="/checkout" element={<Checkout />} />
-                <Route path="/success" element={<Success />} />
-              </Routes>
-            </Elements>
-          </div>
-          <div className="py-20"></div>
-          <div className="py-10"></div>
-          <Footer />
-        </LanguageContext.Provider>
-      </CartProvider>
-    </div>
-  );
+    return (
+        <div className="flex flex-col min-h-screen">
+            <CartProvider>
+                <LanguageContext.Provider value={contextValue}>
+                    <Navbar />
+                    <div className="flex-grow">
+                        <Elements stripe={stripePromise}>
+                            <Routes>
+                                <Route path="/" element={<Home />} />
+                                <Route
+                                    path="/tarinamme"
+                                    element={<Tarinamme />}
+                                />
+                                <Route
+                                    path="/tuotteemme"
+                                    element={<Tuotteemme />}
+                                />
+                                <Route
+                                    path="/myyntiehdot"
+                                    element={<Myyntiehdot />}
+                                />
+                                <Route
+                                    path="/tietosuojaseloste"
+                                    element={<Tietosuojaseloste />}
+                                />
+                                <Route path="/payment" element={<Payment />} />
+                                <Route path="/cart" element={<Cart />} />
+                                <Route
+                                    path="/checkout"
+                                    element={<Checkout />}
+                                />
+                                <Route path="/success" element={<Success />} />
+                            </Routes>
+                        </Elements>
+                    </div>
+                    <Footer />
+                </LanguageContext.Provider>
+            </CartProvider>
+        </div>
+    );
 }
 
 export default App;

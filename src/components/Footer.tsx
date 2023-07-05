@@ -9,7 +9,7 @@ export default function Footer() {
     };
 
     return (
-        <footer className="absolute bottom-0 left-0 w-full bg-black bg-opacity-75 text-white py-4 px-8">
+        <footer className="w-full bg-black bg-opacity-75 text-white py-4 px-8">
             <div className="container mx-auto space-y-4">
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                     <div className="text-center">

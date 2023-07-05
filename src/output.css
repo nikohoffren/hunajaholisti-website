@@ -686,15 +686,6 @@ select {
 .fixed {
   position: fixed;
 }
-.absolute {
-  position: absolute;
-}
-.relative {
-  position: relative;
-}
-.bottom-0 {
-  bottom: 0px;
-}
 .left-0 {
   left: 0px;
 }
@@ -1256,10 +1247,6 @@ h1 {
 @media (max-width: 800px) {
     h1 {
         font-size: var(--fz-header-600) !important;
-    }
-    .py-5 {
-        padding-bottom: 0!important;
-        padding-top: 0!important;
     }
 }
 
