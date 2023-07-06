@@ -14,7 +14,10 @@ interface CustomLinkProps {
 
 export default function Navbar() {
     const { state } = useContext(CartContext);
-    const cartItemsCount = state.cartItems.reduce((count: any, item: { quantity: any; }) => count + item.quantity, 0);
+    const cartItemsCount = state.cartItems.reduce(
+        (count: any, item: { quantity: any }) => count + item.quantity,
+        0
+    );
 
     const { language, setLanguage } = useContext(LanguageContext);
     const [isOpen, setIsOpen] = useState(false);
