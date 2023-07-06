@@ -3,6 +3,7 @@ import { Link, useMatch, useResolvedPath } from "react-router-dom";
 import LanguageSelector from "./LanguageSelector";
 import { LanguageContext } from "./LanguageContext";
 import { CartContext } from "./CartContext";
+import React from "react";
 
 interface CustomLinkProps {
     to: string;

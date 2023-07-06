@@ -10,7 +10,7 @@ import Spinner from "../components/Spinner";
 import { CartContext } from "../components/CartContext";
 import { LanguageContext } from "../components/LanguageContext";
 import { collection, addDoc } from "firebase/firestore";
-import db from "src/firebase";
+import db from "../firebase";
 
 const Checkout = () => {
     type Errors = {
