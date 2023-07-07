@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useEffect } from "react";
 import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import Tarinamme from "./pages/Tarinamme";
@@ -16,6 +16,7 @@ import Cart from "./pages/Cart";
 import Checkout from "./pages/Checkout";
 import Success from "./components/Success";
 import { CartProvider } from "./components/CartContext";
+import Modal from "./components/Modal";
 
 //* Call loadStripe outside of a component's render to avoid recreating the Stripe object on every render
 const stripePromise = loadStripe(
@@ -24,6 +25,9 @@ const stripePromise = loadStripe(
 
 function App() {
     const [language, setLanguage] = useState("fi");
+    const [cookieConsent, setCookieConsent] = useState(
+        () => localStorage.getItem("cookieConsent") ?? ""
+    );
 
     const contextValue = useMemo(
         () => ({ language, setLanguage }),
@@ -32,7 +36,7 @@ function App() {
 
     return (
         <div className="flex flex-col min-h-screen">
-            <CartProvider>
+            <CartProvider cookieConsent={cookieConsent}>
                 <LanguageContext.Provider value={contextValue}>
                     <Navbar />
                     <div className="flex-grow">
@@ -65,6 +69,18 @@ function App() {
                             </Routes>
                         </Elements>
                     </div>
+                    {cookieConsent === "" && (
+                        <Modal
+                            onAccept={() => {
+                                setCookieConsent("true");
+                                localStorage.setItem("cookieConsent", "true");
+                            }}
+                            onReject={() => {
+                                setCookieConsent("false");
+                                localStorage.setItem("cookieConsent", "false");
+                            }}
+                        />
+                    )}
                     <Footer />
                 </LanguageContext.Provider>
             </CartProvider>

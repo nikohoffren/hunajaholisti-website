@@ -1,4 +1,4 @@
-import React, { createContext, useReducer, ReactNode } from "react";
+import React, { createContext, useReducer, ReactNode, useEffect } from "react";
 
 export const CartContext = createContext<any>(null);
 
@@ -99,13 +99,28 @@ function cartReducer(state: any, action: any) {
         default:
             throw new Error(`Unknown action: ${action.type}`);
     }
-    // Save new state to localStorage
     localStorage.setItem("cartState", JSON.stringify(newState));
     return newState;
 }
 
-export const CartProvider = ({ children }: { children: ReactNode }) => {
+export const CartProvider = ({
+    children,
+    cookieConsent,
+}: {
+    children: ReactNode;
+    cookieConsent: string;
+}) => {
     const [state, dispatch] = useReducer(cartReducer, initialState);
+
+    useEffect(() => {
+        if (cookieConsent === "true") {
+            //* Store to localStorage only when the cookies are accepted
+            localStorage.setItem("cartState", JSON.stringify(state));
+        } else {
+            //* Clean localStorage when cookies are rejected or not yet responded
+            localStorage.removeItem("cartState");
+        }
+    }, [state, cookieConsent]);
 
     return (
         <CartContext.Provider value={{ state, dispatch }}>

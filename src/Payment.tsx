@@ -1,41 +1,39 @@
-import React from 'react';
-import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
+import React from "react";
+import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 
 const Payment = () => {
-  const stripe = useStripe();
-  const elements = useElements();
+    const stripe = useStripe();
+    const elements = useElements();
 
-  const handleSubmit = async (event: React.FormEvent) => {
-    event.preventDefault();
+    const handleSubmit = async (event: React.FormEvent) => {
+        event.preventDefault();
 
-    if (!stripe || !elements) {
-      // Stripe.js has not yet loaded.
-      return;
-    }
+        if (!stripe || !elements) {
+            return;
+        }
 
-    const cardElement = elements.getElement(CardElement);
+        const cardElement = elements.getElement(CardElement);
 
-    if (cardElement) {
-      const { error, paymentMethod } = await stripe.createPaymentMethod({
-        type: 'card',
-        card: cardElement,
-      });
+        if (cardElement) {
+            const { error, paymentMethod } = await stripe.createPaymentMethod({
+                type: "card",
+                card: cardElement,
+            });
 
-      if (!error) {
-        console.log(paymentMethod);
-        // Implement payment logic here
-      }
-    }
-  };
+            if (!error) {
+                console.log(paymentMethod);
+            }
+        }
+    };
 
-  return (
-    <form onSubmit={handleSubmit}>
-      <CardElement />
-      <button type="submit" disabled={!stripe}>
-        Pay
-      </button>
-    </form>
-  );
+    return (
+        <form onSubmit={handleSubmit}>
+            <CardElement />
+            <button type="submit" disabled={!stripe}>
+                Pay
+            </button>
+        </form>
+    );
 };
 
 export default Payment;
