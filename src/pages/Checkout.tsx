@@ -57,6 +57,7 @@ const Checkout = () => {
                 products: state.cartItems,
             });
             console.log("Document written with ID: ", docRef.id);
+
         } catch (e) {
             console.error("Error adding document: ", e);
         }
@@ -67,23 +68,45 @@ const Checkout = () => {
 
         //* Form validation
         let formErrors: Errors = {};
-        if (customerDetails.name === "") {
-            formErrors.name = "Name is required";
-        }
-        if (customerDetails.address === "") {
-            formErrors.address = "Address is required";
-        }
-        if (customerDetails.zip === "") {
-            formErrors.zip = "Zip is required";
-        }
-        if (customerDetails.city === "") {
-            formErrors.city = "City is required";
-        }
-        if (customerDetails.email === "") {
-            formErrors.email = "Email is required";
-        }
-        if (customerDetails.phone === "") {
-            formErrors.phone = "Phone is required";
+
+        if (language === "fi") {
+            if (customerDetails.name === "") {
+                formErrors.name = "Kirjoita nimesi";
+            }
+            if (customerDetails.address === "") {
+                formErrors.address = "Kirjoita osoitteesi";
+            }
+            if (customerDetails.zip === "") {
+                formErrors.zip = "Kirjoita postinumerosi";
+            }
+            if (customerDetails.city === "") {
+                formErrors.city = "Kirjoita kaupunkisi";
+            }
+            if (customerDetails.email === "") {
+                formErrors.email = "Kirjoita sähköpostiosoitteesi";
+            }
+            if (customerDetails.phone === "") {
+                formErrors.phone = "Kirjoita puhelinnumerosi";
+            }
+        } else {
+            if (customerDetails.name === "") {
+                formErrors.name = "Name is required";
+            }
+            if (customerDetails.address === "") {
+                formErrors.address = "Address is required";
+            }
+            if (customerDetails.zip === "") {
+                formErrors.zip = "Zip is required";
+            }
+            if (customerDetails.city === "") {
+                formErrors.city = "City is required";
+            }
+            if (customerDetails.email === "") {
+                formErrors.email = "Email is required";
+            }
+            if (customerDetails.phone === "") {
+                formErrors.phone = "Phone is required";
+            }
         }
         setErrors(formErrors);
 
@@ -127,6 +150,7 @@ const Checkout = () => {
             } else {
                 if (result.paymentIntent.status === "succeeded") {
                     console.log("Payment succeeded!");
+                    localStorage.setItem('userHasPurchased', 'true');
                     addOrderToFirestore();
                     dispatch({ type: "CLEAR" });
                     navigate("/success");
