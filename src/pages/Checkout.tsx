@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 import {
@@ -31,11 +31,9 @@ const Checkout = () => {
         email: "",
         phone: "",
     });
-
-    const [paymentSuccess, setPaymentSuccess] = useState(false);
-    const navigate = useNavigate();
     const stripe = useStripe();
     const elements = useElements();
+    const navigate = useNavigate();
     const [loading, setLoading] = useState(false);
     const { state, dispatch } = useContext(CartContext);
     const totalAmount = state.total;
@@ -46,13 +44,6 @@ const Checkout = () => {
         language: string;
         setLanguage: (language: string) => void;
     };
-
-    useEffect(() => {
-        if (paymentSuccess) {
-            navigate("/success");
-        }
-    }, [paymentSuccess, navigate]);
-
     const addOrderToFirestore = async () => {
         try {
             const docRef = await addDoc(collection(db, "orders"), {
@@ -162,7 +153,7 @@ const Checkout = () => {
                     localStorage.setItem("userHasPurchased", "true");
                     addOrderToFirestore();
                     dispatch({ type: "CLEAR" });
-                    setPaymentSuccess(true);
+                    navigate("/success");
                     setLoading(false);
                 }
             }
@@ -175,12 +166,13 @@ const Checkout = () => {
             [event.target.name]: event.target.value,
         });
     };
+
     const handleApprove = (data: any, actions: any) => {
         return actions.order.capture().then((details: any) => {
             console.log(details);
             addOrderToFirestore();
             dispatch({ type: "CLEAR" });
-            setPaymentSuccess(true);
+            navigate("/success");
         });
     };
 
