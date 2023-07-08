@@ -21,7 +21,6 @@ export default function Tuotteemme() {
             </div>
 
             <div className="container mx-auto grid md:grid-cols-3 gap-8 mb-4">
-
                 {/* Hunaja */}
                 <div>
                     <div className="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl">
@@ -174,7 +173,7 @@ export default function Tuotteemme() {
                     </div>
                 </div>
 
-                {/* Testi */}
+                {/* Testi
                 <div>
                     <div className="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl">
                         <img
@@ -228,7 +227,7 @@ export default function Tuotteemme() {
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> */}
 
                 {/* Siitepöly */}
                 <div>
@@ -310,7 +309,7 @@ export default function Tuotteemme() {
                             </p>
                             <div className="mt-4 text-right">
                                 <a
-                                    href="https://holvi.com/shop/WbXD2B/"
+                                    href="https://www.facebook.com/Hunajaholisti/"
                                     target="_blank"
                                     rel="noreferrer"
                                     className="text-blue-500 hover:text-blue-700 underline"
@@ -396,7 +395,7 @@ export default function Tuotteemme() {
                             </p>
                             <div className="mt-4 text-right">
                                 <a
-                                    href="https://holvi.com/shop/WbXD2B/"
+                                    href="https://www.facebook.com/Hunajaholisti/"
                                     target="_blank"
                                     rel="noreferrer"
                                     className="text-blue-500 hover:text-blue-700 underline"
