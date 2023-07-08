@@ -7,6 +7,7 @@ export default function Home() {
         language: string;
         setLanguage: (language: string) => void;
     };
+    localStorage.setItem("userHasPurchased", "true");
     return (
         <>
             <main className="flex flex-col items-center my-20">
