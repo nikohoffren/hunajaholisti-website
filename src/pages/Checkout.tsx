@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 import {
@@ -31,9 +31,11 @@ const Checkout = () => {
         email: "",
         phone: "",
     });
+
+    const [paymentSuccess, setPaymentSuccess] = useState(false);
+    const navigate = useNavigate();
     const stripe = useStripe();
     const elements = useElements();
-    const navigate = useNavigate();
     const [loading, setLoading] = useState(false);
     const { state, dispatch } = useContext(CartContext);
     const totalAmount = state.total;
@@ -44,6 +46,13 @@ const Checkout = () => {
         language: string;
         setLanguage: (language: string) => void;
     };
+
+    useEffect(() => {
+        if (paymentSuccess) {
+            navigate("/success");
+        }
+    }, [paymentSuccess, navigate]);
+
     const addOrderToFirestore = async () => {
         try {
             const docRef = await addDoc(collection(db, "orders"), {
@@ -57,7 +66,6 @@ const Checkout = () => {
                 products: state.cartItems,
             });
             console.log("Document written with ID: ", docRef.id);
-
         } catch (e) {
             console.error("Error adding document: ", e);
         }
@@ -147,17 +155,18 @@ const Checkout = () => {
 
             if (result.error) {
                 alert(result.error.message);
+                setLoading(false);
             } else {
                 if (result.paymentIntent.status === "succeeded") {
                     console.log("Payment succeeded!");
-                    localStorage.setItem('userHasPurchased', 'true');
+                    localStorage.setItem("userHasPurchased", "true");
                     addOrderToFirestore();
                     dispatch({ type: "CLEAR" });
-                    navigate("/success");
+                    setPaymentSuccess(true);
+                    setLoading(false);
                 }
             }
         }
-        setLoading(false);
     };
 
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -166,13 +175,12 @@ const Checkout = () => {
             [event.target.name]: event.target.value,
         });
     };
-
     const handleApprove = (data: any, actions: any) => {
         return actions.order.capture().then((details: any) => {
             console.log(details);
             addOrderToFirestore();
             dispatch({ type: "CLEAR" });
-            navigate("/success");
+            setPaymentSuccess(true);
         });
     };
 
@@ -298,7 +306,8 @@ const Checkout = () => {
                         <button
                             type="submit"
                             disabled={!stripe || loading}
-                            className="mt-4 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors duration-300 w-full md:w-auto"
+                            className="mt-4 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors duration-300 w-full md:w-auto flex justify-center items-center"
+                            style={{ minWidth: "150px" }}
                         >
                             {loading ? (
                                 <Spinner />
@@ -308,6 +317,7 @@ const Checkout = () => {
                                 "Proceed to Pay"
                             )}
                         </button>
+
                         {/* <div className="mt-4">
                             <h3 className="mb-3 text-gray-700 mt-4">
                                 {language === "fi"

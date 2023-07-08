@@ -174,7 +174,7 @@ export default function Tuotteemme() {
                     </div>
                 </div>
 
-                {/* TESTI
+                {/* Testi */}
                 <div>
                     <div className="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl">
                         <img
@@ -203,7 +203,7 @@ export default function Tuotteemme() {
                                 <button
                                     onClick={() => {
                                         const itemToAdd = {
-                                            id: "2",
+                                            id: "3",
                                             name:
                                                 language === "fi"
                                                     ? "Testi"
@@ -228,7 +228,7 @@ export default function Tuotteemme() {
                             </div>
                         </div>
                     </div>
-                </div> */}
+                </div>
 
                 {/* Siitepöly */}
                 <div>
