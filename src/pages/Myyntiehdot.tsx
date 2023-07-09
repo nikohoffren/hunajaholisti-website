@@ -39,8 +39,8 @@ export default function MyyntiEhdot() {
                     </h2>
                     <p className="mb-2">
                         {language === "fi"
-                            ? "Yrityksen nimi: Hunajaholistin Hunaja\nOsoite: Liitokuja 4 C, 03100 VIHTI, SUOMI FINLAND\nEmail: hunajaholisti@gmail.comi\nPuh. +358 (0) 44 0550575"
-                            : "Company name: Hunajaholistin Hunaja\nAddress: Liitokuja 4 C, 03100 VIHTI, SUOMI FINLAND\nEmail: hunajaholisti@gmail.com\nPhone: +358 (0) 44 0550575"}
+                            ? "Yrityksen nimi: Hunajaholistin Hunaja,\nOsoite: Liitokuja 4 C, 03100 VIHTI, SUOMI FINLAND,\nEmail: hunajaholisti@gmail.com,\nPuh. +358 (0) 44 0550575"
+                            : "Company name: Hunajaholistin Hunaja,\nAddress: Liitokuja 4 C, 03100 VIHTI, SUOMI FINLAND,\nEmail: hunajaholisti@gmail.com,\nPhone: +358 (0) 44 0550575"}
                     </p>
 
                     <h2 className="font-semibold text-2xl mb-4">

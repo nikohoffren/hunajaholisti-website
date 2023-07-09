@@ -40,7 +40,11 @@ const Cart = () => {
                     <h2 className="text-2xl font-bold mb-4 text-gray-800">
                         {language === "fi" ? "Ostoskorisi" : "Your Cart"}
                     </h2>
-                    <p>Ostoskori on tyhjä!</p>
+                    <p>
+                        {language === "fi"
+                            ? "Ostoskori on tyhjä!"
+                            : "Cart is empty!"}
+                    </p>
                 </div>
             </>
         );
