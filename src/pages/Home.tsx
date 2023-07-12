@@ -1,6 +1,7 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { LanguageContext } from "../components/LanguageContext";
 import { Link } from "react-router-dom";
+import { CSSTransition } from "react-transition-group";
 
 export default function Home() {
     const { language } = useContext(LanguageContext) as {
@@ -8,31 +9,53 @@ export default function Home() {
         setLanguage: (language: string) => void;
     };
     localStorage.setItem("userHasPurchased", "true");
+
+    const [inProp, setInProp] = useState(false);
+    const [textInProp, setTextInProp] = useState(false);
+
+    React.useEffect(() => {
+        setInProp(true);
+        setTextInProp(true);
+    }, []);
+
     return (
         <>
             <main className="flex flex-col items-center my-20">
                 <div className="py-20"></div>
                 <div className="py-5"></div>
                 <div className="text-center">
-                    <h1 className="text-5xl font-semibold text-yellow-400 mb-5">
-                        HUNAJAHOLISTIN HUNAJA
-                    </h1>
-
-                    <h5 className="text-yellow-200 mt-2 text-lg">
-                        {language === "fi"
-                            ? "Pienen mehiläistarhan hunajaa"
-                            : "Honey from a small bee farm"}
-                    </h5>
-                    <div className="py-5"></div>
-                    <div className="py-5"></div>
-                    <Link
-                        to="/tuotteemme"
-                        className="inline-block px-8 py-4 text-lg text-white bg-yellow-500 rounded-lg transform transition-all duration-200 hover:bg-yellow-600 hover:scale-105"
+                    <CSSTransition
+                        in={textInProp}
+                        timeout={500}
+                        classNames="slide-text"
                     >
-                        {language === "fi"
-                            ? "KATSO TÄSTÄ TUOTTEEMME"
-                            : "CHECK OUT OUR PRODUCTS HERE"}
-                    </Link>
+                        <h1 className="text-5xl font-semibold text-yellow-400 mb-5">
+                            HUNAJAHOLISTIN HUNAJA
+                        </h1>
+                    </CSSTransition>
+                    <CSSTransition in={inProp} timeout={500} classNames="slide">
+                        <h5 className="text-yellow-200 mt-2 text-lg">
+                            {language === "fi"
+                                ? "Pienen mehiläistarhan hunajaa"
+                                : "Honey from a small bee farm"}
+                        </h5>
+                    </CSSTransition>
+                    <div className="py-5"></div>
+                    <div className="py-5"></div>
+                    <CSSTransition
+                        in={textInProp}
+                        timeout={500}
+                        classNames="slide-text"
+                    >
+                        <Link
+                            to="/tuotteemme"
+                            className="inline-block px-8 py-4 text-lg text-white bg-yellow-500 rounded-lg transform transition-all duration-200 hover:bg-yellow-600 hover:scale-105"
+                        >
+                            {language === "fi"
+                                ? "KATSO TÄSTÄ TUOTTEEMME"
+                                : "CHECK OUT OUR PRODUCTS HERE"}
+                        </Link>
+                    </CSSTransition>
                 </div>
 
                 <div className="my-28"></div>
