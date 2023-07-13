@@ -2,10 +2,9 @@
 [![LICENSE](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 ![GitHub version](https://badge.fury.io/gh/nikohoffren%2hunajaholisti-homepage.svg)
 
+This repository contains the code for our Hunajaholistin Hunaja E-commerce website. The website offers a pleasant interface to view and purchase the assortment of honey products. It also supports language selection, allowing users to switch between Finnish and English languages seamlessly.
 
 ![Honey](https://cdn.holvi.com/media/poolimage.image/2021/11/05/c67b308348bc60405360366fb336af60d9fb2ea1.png)
-
-This repository contains the code for our Hunajaholistin Hunaja E-commerce website. The website offers a pleasant interface to view and purchase the assortment of honey products. It also supports language selection, allowing users to switch between Finnish and English languages seamlessly.
 
 ## Table of Contents
 
