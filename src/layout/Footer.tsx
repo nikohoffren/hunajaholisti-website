@@ -30,7 +30,7 @@ export default function Footer() {
                                 href="https://www.facebook.com/hunajaholisti"
                                 target="_blank"
                                 rel="noreferrer"
-                                className="text-white hover:text-blue-600 text-4xl transition-transform duration-200 ease-in-out transform hover:scale-105 px-4"
+                                className="text-white hover:text-blue-600 text-2xl transition-transform duration-200 ease-in-out transform hover:scale-105 px-2"
                             >
                                 <i className="fa fa-facebook"></i>
                             </a>
@@ -38,7 +38,7 @@ export default function Footer() {
                                 href="https://www.instagram.com/hunajaholisti"
                                 target="_blank"
                                 rel="noreferrer"
-                                className="text-white hover:text-purple-600 text-4xl transition-transform duration-200 ease-in-out transform hover:scale-105 px-4"
+                                className="text-white hover:text-purple-600 text-2xl transition-transform duration-200 ease-in-out transform hover:scale-105 px-2"
                             >
                                 <i className="fa fa-instagram"></i>
                             </a>
