@@ -1,8 +1,8 @@
 import { useState, useContext } from "react";
 import { Link, useMatch, useResolvedPath } from "react-router-dom";
-import LanguageSelector from "./LanguageSelector";
-import { LanguageContext } from "./LanguageContext";
-import { CartContext } from "./CartContext";
+import LanguageSelector from "../components/LanguageSelector";
+import { LanguageContext } from "../components/LanguageContext";
+import { CartContext } from "../components/CartContext";
 import React from "react";
 
 interface CustomLinkProps {

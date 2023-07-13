@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from "react";
-import Navbar from "./components/Navbar";
+import Navbar from "./layout/Navbar";
 import Home from "./pages/Home";
 import Tarinamme from "./pages/Tarinamme";
 import Tuotteemme from "./pages/Tuotteemme";
@@ -9,7 +9,7 @@ import Payment from "./Payment";
 import { Route, Routes } from "react-router-dom";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
-import Footer from "./components/Footer";
+import Footer from "./layout/Footer";
 import "./output.css";
 import { LanguageContext } from "./components/LanguageContext";
 import Cart from "./pages/Cart";

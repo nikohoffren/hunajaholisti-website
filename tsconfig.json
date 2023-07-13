@@ -15,6 +15,12 @@
         "forceConsistentCasingInFileNames": true,
         "typeRoots": ["./src/types", "node_modules/@types"]
     },
-    "include": ["src/**/*.ts", "src/**/*.tsx", "**/*.d.ts", "src/firebase.ts", "src/components/Footer.tsx"],
+    "include": [
+        "src/**/*.ts",
+        "src/**/*.tsx",
+        "**/*.d.ts",
+        "src/firebase.ts",
+        "src/layout/Footer.tsx"
+    ],
     "exclude": ["node_modules"]
 }
