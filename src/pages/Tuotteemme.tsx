@@ -37,7 +37,7 @@ export default function Tuotteemme() {
                             </h5>
                             <p className="mt-4 text-gray-700">
                                 {language === "fi"
-                                    ? "Mehiläistarhamme sijaitsevat puhtaan luonnon keskellä, kaukana isoista teistä ja ruuhkasta. Osa tarhoistamme sijaitsee metsäalueilla ja osa luomupeltojen vieressä."
+                                    ? "Mehiläistarhamme sijaitsevat puhtaan luonnon keskellä, kaukana isoista teistä ja ruuhkasta. Osa tarhoistamme sijaitsee metsäalueilla ja osa luomupeltojen vieressä. "
                                     : "Our bee farms are located in the middle of pure nature, far from big roads and traffic. Some of our farms are located in forest areas and some next to organic fields."}
                             </p>
                             <p className="mt-4 text-gray-700">
