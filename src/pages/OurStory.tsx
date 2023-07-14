@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { LanguageContext } from "../components/LanguageContext";
 
-export default function Tarinamme() {
+export default function OurStory() {
     const { language } = useContext(LanguageContext) as {
         language: string;
         setLanguage: (language: string) => void;
@@ -58,7 +58,11 @@ export default function Tarinamme() {
                         <p className="mb-2">
                             Mehiläistarhauksen arkea pääset vakoilemaan
                             seuraamalla Instagramissa tiliä{" "}
-                            <a href="https://www.instagram.com/hunajaholisti" target="_blank" className="text-blue-500 hover:text-blue-700">
+                            <a
+                                href="https://www.instagram.com/hunajaholisti"
+                                target="_blank"
+                                className="text-blue-500 hover:text-blue-700"
+                            >
                                 Hunajaholisti
                             </a>
                             .
@@ -67,7 +71,11 @@ export default function Tarinamme() {
                         <p className="mb-2">
                             You can spy on everyday life in beekeeping by
                             following{" "}
-                            <a href="https://www.instagram.com/hunajaholisti" target="_blank" className="text-blue-500 hover:text-blue-700">
+                            <a
+                                href="https://www.instagram.com/hunajaholisti"
+                                target="_blank"
+                                className="text-blue-500 hover:text-blue-700"
+                            >
                                 Hunajaholisti
                             </a>{" "}
                             on Instagram.

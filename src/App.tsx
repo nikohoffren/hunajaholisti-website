@@ -1,10 +1,10 @@
 import React, { useState, useMemo } from "react";
 import Navbar from "./layout/Navbar";
 import Home from "./pages/Home";
-import Tarinamme from "./pages/Tarinamme";
-import Tuotteemme from "./pages/Tuotteemme";
-import Myyntiehdot from "./pages/Myyntiehdot";
-import Tietosuojaseloste from "./pages/Tietosuojaseloste";
+import OurStory from "./pages/OurStory";
+import Products from "./pages/Products";
+import SalesAndDeliveryConditions from "./pages/SalesAndDeliveryConditions";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
 import Payment from "./Payment";
 import { Route, Routes } from "react-router-dom";
 import { Elements } from "@stripe/react-stripe-js";
@@ -46,19 +46,19 @@ function App() {
                                 <Route path="/" element={<Home />} />
                                 <Route
                                     path="/tarinamme"
-                                    element={<Tarinamme />}
+                                    element={<OurStory />}
                                 />
                                 <Route
                                     path="/tuotteemme"
-                                    element={<Tuotteemme />}
+                                    element={<Products />}
                                 />
                                 <Route
                                     path="/myyntiehdot"
-                                    element={<Myyntiehdot />}
+                                    element={<SalesAndDeliveryConditions />}
                                 />
                                 <Route
                                     path="/tietosuojaseloste"
-                                    element={<Tietosuojaseloste />}
+                                    element={<PrivacyPolicy />}
                                 />
                                 <Route path="/payment" element={<Payment />} />
                                 <Route path="/cart" element={<Cart />} />

@@ -4,7 +4,7 @@ import { CartContext } from "../components/CartContext";
 import { useState } from "react";
 import Spinner from "../components/Spinner";
 
-export default function Tuotteemme() {
+export default function Products() {
     const { language } = useContext(LanguageContext) as {
         language: string;
         setLanguage: (language: string) => void;
@@ -27,17 +27,17 @@ export default function Tuotteemme() {
                 {/* Hunaja */}
                 <div>
                     <div className="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl">
-                        <div style={{display: loading ? "block" : "none"}}>
+                        <div style={{ display: loading ? "block" : "none" }}>
                             <Spinner />
                         </div>
-                        <div style={{display: loading ? "none" : "block"}}>
+                        <div style={{ display: loading ? "none" : "block" }}>
                             <img
                                 className="w-full h-48 object-cover"
                                 src="HHlahja.jpg"
                                 alt="Hunaja"
                                 loading="lazy"
                                 onLoad={() => setLoading(false)}
-                                />
+                            />
                         </div>
                         <div className="p-8">
                             <h5 className="text-2xl font-semibold text-gray-900">
@@ -74,16 +74,16 @@ export default function Tuotteemme() {
                 {/* Iso kummipesä */}
                 <div>
                     <div className="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl">
-                        <div style={{display: loading ? "block" : "none"}}>
+                        <div style={{ display: loading ? "block" : "none" }}>
                             <Spinner />
                         </div>
-                        <div style={{display: loading ? "none" : "block"}}>
+                        <div style={{ display: loading ? "none" : "block" }}>
                             <img
                                 className="w-full h-48 object-cover"
                                 src="HHkuva5.jpg"
                                 alt="Iso kummipesä"
                                 onLoad={() => setLoading(false)}
-                                />
+                            />
                         </div>
                         <div className="p-8">
                             <h5 className="text-2xl font-semibold text-gray-900">
@@ -136,15 +136,15 @@ export default function Tuotteemme() {
                 {/* Pieni kummipesä */}
                 <div>
                     <div className="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl">
-                        <div style={{display: loading ? "block" : "none"}}>
+                        <div style={{ display: loading ? "block" : "none" }}>
                             <Spinner />
                         </div>
-                        <div style={{display: loading ? "none" : "block"}}>
+                        <div style={{ display: loading ? "none" : "block" }}>
                             <img
                                 className="w-full h-48 object-cover"
                                 src="HHkuva5.jpg"
                                 alt="Pieni kummipesä"
-                                />
+                            />
                         </div>
                         <div className="p-8">
                             <h5 className="text-2xl font-semibold text-gray-900">
@@ -253,15 +253,15 @@ export default function Tuotteemme() {
                 {/* Siitepöly */}
                 <div>
                     <div className="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl">
-                        <div style={{display: loading ? "block" : "none"}}>
+                        <div style={{ display: loading ? "block" : "none" }}>
                             <Spinner />
                         </div>
-                        <div style={{display: loading ? "none" : "block"}}>
+                        <div style={{ display: loading ? "none" : "block" }}>
                             <img
                                 className="w-full h-48 object-cover"
                                 src="HHkuvaSiitepoly.jpeg"
                                 alt="Siitepöly"
-                                />
+                            />
                         </div>
                         <div className="p-8">
                             <h5 className="text-2xl font-semibold text-gray-900">
@@ -352,15 +352,15 @@ export default function Tuotteemme() {
                 {/* Propolis */}
                 <div>
                     <div className="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl">
-                        <div style={{display: loading ? "block" : "none"}}>
+                        <div style={{ display: loading ? "block" : "none" }}>
                             <Spinner />
                         </div>
-                        <div style={{display: loading ? "none" : "block"}}>
+                        <div style={{ display: loading ? "none" : "block" }}>
                             <img
                                 className="w-full h-48 object-cover"
                                 src="HHlogo.jpg"
                                 alt="Propolis"
-                                />
+                            />
                         </div>
                         <div className="p-8">
                             <h5 className="text-2xl font-semibold text-gray-900">

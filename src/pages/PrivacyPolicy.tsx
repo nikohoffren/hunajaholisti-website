@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { LanguageContext } from "../components/LanguageContext";
 
-export default function Tietosuojaseloste() {
+export default function PrivacyPolicy() {
     const { language } = useContext(LanguageContext) as {
         language: string;
         setLanguage: (language: string) => void;
