@@ -101,6 +101,17 @@ export default function Footer() {
                     Niko Hoffrén
                 </a>
             </div>
+            <div className="text-center text-sm text-yellow-200">
+
+                <a
+                    className="hover:text-red-400"
+                    href="https://github.com/nikohoffren/hunajaholisti-homepage"
+                    target="_blank"
+                    rel="noreferrer"
+                >
+                     {language === "fi" ? "Osallistu sivuston kehittämiseen Githubissa" : "Contribute to this project in Github"}
+                </a>
+            </div>
 
             <div className="mt-2 text-center text-sm text-gray-200">
                 Coded with React
