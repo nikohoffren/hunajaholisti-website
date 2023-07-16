@@ -45,6 +45,9 @@ const Cart = () => {
                             ? "Ostoskori on tyhjä!"
                             : "Cart is empty!"}
                     </p>
+                    <div className="text-center py-4">
+                        <Link to={"/tuotteemme"} className="bg-yellow-500 p-2 rounded-md">Start Shopping</Link>
+                    </div>
                 </div>
             </>
         );
