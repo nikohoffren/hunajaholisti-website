@@ -1,12 +1,17 @@
-import React, { useContext } from "react";
-import { Link } from "react-router-dom";
+import React, { useContext, useState } from "react";
 import { LanguageContext } from "../components/LanguageContext";
+import Spinner from "../components/Spinner";
 
 export default function OurStory() {
     const { language } = useContext(LanguageContext) as {
         language: string;
         setLanguage: (language: string) => void;
     };
+    const [isLoading, setIsLoading] = useState(true);
+    const imageLoaded = () => {
+        setIsLoading(false);
+    };
+
     return (
         <>
             <div className="container mx-auto text-center mt-20">
@@ -20,10 +25,12 @@ export default function OurStory() {
 
             <div className="container mx-auto text-center text-white">
                 <div className="w-1/2 mx-auto">
+                {isLoading && <Spinner />}
                     <img
                         className="w-1/2 h-1/2 object-cover rounded-full mx-auto mb-3"
                         src="HHheidi1.jpg"
                         alt="Heidi Kääriäinen"
+                        onLoad={() => imageLoaded()}
                     />
                 </div>
                 <div className="px-4 py-5">

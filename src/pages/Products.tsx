@@ -10,7 +10,10 @@ export default function Products() {
         setLanguage: (language: string) => void;
     };
     const { dispatch } = useContext(CartContext);
-    const [loading, setLoading] = useState(true);
+    const [isLoading, setIsLoading] = useState(true);
+    const imageLoaded = () => {
+        setIsLoading(false);
+    };
 
     return (
         <>
@@ -27,16 +30,13 @@ export default function Products() {
                 {/* Hunaja */}
                 <div>
                     <div className="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl">
-                        <div style={{ display: loading ? "block" : "none" }}>
-                            <Spinner />
-                        </div>
-                        <div style={{ display: loading ? "none" : "block" }}>
+                        <div>
+                            {isLoading && <Spinner />}
                             <img
                                 className="w-full h-48 object-cover"
                                 src="HHlahja.jpg"
                                 alt="Hunaja"
-                                loading="lazy"
-                                onLoad={() => setLoading(false)}
+                                onLoad={() => imageLoaded()}
                             />
                         </div>
                         <div className="p-8">
@@ -74,15 +74,13 @@ export default function Products() {
                 {/* Iso kummipesä */}
                 <div>
                     <div className="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl">
-                        <div style={{ display: loading ? "block" : "none" }}>
-                            <Spinner />
-                        </div>
-                        <div style={{ display: loading ? "none" : "block" }}>
+                        <div>
+                            {isLoading && <Spinner />}
                             <img
                                 className="w-full h-48 object-cover"
                                 src="HHkuva5.jpg"
                                 alt="Iso kummipesä"
-                                onLoad={() => setLoading(false)}
+                                onLoad={() => imageLoaded()}
                             />
                         </div>
                         <div className="p-8">
@@ -136,14 +134,13 @@ export default function Products() {
                 {/* Pieni kummipesä */}
                 <div>
                     <div className="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl">
-                        <div style={{ display: loading ? "block" : "none" }}>
-                            <Spinner />
-                        </div>
-                        <div style={{ display: loading ? "none" : "block" }}>
+                        <div>
+                            {isLoading && <Spinner />}
                             <img
                                 className="w-full h-48 object-cover"
                                 src="HHkuva5.jpg"
                                 alt="Pieni kummipesä"
+                                onLoad={() => imageLoaded()}
                             />
                         </div>
                         <div className="p-8">
@@ -197,10 +194,12 @@ export default function Products() {
                 {/* Testi
                 <div>
                     <div className="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl">
+                   {isLoading && <Spinner />}
                         <img
                             className="w-full h-48 object-cover"
                             src="HHkuva5.jpg"
-                            alt="TEsti"
+                            alt="Testi"
+                            onLoad={() => imageLoaded()}
                         />
                         <div className="p-8">
                             <h5 className="text-2xl font-semibold text-gray-900">
@@ -253,14 +252,13 @@ export default function Products() {
                 {/* Siitepöly */}
                 <div>
                     <div className="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl">
-                        <div style={{ display: loading ? "block" : "none" }}>
-                            <Spinner />
-                        </div>
-                        <div style={{ display: loading ? "none" : "block" }}>
+                        <div>
+                            {isLoading && <Spinner />}
                             <img
                                 className="w-full h-48 object-cover"
                                 src="HHkuvaSiitepoly.jpeg"
                                 alt="Siitepöly"
+                                onLoad={() => imageLoaded()}
                             />
                         </div>
                         <div className="p-8">
@@ -352,14 +350,13 @@ export default function Products() {
                 {/* Propolis */}
                 <div>
                     <div className="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl">
-                        <div style={{ display: loading ? "block" : "none" }}>
-                            <Spinner />
-                        </div>
-                        <div style={{ display: loading ? "none" : "block" }}>
+                        <div>
+                            {isLoading && <Spinner />}
                             <img
                                 className="w-full h-48 object-cover"
                                 src="HHlogo.jpg"
                                 alt="Propolis"
+                                onLoad={() => imageLoaded()}
                             />
                         </div>
                         <div className="p-8">

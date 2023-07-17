@@ -10,6 +10,7 @@
     },
     "dependencies": {
         "@firebase/firestore": "^4.0.0",
+        "@heroicons/react": "^1.0.6",
         "@paypal/react-paypal-js": "^8.0.0",
         "@stripe/react-stripe-js": "^2.1.1",
         "@stripe/stripe-js": "^1.54.1",
@@ -17,6 +18,7 @@
         "@tailwindcss/forms": "^0.5.3",
         "autoprefixer": "^10.4.14",
         "firebase": "^10.0.0",
+        "heroicons": "^2.0.18",
         "i18n": "^0.15.1",
         "i18next": "^22.4.13",
         "js-cookie": "^3.0.5",

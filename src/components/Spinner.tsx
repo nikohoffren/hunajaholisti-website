@@ -1,7 +1,10 @@
+import { RefreshIcon } from "@heroicons/react/outline";
 import React from "react";
 
 const Spinner = () => (
-    <div className="w-6 h-6 border-t-2 border-b-2 border-blue-500 rounded-full animate-spin"></div>
+    <div className="flex items-center justify-center h-full">
+        <RefreshIcon className="animate-spin h-8 w-8 text-gray-500" />
+    </div>
 );
 
 export default Spinner;
