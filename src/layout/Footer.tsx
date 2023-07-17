@@ -24,9 +24,9 @@ export default function Footer() {
                             3163385-5
                         </p>
                     </div>
-                    <div className="text-center">
-                        <p>Follow us on social media</p>
-                        <div className="mt-4">
+                    <div className="text-center mt-6">
+                        <p>{language === "fi" ? "Seuraa meitä somessa" : "Follow us on social media"}</p>
+                        <div className="mt-2">
                             <a
                                 href="https://www.facebook.com/hunajaholisti"
                                 target="_blank"

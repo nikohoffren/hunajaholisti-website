@@ -46,7 +46,14 @@ const Cart = () => {
                             : "Cart is empty!"}
                     </p>
                     <div className="text-center py-4">
-                        <Link to={"/tuotteemme"} className="bg-yellow-500 p-2 rounded-md">Start Shopping</Link>
+                        <Link
+                            to={"/tuotteemme"}
+                            className="bg-yellow-500 hover:bg-yellow-600 p-2 rounded-md"
+                        >
+                            {language === "fi"
+                                ? "Aloita ostaminen"
+                                : "Start Shopping"}
+                        </Link>
                     </div>
                 </div>
             </>
