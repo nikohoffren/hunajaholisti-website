@@ -30,7 +30,7 @@ export default function Products() {
                 {/* Hunaja */}
                 <div>
                     <div className="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl">
-                        <div>
+                        <div className="text-center">
                             {isLoading && <Spinner />}
                             <img
                                 className="w-full h-48 object-cover"
@@ -74,7 +74,7 @@ export default function Products() {
                 {/* Iso kummipesä */}
                 <div>
                     <div className="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl">
-                        <div>
+                        <div className="text-center">
                             {isLoading && <Spinner />}
                             <img
                                 className="w-full h-48 object-cover"
@@ -134,7 +134,7 @@ export default function Products() {
                 {/* Pieni kummipesä */}
                 <div>
                     <div className="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl">
-                        <div>
+                        <div className="text-center">
                             {isLoading && <Spinner />}
                             <img
                                 className="w-full h-48 object-cover"
@@ -194,6 +194,7 @@ export default function Products() {
                 {/* Testi
                 <div>
                     <div className="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl">
+                    <div className="text-center">
                    {isLoading && <Spinner />}
                         <img
                             className="w-full h-48 object-cover"
@@ -201,6 +202,7 @@ export default function Products() {
                             alt="Testi"
                             onLoad={() => imageLoaded()}
                         />
+                        </div>
                         <div className="p-8">
                             <h5 className="text-2xl font-semibold text-gray-900">
                                 {language === "fi"
@@ -252,7 +254,7 @@ export default function Products() {
                 {/* Siitepöly */}
                 <div>
                     <div className="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl">
-                        <div>
+                        <div className="text-center">
                             {isLoading && <Spinner />}
                             <img
                                 className="w-full h-48 object-cover"
@@ -350,7 +352,7 @@ export default function Products() {
                 {/* Propolis */}
                 <div>
                     <div className="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl">
-                        <div>
+                        <div className="text-center">
                             {isLoading && <Spinner />}
                             <img
                                 className="w-full h-48 object-cover"
