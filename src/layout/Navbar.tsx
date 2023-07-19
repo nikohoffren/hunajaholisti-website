@@ -27,7 +27,7 @@ export default function Navbar() {
 
     return (
         <>
-            <nav className="backdrop-blur bg-black bg-opacity-75 p-3 pl-8 pr-8 fixed flex items-center justify-between top-0 w-full z-50">
+            <nav className="bg-black bg-opacity-75 p-3 pl-8 pr-8 fixed flex items-center justify-between top-0 w-full z-50 sm:backdrop-blur">
                 <div className="flex justify-between items-center w-full lg:w-auto">
                     <button
                         className="inline-block lg:hidden w-8 h-8 bg-black-500 text-white p-1 ml-3"
@@ -39,7 +39,7 @@ export default function Navbar() {
                 </div>
 
                 <ul
-                    className={`fixed transform top-0 left-0 w-full h-full bg-black bg-opacity-75 text-white pt-20 pb-5 space-y-3 transition-transform duration-200 ease-in-out overflow-auto ${
+                    className={`fixed backdrop-blur transform top-0 left-0 w-full h-full bg-black bg-opacity-75 text-white pt-20 pb-5 space-y-3 transition-transform duration-200 ease-in-out overflow-auto ${
                         isOpen ? "translate-x-0" : "-translate-x-full"
                     } lg:static lg:translate-x-0 lg:flex lg:items-center lg:w-auto lg:space-y-0 lg:space-x-10 lg:pt-0 lg:pb-0 lg:bg-transparent`}
                 >
