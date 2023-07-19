@@ -182,16 +182,16 @@ const Checkout = () => {
         <>
         <div className="py-10"></div>
             <div className="container mx-auto px-4 pt-16">
-                <div className="p-6 bg-white shadow-md rounded-md">
-                    <h2 className="text-2xl font-bold mb-4 text-gray-700">
+                <div className="p-6 backdrop-blur bg-white bg-opacity-5 shadow-md rounded-md">
+                    <h2 className="text-2xl font-bold mb-4 text-gray-100">
                         {language === "fi" ? "Kassa" : "Checkout"}
                     </h2>
                     <form onSubmit={handleSubmit} className="space-y-4">
-                        <div className="p-4 border border-gray-300 rounded-md">
-                            <CardElement className="p-2" />
+                        <div className="p-4 border border-gray-300 rounded-md bg-white">
+                            <CardElement className="p-2 bg-white" />
                         </div>
                         <div>
-                            <label className="block text-sm font-bold text-gray-700">
+                            <label className="block text-sm font-bold text-gray-100">
                                 {language === "fi" ? "Nimi:" : "Name:"}
                             </label>
                             <input
@@ -208,7 +208,7 @@ const Checkout = () => {
                             )}
                         </div>
                         <div>
-                            <label className="block text-sm font-bold text-gray-700">
+                            <label className="block text-sm font-bold text-gray-100">
                                 {language === "fi"
                                     ? "Postiosoite:"
                                     : "Address:"}
@@ -227,7 +227,7 @@ const Checkout = () => {
                             )}
                         </div>
                         <div>
-                            <label className="block text-sm font-bold text-gray-700">
+                            <label className="block text-sm font-bold text-gray-100">
                                 {language === "fi" ? "Postinumero:" : "Zip:"}
                             </label>
                             <input
@@ -244,7 +244,7 @@ const Checkout = () => {
                             )}
                         </div>
                         <div>
-                            <label className="block text-sm font-bold text-gray-700">
+                            <label className="block text-sm font-bold text-gray-100">
                                 {language === "fi" ? "Kaupunki:" : "City:"}
                             </label>
                             <input
@@ -261,7 +261,7 @@ const Checkout = () => {
                             )}
                         </div>
                         <div>
-                            <label className="block text-sm font-bold text-gray-700">
+                            <label className="block text-sm font-bold text-gray-100">
                                 {language === "fi" ? "Sähköposti:" : "Email:"}
                             </label>
                             <input
@@ -278,7 +278,7 @@ const Checkout = () => {
                             )}
                         </div>
                         <div>
-                            <label className="block text-sm font-bold text-gray-700">
+                            <label className="block text-sm font-bold text-gray-100">
                                 {language === "fi"
                                     ? "Puhelinnumero:"
                                     : "Phone:"}
@@ -312,7 +312,7 @@ const Checkout = () => {
                         </button>
 
                         {/* <div className="mt-4">
-                            <h3 className="mb-3 text-gray-700 mt-4">
+                            <h3 className="mb-3 text-gray-100 mt-4">
                                 {language === "fi"
                                     ? "Tai maksa PayPalilla:"
                                     : "Or Pay with PayPal:"}
