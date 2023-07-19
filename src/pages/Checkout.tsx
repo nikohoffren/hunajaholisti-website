@@ -180,6 +180,7 @@ const Checkout = () => {
 
     return (
         <>
+        <div className="py-10"></div>
             <div className="container mx-auto px-4 pt-16">
                 <div className="p-6 bg-white shadow-md rounded-md">
                     <h2 className="text-2xl font-bold mb-4 text-gray-700">
@@ -336,8 +337,10 @@ const Checkout = () => {
                             />
                         </div> */}
                     </form>
+
                 </div>
             </div>
+            <div className="py-5"></div>
         </>
     );
 };

@@ -36,11 +36,11 @@ const Cart = () => {
         return (
             <>
                 <div className="py-20"></div>
-                <div className="container mx-auto p-6 bg-white shadow-md rounded-lg">
-                    <h2 className="text-2xl font-bold mb-4 text-gray-800">
+                <div className="container backdrop-blur bg-white bg-opacity-5 mx-auto p-6 shadow-md rounded-lg">
+                    <h2 className="text-2xl font-bold mb-4 text-gray-100">
                         {language === "fi" ? "Ostoskorisi" : "Your Cart"}
                     </h2>
-                    <p>
+                    <p className="text-white">
                         {language === "fi"
                             ? "Ostoskori on tyhjä!"
                             : "Cart is empty!"}
@@ -62,8 +62,8 @@ const Cart = () => {
         return (
             <>
                 <div className="py-20"></div>
-                <div className="container mx-auto p-6 bg-white shadow-md rounded-lg">
-                    <h2 className="text-2xl font-bold mb-4 text-gray-800">
+                <div className="container backdrop-blur bg-white bg-opacity-5 mx-auto p-6 bg-white shadow-md rounded-lg">
+                    <h2 className="text-2xl font-bold mb-4 text-gray-100">
                         {language === "fi" ? "Ostoskorisi" : "Your Cart"}
                     </h2>
                     <div className="space-y-4">
@@ -74,7 +74,7 @@ const Cart = () => {
                                     className="flex justify-between items-center border-b py-4"
                                 >
                                     <div className="flex justify-between items-center">
-                                        <h3 className="text-lg font-semibold text-gray-700 mr-4">
+                                        <h3 className="text-lg font-semibold text-gray-100 mr-4">
                                             {item.name}
                                         </h3>
                                         <div className="flex items-center gap-2">
@@ -86,7 +86,7 @@ const Cart = () => {
                                             >
                                                 -
                                             </button>
-                                            <span>{item.quantity}</span>
+                                            <span className="text-white ">{item.quantity}</span>
                                             <button
                                                 onClick={() =>
                                                     handleIncrease(item.id)
@@ -98,7 +98,7 @@ const Cart = () => {
                                         </div>
                                     </div>
                                     <div className="flex items-center">
-                                        <p className="font-bold text-gray-700 mr-4">
+                                        <p className="font-bold text-white mr-4">
                                             {item.price / 100} € / kpl
                                         </p>
                                         <button
@@ -118,10 +118,10 @@ const Cart = () => {
                     {cartItems && cartItems.length > 0 && (
                         <div className="flex justify-between items-center mt-6 pt-6 border-t">
                             <div className="flex items-center">
-                                <span className="text-gray-600 font-semibold">
+                                <span className="text-gray-100 font-semibold">
                                     {language === "fi" ? "Yhteensä:" : "Total:"}
                                 </span>
-                                <span className="text-gray-700 font-bold text-lg ml-2">
+                                <span className="text-white font-bold text-lg ml-2">
                                     {total / 100} €
                                 </span>
                             </div>
