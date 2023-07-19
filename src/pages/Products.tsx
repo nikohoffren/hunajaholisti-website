@@ -60,7 +60,7 @@ export default function Products() {
                                     href="https://www.facebook.com/Hunajaholisti/"
                                     target="_blank"
                                     rel="noreferrer"
-                                    className="text-blue-500 hover:text-blue-700 underline"
+                                    className="text-blue-500 hover:text-blue-700 hover:underline"
                                 >
                                     {language === "fi"
                                         ? "LÄHETÄ VIESTI"
@@ -120,7 +120,7 @@ export default function Products() {
                                             item: itemToAdd,
                                         });
                                     }}
-                                    className="text-blue-500 hover:text-blue-700 underline"
+                                    className="text-blue-500 hover:text-blue-700 hover:underline"
                                 >
                                     {language === "fi"
                                         ? "LISÄÄ KORIIN"
@@ -180,7 +180,7 @@ export default function Products() {
                                             item: itemToAdd,
                                         });
                                     }}
-                                    className="text-blue-500 hover:text-blue-700 underline"
+                                    className="text-blue-500 hover:text-blue-700 hover:underline"
                                 >
                                     {language === "fi"
                                         ? "LISÄÄ KORIIN"
@@ -240,7 +240,7 @@ export default function Products() {
                                             item: itemToAdd,
                                         });
                                     }}
-                                    className="text-blue-500 hover:text-blue-700 underline"
+                                    className="text-blue-500 hover:text-blue-700 hover:underline"
                                 >
                                     {language === "fi"
                                         ? "LISÄÄ KORIIN"
@@ -338,7 +338,7 @@ export default function Products() {
                                     href="https://www.facebook.com/Hunajaholisti/"
                                     target="_blank"
                                     rel="noreferrer"
-                                    className="text-blue-500 hover:text-blue-700 underline"
+                                    className="text-blue-500 hover:text-blue-700 hover:underline"
                                 >
                                     {language === "fi"
                                         ? "TULOSSA 2023"
@@ -428,7 +428,7 @@ export default function Products() {
                                     href="https://www.facebook.com/Hunajaholisti/"
                                     target="_blank"
                                     rel="noreferrer"
-                                    className="text-blue-500 hover:text-blue-700 underline"
+                                    className="text-blue-500 hover:text-blue-700 hover:underline"
                                 >
                                     {language === "fi"
                                         ? "TULOSSA 2023"

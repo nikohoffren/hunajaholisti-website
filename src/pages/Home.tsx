@@ -34,7 +34,7 @@ export default function Home() {
                         </h1>
                     </CSSTransition>
                     <CSSTransition in={inProp} timeout={500} classNames="slide">
-                        <h5 className="text-yellow-200 mt-2 text-lg">
+                        <h5 className="text-yellow-200 mt-2 text-[1.5rem]">
                             {language === "fi"
                                 ? "Pienen mehiläistarhan hunajaa"
                                 : "Honey from a small bee farm"}
