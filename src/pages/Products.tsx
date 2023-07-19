@@ -29,7 +29,7 @@ export default function Products() {
             <div className="container mx-auto grid md:grid-cols-3 gap-8 mb-4">
                 {/* Hunaja */}
                 <div>
-                    <div className="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl">
+                    <div className="backdrop-blur max-w-md mx-auto bg-white bg-opacity-5 rounded-xl shadow-md overflow-hidden md:max-w-2xl">
                         <div className="text-center">
                             {isLoading && <Spinner />}
                             <img
@@ -40,17 +40,17 @@ export default function Products() {
                             />
                         </div>
                         <div className="p-8">
-                            <h5 className="text-2xl font-semibold text-gray-900">
+                            <h5 className="text-2xl font-semibold text-white">
                                 {language === "fi"
                                     ? "Hunaja 350g"
                                     : "Honey 350g"}
                             </h5>
-                            <p className="mt-4 text-gray-700">
+                            <p className="mt-4 text-sky-100">
                                 {language === "fi"
                                     ? "Mehiläistarhamme sijaitsevat puhtaan luonnon keskellä, kaukana isoista teistä ja ruuhkasta. Osa tarhoistamme sijaitsee metsäalueilla ja osa luomupeltojen vieressä."
                                     : "Our bee farms are located in the middle of pure nature, far from big roads and traffic. Some of our farms are located in forest areas and some next to organic fields."}
                             </p>
-                            <p className="mt-4 text-gray-700">
+                            <p className="mt-4 text-sky-100">
                                 {language === "fi"
                                     ? "Moni kysyy onko hunajamme hyvää ja vastaus on tietysti: Kyllä, se on suorastaan herkullista! Hunajaa ei ole myöskään missään vaiheessa kuumennettu. Jos pidät kennohunajasta, sitä voi tiedustella suoraan meiltä esimerkiksi Facebookin yksityisviestillä."
                                     : "Many people ask if our honey is good and the answer is of course: Yes, it's delicious! Our honey has also never been heated. If you like comb honey, you can inquire about it directly from us via Facebook private message."}
@@ -73,7 +73,7 @@ export default function Products() {
 
                 {/* Iso kummipesä */}
                 <div>
-                    <div className="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl">
+                <div className="backdrop-blur max-w-md mx-auto bg-white bg-opacity-5 rounded-xl shadow-md overflow-hidden md:max-w-2xl">
                         <div className="text-center">
                             {isLoading && <Spinner />}
                             <img
@@ -84,18 +84,18 @@ export default function Products() {
                             />
                         </div>
                         <div className="p-8">
-                            <h5 className="text-2xl font-semibold text-gray-900">
+                            <h5 className="text-2xl font-semibold text-white">
                                 {language === "fi"
                                     ? "Iso kummipesä"
                                     : "Big beehive"}
                             </h5>
-                            <h6 className="font-bold mt-1 text-[1.3rem]">49,00 €</h6>
-                            <p className="mt-4 text-gray-700">
+                            <h6 className="font-bold mt-1 text-[1.3rem] text-white">49,00 €</h6>
+                            <p className="mt-4 text-gray-100">
                                 {language === "fi"
                                     ? "Sis. ALV 24,00%"
                                     : "VAT 24.00% included"}
                             </p>
-                            <p className="mt-4 text-gray-700">
+                            <p className="mt-4 text-sky-100">
                                 {language === "fi"
                                     ? "Kiinnostaako mehiläistarhaus ja pidät hunajasta? Kummipesä on hyvä vaihtoehto seurata mehiläispesän elämää yhden hoitokauden verran. Se sopii mainiosti lahjaksi mehiläisistä kiinnostuneelle. Ostaessasi kummipesän lähetämme säännöllisesti terveiset mehiläispesältä sähköpostiisi. Totta kai satokauden päätteeksi kerätään hunajat ja ne toimitetaan saajalle heti linkouksen jälkeen. Pakettiin kuuluu säännöllisten pesäterveisten lisäksi 5 purkkia hunajaa (350g). Näiden lisäksi saajalle toimitetaan diplomi kummipesästä postitse."
                                     : "Interested in beekeeping and love honey? Beehive is a great way to observe the life of a beehive for one season. It is also a great gift for someone interested in bees. When you buy a beehive, we will regularly send you updates from the beehive via email. Of course, at the end of the harvest season, we will collect the honey and deliver it to the recipient immediately after extraction. In addition to regular hive updates, the package includes 5 jars of honey (350g). The recipient will also receive a diploma of the beehive by mail."}
@@ -133,7 +133,7 @@ export default function Products() {
 
                 {/* Pieni kummipesä */}
                 <div>
-                    <div className="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl">
+                <div className="backdrop-blur max-w-md mx-auto bg-white bg-opacity-5 rounded-xl shadow-md overflow-hidden md:max-w-2xl">
                         <div className="text-center">
                             {isLoading && <Spinner />}
                             <img
@@ -144,18 +144,18 @@ export default function Products() {
                             />
                         </div>
                         <div className="p-8">
-                            <h5 className="text-2xl font-semibold text-gray-900">
+                            <h5 className="text-2xl font-semibold text-white">
                                 {language === "fi"
                                     ? "Pieni kummipesä"
                                     : "Small beehive"}
                             </h5>
-                            <h6 className="font-bold mt-1 text-[1.3rem]">35,00 €</h6>
-                            <p className="mt-4 text-gray-700">
+                            <h6 className="font-bold mt-1 text-[1.3rem] text-white">35,00 €</h6>
+                            <p className="mt-4 text-white">
                                 {language === "fi"
                                     ? "Sis. ALV 24,00%"
                                     : "VAT 24.00% included"}
                             </p>
-                            <p className="mt-4 text-gray-700">
+                            <p className="mt-4 text-sky-100">
                                 {language === "fi"
                                     ? "Kiinnostaako mehiläistarhaus ja pidät hunajasta? Kummipesä on hyvä vaihtoehto seurata mehiläispesän elämää yhden hoitokauden verran. Se sopii mainiosti lahjaksi mehiläisistä kiinnostuneelle. Ostaessasi kummipesän lähetämme säännöllisesti terveiset mehiläispesältä sähköpostiisi. Totta kai satokauden päätteeksi kerätään hunajat ja ne toimitetaan saajalle heti linkouksen jälkeen. Pakettiin kuuluu säännöllisten pesäterveisten lisäksi 3 purkkia hunajaa (350g). Näiden lisäksi saajalle toimitetaan diplomi kummipesästä postitse."
                                     : "Interested in beekeeping and love honey? Beehive is a great way to observe the life of a beehive for one season. It is also a great gift for someone interested in bees. When you buy a beehive, we will regularly send you updates from the beehive via email. Of course, at the end of the harvest season, we will collect the honey and deliver it to the recipient immediately after extraction. In addition to regular hive updates, the package includes 3 jars of honey (350g). The recipient will also receive a diploma of the beehive by mail."}
@@ -193,7 +193,7 @@ export default function Products() {
 
                 {/* Testi
                 <div>
-                    <div className="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl">
+                   <div className="backdrop-blur max-w-md mx-auto bg-white bg-opacity-5 rounded-xl shadow-md overflow-hidden md:max-w-2xl">
                     <div className="text-center">
                    {isLoading && <Spinner />}
                         <img
@@ -204,18 +204,18 @@ export default function Products() {
                         />
                         </div>
                         <div className="p-8">
-                            <h5 className="text-2xl font-semibold text-gray-900">
+                            <h5 className="text-2xl font-semibold text-gray-100">
                                 {language === "fi"
                                     ? "Testi"
                                     : "Test"}
                             </h5>
-                            <h6 className="font-bold mt-1 text-[1.3rem]">35,00 €</h6>
-                            <p className="mt-4 text-gray-700">
+                            <h6 className="font-bold mt-1 text-[1.3rem] text-white">35,00 €</h6>
+                            <p className="mt-4 text-white">
                                 {language === "fi"
                                     ? "Sis. ALV 24,00%"
                                     : "VAT 24.00% included"}
                             </p>
-                            <p className="mt-4 text-gray-700">
+                            <p className="mt-4 text-gray-100">
                                 {language === "fi"
                                     ? "Kiinnostaako mehiläistarhaus ja pidät hunajasta? Kummipesä on hyvä vaihtoehto seurata mehiläispesän elämää yhden hoitokauden verran. Se sopii mainiosti lahjaksi mehiläisistä kiinnostuneelle. Ostaessasi kummipesän lähetämme säännöllisesti terveiset mehiläispesältä sähköpostiisi. Totta kai satokauden päätteeksi kerätään hunajat ja ne toimitetaan saajalle heti linkouksen jälkeen. Pakettiin kuuluu säännöllisten pesäterveisten lisäksi 3 purkkia hunajaa (350g). Näiden lisäksi saajalle toimitetaan diplomi kummipesästä postitse."
                                     : "Interested in beekeeping and love honey? Beehive is a great way to observe the life of a beehive for one season. It is also a great gift for someone interested in bees. When you buy a beehive, we will regularly send you updates from the beehive via email. Of course, at the end of the harvest season, we will collect the honey and deliver it to the recipient immediately after extraction. In addition to regular hive updates, the package includes 3 jars of honey (350g). The recipient will also receive a diploma of the beehive by mail."}
@@ -253,7 +253,7 @@ export default function Products() {
 
                 {/* Siitepöly */}
                 <div>
-                    <div className="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl">
+                <div className="backdrop-blur max-w-md mx-auto bg-white bg-opacity-5 rounded-xl shadow-md overflow-hidden md:max-w-2xl">
                         <div className="text-center">
                             {isLoading && <Spinner />}
                             <img
@@ -264,18 +264,18 @@ export default function Products() {
                             />
                         </div>
                         <div className="p-8">
-                            <h5 className="text-2xl font-semibold text-gray-900">
+                            <h5 className="text-2xl font-semibold text-white">
                                 {language === "fi"
                                     ? "SIITEPÖLY 250g"
                                     : "POLLEN 250g"}
                             </h5>
-                            <h6 className="font-bold mt-1 text-[1.3rem]">35,00 €</h6>
-                            <p className="mt-4 text-gray-700">
+                            <h6 className="font-bold mt-1 text-[1.3rem] text-white">35,00 €</h6>
+                            <p className="mt-4 text-white">
                                 {language === "fi"
                                     ? "Sis. ALV 24,00%"
                                     : "VAT 24.00% included"}
                             </p>
-                            <p className="mt-4 text-gray-700">
+                            <p className="mt-4 text-sky-100">
                                 {language === "fi" ? (
                                     <>
                                         Mehiläisten keräämä siitepöly sisältää
@@ -351,7 +351,7 @@ export default function Products() {
 
                 {/* Propolis */}
                 <div>
-                    <div className="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl">
+                <div className="backdrop-blur max-w-md mx-auto bg-white bg-opacity-5 rounded-xl shadow-md overflow-hidden md:max-w-2xl">
                         <div className="text-center">
                             {isLoading && <Spinner />}
                             <img
@@ -362,16 +362,16 @@ export default function Products() {
                             />
                         </div>
                         <div className="p-8">
-                            <h5 className="text-2xl font-semibold text-gray-900">
+                            <h5 className="text-2xl font-semibold text-white">
                                 PROPOLIS
                             </h5>
 
-                            <p className="grey-text smaller-text font-semibold">
+                            <p className="text-gray-300 smaller-text font-semibold">
                                 {language === "fi"
                                     ? "Myyn propolista lastuina"
                                     : "I sell propolis as chips"}
                             </p>
-                            <p className="mt-4 text-gray-700">
+                            <p className="mt-4 text-sky-100">
                                 {language === "fi" ? (
                                     <>
                                         Propolikseksi sanotaan ainetta jolla
