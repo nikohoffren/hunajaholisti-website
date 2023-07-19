@@ -1,9 +1,3 @@
-/* use `npx postcss src/index.css -o src/output.css` to build */
-/* change nodemailer firebase functions email password with `firebase functions:config:set nodemailer.password="your_password_here"
-` */
-/* if you change or deploy new firebase function, run `firebase deploy` */
-/* use `netlify dev` to run the server */
-
 @import "tailwindcss/base";
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
