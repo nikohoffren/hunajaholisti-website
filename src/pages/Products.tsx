@@ -89,7 +89,7 @@ export default function Products() {
                                     ? "Iso kummipesä"
                                     : "Big beehive"}
                             </h5>
-                            <h6>49,00 €</h6>
+                            <h6 className="font-bold mt-1 text-[1.3rem]">49,00 €</h6>
                             <p className="mt-4 text-gray-700">
                                 {language === "fi"
                                     ? "Sis. ALV 24,00%"
@@ -149,7 +149,7 @@ export default function Products() {
                                     ? "Pieni kummipesä"
                                     : "Small beehive"}
                             </h5>
-                            <h6>35,00 €</h6>
+                            <h6 className="font-bold mt-1 text-[1.3rem]">35,00 €</h6>
                             <p className="mt-4 text-gray-700">
                                 {language === "fi"
                                     ? "Sis. ALV 24,00%"
@@ -209,7 +209,7 @@ export default function Products() {
                                     ? "Testi"
                                     : "Test"}
                             </h5>
-                            <h6>35,00 €</h6>
+                            <h6 className="font-bold mt-1 text-[1.3rem]">35,00 €</h6>
                             <p className="mt-4 text-gray-700">
                                 {language === "fi"
                                     ? "Sis. ALV 24,00%"
@@ -269,7 +269,7 @@ export default function Products() {
                                     ? "SIITEPÖLY 250g"
                                     : "POLLEN 250g"}
                             </h5>
-                            <h6>35,00 €</h6>
+                            <h6 className="font-bold mt-1 text-[1.3rem]">35,00 €</h6>
                             <p className="mt-4 text-gray-700">
                                 {language === "fi"
                                     ? "Sis. ALV 24,00%"
