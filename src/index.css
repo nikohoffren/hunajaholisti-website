@@ -3,7 +3,7 @@
 @import "tailwindcss/utilities";
 
 :root {
-    --ff-primary: "Cuprum", sans-serif;
+    --ff-primary: "Ysabeau Infant", sans-serif;
     --ff-header: "Amatic SC", sans-serif;
     --fz-header-900: 6rem;
     --fz-header-600: 4rem;
@@ -20,6 +20,7 @@ body {
     background-attachment: fixed;
     position: relative;
     background-size: cover;
+    font-family: var(--ff-primary);
 }
 
 .logos {

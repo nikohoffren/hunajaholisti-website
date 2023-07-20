@@ -48,7 +48,7 @@ const Cart = () => {
                     <div className="text-center py-4">
                         <Link
                             to={"/tuotteemme"}
-                            className="bg-yellow-500 hover:bg-yellow-600 p-2 rounded-md"
+                            className="inline-block px-8 py-4 text-lg text-white bg-yellow-600 rounded-lg transform transition-all duration-200 hover:bg-yellow-500 hover:scale-105"
                         >
                             {language === "fi"
                                 ? "Aloita ostaminen"

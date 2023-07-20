@@ -49,7 +49,7 @@ export default function Home() {
                     >
                         <Link
                             to="/tuotteemme"
-                            className="inline-block px-8 py-4 text-lg text-white bg-yellow-500 rounded-lg transform transition-all duration-200 hover:bg-yellow-600 hover:scale-105"
+                            className="inline-block px-8 py-4 text-lg text-white bg-yellow-600 rounded-lg transform transition-all duration-200 hover:bg-yellow-500 hover:scale-105"
                         >
                             {language === "fi"
                                 ? "KATSO TÄSTÄ TUOTTEEMME"
