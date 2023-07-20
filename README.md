@@ -1,6 +1,7 @@
 <div align="center">
 
-# Hunajaholistin Hunaja - Honey Products E-commerce Website
+# Hunajaholistin Hunaja
+## Honey Products e-commerce Website
 
 [![LICENSE](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![Version 1.1.3](https://img.shields.io/badge/Version-1.1.3-brightgreen.svg)](https://github.com/nikohoffren/hunajaholisti/pulls)
