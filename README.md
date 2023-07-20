@@ -54,6 +54,10 @@ Replace 'your-username' with your GitHub username.
 
 Please note that global installation may require administrator permissions on your system. If you face any permission issues, you can use a package manager like yarn or use a version manager like nvm for node.js. Also remember to replace `name-of-the-changed-file` and `feature` with your specific file names and feature names.
 
+We kindly request that you express your interest in working on a particular issue by leaving a message on the respective issue thread. This will allow us to assign the issue to you directly, thereby preventing multiple individuals from simultaneously working on the same problem.
+
+If you have some small bug, feature or fix to make, that is not currently on Issues, feel free to submit a pull request.
+
 For major changes, please open an issue first to discuss what you would like to change. Please make sure to update tests as appropriate.
 
 Also, please read our [Contributing Guidelines](CONTRIBUTING.md) for more information.

@@ -32,6 +32,7 @@ Unsure where to begin contributing to this project? You can start by looking thr
 
 * `good-first-issue` - issues which should only require a few lines of code, and a test or two.
 * `help-wanted` - issues which should be a bit more involved than `good-first-issue` issues.
+* We kindly request that you express your interest in working on a particular issue by leaving a message on the respective issue thread. This will allow us to assign the issue to you directly, thereby preventing multiple individuals from simultaneously working on the same problem.
 
 ## Pull Request Process
 
