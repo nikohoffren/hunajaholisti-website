@@ -1,6 +1,7 @@
 # Hunajaholistin Hunaja - Honey Products E-commerce Website
 [![LICENSE](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
-[![PR:s Welcome](https://img.shields.io/badge/PR:s-Welcome-brightgreen.svg)](https://github.com/nikohoffren/puck-hub/pulls)
+[![v1.1.3](https://img.shields.io/badge/v1.1.3-brightred.svg)](https://github.com/nikohoffren/hunajaholisti/pulls)
+[![PR:s Welcome](https://img.shields.io/badge/PR:s-Welcome-brightgreen.svg)](https://github.com/nikohoffren/hunajaholisti/pulls)
 
 ![Honey](https://cdn.holvi.com/media/poolimage.image/2021/11/05/c67b308348bc60405360366fb336af60d9fb2ea1.png)
 
