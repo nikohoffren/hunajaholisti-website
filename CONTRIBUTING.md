@@ -1,4 +1,4 @@
-# Contributing to Hunajaholistin Hunaja homepage repository
+# Contributing to Hunajaholistin Hunaja repository
 
 First off, thanks for taking the time to contribute!
 
@@ -6,7 +6,7 @@ The following is a set of guidelines for contributing to this project. These are
 
 ## Code of Conduct
 
-This project and everyone participating in it are governed by the [App Icon Generator Code of Conduct](CODE_OF_CONDUCT.md). By participating, you are expected to uphold this code. Please report unacceptable behavior to [niko.hoffren@gmail.com](mailto:niko.hoffren@gmail.com).
+This project and everyone participating in it are governed by the [Hunajaholistin Hunaja Code of Conduct](CODE_OF_CONDUCT.md). By participating, you are expected to uphold this code. Please report unacceptable behavior to [niko.hoffren@gmail.com](mailto:niko.hoffren@gmail.com).
 
 ## How Can I Contribute?
 
@@ -45,4 +45,5 @@ Unsure where to begin contributing to this project? You can start by looking thr
 
 * Use the prettier format.
 * Use `camelCase` for variable and function names.
+* Use `PascalCase` for class and component names.
 * Commit messages should clearly communicate the purpose of the change.
