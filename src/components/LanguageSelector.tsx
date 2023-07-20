@@ -37,7 +37,7 @@ const LanguageSelector: React.FC<LanguageSelectorProps> = ({
                 }`}
             >
                 <img
-                    src="./Flag_of_the_United_Kingdom_(1-2).svg.png"
+                    src="./flag-of-uk-and-us.jpg"
                     alt="Flag of UK"
                     className="cursor-pointer h-6 w-10 transition-transform duration-200 ease-in-out transform hover:scale-105"
                 />
