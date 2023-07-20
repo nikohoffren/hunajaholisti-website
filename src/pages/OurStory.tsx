@@ -25,10 +25,10 @@ export default function OurStory() {
             </div>
 
             <div className="container mx-auto text-center text-white">
-                <div className="w-1/2 mx-auto">
+                <div className="w-full sm:w-1/2 mx-auto">
                     {isLoading && <Spinner />}
                     <img
-                        className="w-1/2 h-1/2 object-cover rounded-full mx-auto mb-3"
+                        className="w-2/3 h-2/3 sm:w-1/2 sm:h-1/2 object-cover rounded-full mx-auto mb-3"
                         src="HHheidi1.jpg"
                         alt="Heidi Kääriäinen"
                         onLoad={() => imageLoaded()}
