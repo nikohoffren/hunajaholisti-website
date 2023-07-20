@@ -14,6 +14,7 @@ export default function OurStory() {
 
     return (
         <>
+            <div className="py-5"></div>
             <div className="container mx-auto text-center mt-20">
                 <h3 className="text-4xl font-semibold text-white">
                     {language === "fi" ? "TARINAMME" : "OUR STORY"}
@@ -25,7 +26,7 @@ export default function OurStory() {
 
             <div className="container mx-auto text-center text-white">
                 <div className="w-1/2 mx-auto">
-                {isLoading && <Spinner />}
+                    {isLoading && <Spinner />}
                     <img
                         className="w-1/2 h-1/2 object-cover rounded-full mx-auto mb-3"
                         src="HHheidi1.jpg"

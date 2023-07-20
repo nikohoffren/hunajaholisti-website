@@ -17,6 +17,7 @@ export default function Products() {
 
     return (
         <>
+            <div className="py-5"></div>
             <div className="container mx-auto text-center mt-20">
                 <h3 className="text-4xl font-semibold text-white">
                     {language === "fi" ? "TUOTTEEMME" : "PRODUCTS"}
@@ -29,7 +30,7 @@ export default function Products() {
             <div className="container mx-auto grid md:grid-cols-3 gap-8 mb-4">
                 {/* Hunaja */}
                 <div>
-                    <div className="backdrop-blur max-w-md mx-auto bg-white bg-opacity-5 rounded-xl shadow-md overflow-hidden md:max-w-2xl">
+                    <div className="backdrop-blur max-w-md mx-auto bg-white bg-opacity-10 rounded-xl shadow-md overflow-hidden md:max-w-2xl">
                         <div className="text-center">
                             {isLoading && <Spinner />}
                             <img
@@ -73,7 +74,7 @@ export default function Products() {
 
                 {/* Iso kummipesä */}
                 <div>
-                <div className="backdrop-blur max-w-md mx-auto bg-white bg-opacity-5 rounded-xl shadow-md overflow-hidden md:max-w-2xl">
+                    <div className="backdrop-blur max-w-md mx-auto bg-white bg-opacity-10 rounded-xl shadow-md overflow-hidden md:max-w-2xl">
                         <div className="text-center">
                             {isLoading && <Spinner />}
                             <img
@@ -89,7 +90,9 @@ export default function Products() {
                                     ? "Iso kummipesä"
                                     : "Big beehive"}
                             </h5>
-                            <h6 className="font-bold mt-1 text-[1.3rem] text-white">49,00 €</h6>
+                            <h6 className="font-bold mt-1 text-[1.3rem] text-white">
+                                49,00 €
+                            </h6>
                             <p className="mt-4 text-gray-100">
                                 {language === "fi"
                                     ? "Sis. ALV 24,00%"
@@ -133,7 +136,7 @@ export default function Products() {
 
                 {/* Pieni kummipesä */}
                 <div>
-                <div className="backdrop-blur max-w-md mx-auto bg-white bg-opacity-5 rounded-xl shadow-md overflow-hidden md:max-w-2xl">
+                    <div className="backdrop-blur max-w-md mx-auto bg-white bg-opacity-10 rounded-xl shadow-md overflow-hidden md:max-w-2xl">
                         <div className="text-center">
                             {isLoading && <Spinner />}
                             <img
@@ -149,7 +152,9 @@ export default function Products() {
                                     ? "Pieni kummipesä"
                                     : "Small beehive"}
                             </h5>
-                            <h6 className="font-bold mt-1 text-[1.3rem] text-white">35,00 €</h6>
+                            <h6 className="font-bold mt-1 text-[1.3rem] text-white">
+                                35,00 €
+                            </h6>
                             <p className="mt-4 text-white">
                                 {language === "fi"
                                     ? "Sis. ALV 24,00%"
@@ -193,7 +198,7 @@ export default function Products() {
 
                 {/* Testi
                 <div>
-                   <div className="backdrop-blur max-w-md mx-auto bg-white bg-opacity-5 rounded-xl shadow-md overflow-hidden md:max-w-2xl">
+                   <div className="backdrop-blur max-w-md mx-auto bg-white bg-opacity-10 rounded-xl shadow-md overflow-hidden md:max-w-2xl">
                     <div className="text-center">
                    {isLoading && <Spinner />}
                         <img
@@ -253,7 +258,7 @@ export default function Products() {
 
                 {/* Siitepöly */}
                 <div>
-                <div className="backdrop-blur max-w-md mx-auto bg-white bg-opacity-5 rounded-xl shadow-md overflow-hidden md:max-w-2xl">
+                    <div className="backdrop-blur max-w-md mx-auto bg-white bg-opacity-10 rounded-xl shadow-md overflow-hidden md:max-w-2xl">
                         <div className="text-center">
                             {isLoading && <Spinner />}
                             <img
@@ -269,7 +274,9 @@ export default function Products() {
                                     ? "SIITEPÖLY 250g"
                                     : "POLLEN 250g"}
                             </h5>
-                            <h6 className="font-bold mt-1 text-[1.3rem] text-white">35,00 €</h6>
+                            <h6 className="font-bold mt-1 text-[1.3rem] text-white">
+                                35,00 €
+                            </h6>
                             <p className="mt-4 text-white">
                                 {language === "fi"
                                     ? "Sis. ALV 24,00%"
@@ -351,7 +358,7 @@ export default function Products() {
 
                 {/* Propolis */}
                 <div>
-                <div className="backdrop-blur max-w-md mx-auto bg-white bg-opacity-5 rounded-xl shadow-md overflow-hidden md:max-w-2xl">
+                    <div className="backdrop-blur max-w-md mx-auto bg-white bg-opacity-10 rounded-xl shadow-md overflow-hidden md:max-w-2xl">
                         <div className="text-center">
                             {isLoading && <Spinner />}
                             <img
