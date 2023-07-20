@@ -17,4 +17,6 @@ export type OrderContextType = {
     setOrder: (order: OrderType) => void;
 };
 
-export const OrderContext = React.createContext<OrderContextType | undefined>(undefined);
+export const OrderContext = React.createContext<OrderContextType | undefined>(
+    undefined
+);

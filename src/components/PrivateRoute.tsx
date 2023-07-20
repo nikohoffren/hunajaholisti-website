@@ -30,8 +30,10 @@ function PrivateRoute({ element, path, redirectTo }: PrivateRouteProps) {
 
     const location = useLocation();
 
-    return (
-        condition ? element : <Navigate to={redirectTo} state={{ from: location }} replace />
+    return condition ? (
+        element
+    ) : (
+        <Navigate to={redirectTo} state={{ from: location }} replace />
     );
 }
 

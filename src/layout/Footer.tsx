@@ -25,7 +25,11 @@ export default function Footer() {
                         </p>
                     </div>
                     <div className="text-center mt-6">
-                        <p>{language === "fi" ? "Seuraa meitä somessa" : "Follow us on social media"}</p>
+                        <p>
+                            {language === "fi"
+                                ? "Seuraa meitä somessa"
+                                : "Follow us on social media"}
+                        </p>
                         <div className="mt-2">
                             <a
                                 href="https://www.facebook.com/hunajaholisti"
@@ -103,14 +107,15 @@ export default function Footer() {
                 </a>
             </div>
             <div className="text-center text-sm text-yellow-200">
-
                 <a
                     className="hover:text-red-400"
                     href="https://github.com/nikohoffren/hunajaholisti-homepage"
                     target="_blank"
                     rel="noreferrer"
                 >
-                     {language === "fi" ? "Osallistu sivuston kehittämiseen Githubissa" : "Contribute to this project in Github"}
+                    {language === "fi"
+                        ? "Osallistu sivuston kehittämiseen Githubissa"
+                        : "Contribute to this project in Github"}
                 </a>
             </div>
 

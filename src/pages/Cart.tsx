@@ -86,7 +86,9 @@ const Cart = () => {
                                             >
                                                 -
                                             </button>
-                                            <span className="text-white ">{item.quantity}</span>
+                                            <span className="text-white ">
+                                                {item.quantity}
+                                            </span>
                                             <button
                                                 onClick={() =>
                                                     handleIncrease(item.id)

@@ -26,7 +26,7 @@ const LanguageSelector: React.FC<LanguageSelectorProps> = ({
             >
                 <img
                     src="./Flag_of_Finland.svg.png"
-                    alt=""
+                    alt="Flag of Finland"
                     className="cursor-pointer h-6 w-10 transition-transform duration-200 ease-in-out transform hover:scale-105"
                 />
             </button>
@@ -38,7 +38,7 @@ const LanguageSelector: React.FC<LanguageSelectorProps> = ({
             >
                 <img
                     src="./Flag_of_the_United_Kingdom_(1-2).svg.png"
-                    alt=""
+                    alt="Flag of UK"
                     className="cursor-pointer h-6 w-10 transition-transform duration-200 ease-in-out transform hover:scale-105"
                 />
             </button>

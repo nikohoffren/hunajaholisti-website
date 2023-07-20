@@ -17,7 +17,7 @@ import Success from "./components/Success";
 import { CartProvider } from "./components/CartContext";
 import Modal from "./components/Modal";
 import PrivateRoute from "./components/PrivateRoute";
-import './index.css';
+import "./index.css";
 
 //* Call loadStripe outside of a component's render to avoid recreating the Stripe object on every render
 const stripePromise = loadStripe(
