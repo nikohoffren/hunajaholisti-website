@@ -40,7 +40,7 @@ const Cart = () => {
                     <h2 className="text-2xl font-bold mb-4 text-gray-100">
                         {language === "fi" ? "Ostoskorisi" : "Your Cart"}
                     </h2>
-                    <p className="text-white">
+                    <p className="text-white text-2xl text-center py-4">
                         {language === "fi"
                             ? "Ostoskori on tyhjä!"
                             : "Cart is empty!"}
@@ -62,7 +62,7 @@ const Cart = () => {
         return (
             <>
                 <div className="py-20"></div>
-                <div className="container backdrop-blur bg-white bg-opacity-5 mx-auto p-6 bg-white shadow-md rounded-lg">
+                <div className="container backdrop-blur bg-opacity-5 mx-auto p-6 bg-white shadow-md rounded-lg">
                     <h2 className="text-2xl font-bold mb-4 text-gray-100">
                         {language === "fi" ? "Ostoskorisi" : "Your Cart"}
                     </h2>
@@ -71,7 +71,7 @@ const Cart = () => {
                             cartItems.map((item: IItem) => (
                                 <div
                                     key={item.id}
-                                    className="flex justify-between items-center border-b py-4"
+                                    className="flex justify-between items-center py-4"
                                 >
                                     <div className="flex justify-between items-center">
                                         <h3 className="text-lg font-semibold text-gray-100 mr-4">
