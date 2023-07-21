@@ -34,7 +34,7 @@ export default function Navbar() {
                         onClick={toggleSideNav}
                         id="toggleButton"
                     >
-                        {isOpen ? "X" : <i className="fa fa-bars"></i>}
+                        {isOpen ? "=" : <i className="fa fa-bars"></i>}
                     </button>
                 </div>
 
