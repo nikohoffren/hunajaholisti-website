@@ -4,7 +4,6 @@ import LanguageSelector from "../components/LanguageSelector";
 import { LanguageContext } from "../components/LanguageContext";
 import { CartContext } from "../components/CartContext";
 import React from "react";
-
 interface CustomLinkProps {
     to: string;
     children: React.ReactNode;
