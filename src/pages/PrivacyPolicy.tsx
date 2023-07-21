@@ -20,7 +20,7 @@ export default function PrivacyPolicy() {
                 <hr className="border-gray-300" />
             </div>
 
-            <div className="bg-white shadow-md rounded-lg p-8">
+            <div className="bg-black text-white shadow-md rounded-lg p-8">
                 <div className="mb-8">
                     <h2 className="text-2xl font-semibold mb-4">
                         {language === "fi" ? "Yleistä" : "General"}
