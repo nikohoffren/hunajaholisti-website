@@ -21,7 +21,7 @@ export default function SalesAndDeliveryConditions() {
                 <hr className="border-gray-300" />
             </div>
 
-            <div className="bg-white shadow-md rounded-lg p-8">
+            <div className="bg-black text-white shadow-md rounded-lg p-8">
                 <div className="px-4 py-5">
                     <h2 className="font-semibold text-2xl mb-4">
                         {language === "fi" ? "§ 1 Voimassaolo" : "§ 1 Validity"}
