@@ -18,6 +18,7 @@ import { CartProvider } from "./components/CartContext";
 import Modal from "./components/Modal";
 import PrivateRoute from "./components/PrivateRoute";
 import "./index.css";
+import Gallery from "./pages/Gallery";
 
 //* Call loadStripe outside of a component's render to avoid recreating the Stripe object on every render
 const stripePromise = loadStripe(
@@ -51,6 +52,10 @@ function App() {
                                 <Route
                                     path="/tuotteemme"
                                     element={<Products />}
+                                />
+                                <Route
+                                    path="/galleria"
+                                    element={<Gallery />}
                                 />
                                 <Route
                                     path="/myyntiehdot"

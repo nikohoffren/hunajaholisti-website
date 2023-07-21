@@ -3,6 +3,7 @@ import { BrowserRouter } from "react-router-dom";
 import App from "./App";
 import { PayPalScriptProvider } from "@paypal/react-paypal-js";
 import "./index.css";
+import 'react-responsive-carousel/lib/styles/carousel.min.css';
 
 const rootElement = document.getElementById("root");
 

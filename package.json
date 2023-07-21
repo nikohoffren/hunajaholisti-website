@@ -27,6 +27,7 @@
         "postcss": "^8.4.26",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
+        "react-responsive-carousel": "^3.2.23",
         "react-router-dom": "^6.6.1",
         "react-transition-group": "^4.4.5",
         "stripe": "^12.11.0",
