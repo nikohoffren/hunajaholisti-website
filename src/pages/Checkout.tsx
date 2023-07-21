@@ -56,7 +56,6 @@ const Checkout = () => {
                 totalAmount,
                 products: state.cartItems,
             });
-            console.log("Document written with ID: ", docRef.id);
         } catch (e) {
             console.error("Error adding document: ", e);
         }
@@ -134,7 +133,6 @@ const Checkout = () => {
         );
         const data = await response.json();
         const clientSecret = data.clientSecret;
-
         const cardElement = elements.getElement(CardElement);
 
         if (cardElement) {
@@ -169,7 +167,6 @@ const Checkout = () => {
 
     const handleApprove = (data: any, actions: any) => {
         return actions.order.capture().then((details: any) => {
-            console.log(details);
             addOrderToFirestore();
             dispatch({ type: "CLEAR" });
             navigate("/success");

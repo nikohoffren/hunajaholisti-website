@@ -114,10 +114,6 @@ export default function Products() {
                                                     : "Big beehive",
                                             price: 4900,
                                         };
-                                        console.log(
-                                            "Adding to cart:",
-                                            itemToAdd
-                                        );
                                         dispatch({
                                             type: "ADD",
                                             item: itemToAdd,
@@ -176,10 +172,6 @@ export default function Products() {
                                                     : "Small beehive",
                                             price: 3500,
                                         };
-                                        console.log(
-                                            "Adding to cart:",
-                                            itemToAdd
-                                        );
                                         dispatch({
                                             type: "ADD",
                                             item: itemToAdd,
@@ -236,10 +228,7 @@ export default function Products() {
                                                     : "Test",
                                             price: 51,
                                         };
-                                        console.log(
-                                            "Adding to cart:",
-                                            itemToAdd
-                                        );
+
                                         dispatch({
                                             type: "ADD",
                                             item: itemToAdd,

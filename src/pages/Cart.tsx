@@ -13,7 +13,6 @@ interface IItem {
 const Cart = () => {
     const { state, dispatch } = useContext(CartContext);
     const { cartItems, total } = state;
-    console.log("Cart items:", cartItems);
 
     const handleRemove = (id: string) => {
         dispatch({ type: "REMOVE", id });

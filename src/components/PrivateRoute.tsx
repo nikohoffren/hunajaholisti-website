@@ -15,9 +15,6 @@ function PrivateRoute({ element, path, redirectTo }: PrivateRouteProps) {
     const userHasPurchased =
         localStorage.getItem("userHasPurchased") === "true";
 
-    console.log("Cart is empty: ", cartIsEmpty);
-    console.log("User has purchased: ", userHasPurchased);
-
     let condition;
 
     if (path === "/checkout") {
