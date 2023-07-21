@@ -27,7 +27,7 @@ export default function Navbar() {
 
     return (
         <>
-            <nav className="bg-black bg-opacity-75 p-3 pl-8 pr-8 fixed flex items-center justify-between top-0 w-full z-50 sm:backdrop-blur">
+            <nav className="bg-black bg-opacity-75 p-3 pl-8 pr-8 fixed flex items-center justify-between top-0 w-full z-50 lg:backdrop-blur">
                 <div className="flex justify-between items-center w-full lg:w-auto">
                     <button
                         className="inline-block lg:hidden w-8 h-8 bg-black-500 text-white p-1 ml-3"
