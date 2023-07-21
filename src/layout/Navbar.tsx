@@ -72,6 +72,15 @@ export default function Navbar() {
                             {language === "fi" ? "TUOTTEEMME" : "PRODUCTS"}
                         </Link>
                     </li>
+                    <li>
+                        <Link
+                            className="block px-6 mx-2 py-3 transition-colors duration-200 ease-in-out hover:bg-gray-800 hover:text-white lg:px-0 lg:py-0 lg:hover:bg-transparent lg:hover:text-yellow-300 hover:scale-105"
+                            to="/galleria"
+                            onClick={toggleSideNav}
+                        >
+                            {language === "fi" ? "GALLERIA" : "GALLERY"}
+                        </Link>
+                    </li>
                     {/* <li>
                         <a
                             className="block px-6 mx-2 py-3 transition-colors duration-200 ease-in-out hover:bg-gray-800 hover:text-white lg:px-0 lg:py-0 lg:hover:bg-transparent lg:hover:text-yellow-300 hover:scale-105"
