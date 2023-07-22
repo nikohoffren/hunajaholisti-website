@@ -76,6 +76,8 @@ If you have any questions about the repo, open an issue or contact me directly a
 
 ## List of Contributors
 
+Massive thanks to all of the these fine individuals who contributed to this project!
+
 [kabszac](https://github.com/kabszac)
 
 [felixmaathz](https://github.com/felixmaathz)
