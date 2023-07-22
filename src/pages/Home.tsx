@@ -21,7 +21,7 @@ export default function Home() {
     return (
         <>
             <main className="flex flex-col items-center my-20">
-                <div className="py-20"></div>
+                <div className="sm:py-20"></div>
                 <div className="py-5"></div>
                 <div className="text-center">
                     <CSSTransition
@@ -58,7 +58,7 @@ export default function Home() {
                     </CSSTransition>
                 </div>
 
-                <div className="my-28"></div>
+                <div className="sm:my-28"></div>
             </main>
         </>
     );
