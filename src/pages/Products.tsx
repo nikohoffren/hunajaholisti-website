@@ -87,8 +87,8 @@ export default function Products() {
                         <div className="p-8">
                             <h5 className="text-2xl font-semibold text-white">
                                 {language === "fi"
-                                    ? "Iso kummipesä"
-                                    : "Big beehive"}
+                                    ? "Iso Kummipesä"
+                                    : "Big Adopt a Hive"}
                             </h5>
                             <h6 className="font-bold mt-1 text-[1.3rem] text-white">
                                 49,00 €
@@ -101,7 +101,7 @@ export default function Products() {
                             <p className="mt-4 text-sky-100">
                                 {language === "fi"
                                     ? "Kiinnostaako mehiläistarhaus ja pidät hunajasta? Kummipesä on hyvä vaihtoehto seurata mehiläispesän elämää yhden hoitokauden verran. Se sopii mainiosti lahjaksi mehiläisistä kiinnostuneelle. Ostaessasi kummipesän lähetämme säännöllisesti terveiset mehiläispesältä sähköpostiisi. Totta kai satokauden päätteeksi kerätään hunajat ja ne toimitetaan saajalle heti linkouksen jälkeen. Pakettiin kuuluu säännöllisten pesäterveisten lisäksi 5 purkkia hunajaa (350g). Näiden lisäksi saajalle toimitetaan diplomi kummipesästä postitse."
-                                    : "Interested in beekeeping and love honey? Beehive is a great way to observe the life of a beehive for one season. It is also a great gift for someone interested in bees. When you buy a beehive, we will regularly send you updates from the beehive via email. Of course, at the end of the harvest season, we will collect the honey and deliver it to the recipient immediately after extraction. In addition to regular hive updates, the package includes 5 jars of honey (350g). The recipient will also receive a diploma of the beehive by mail."}
+                                    : "Interested in beekeeping and love honey? Adopt a Hive is a great way to observe the life of a beehive for one season. It is also a great gift for someone interested in bees. When you buy a Adopt a Hive, we will regularly send you updates from the beehive via email. Of course, at the end of the harvest season, we will collect the honey and deliver it to the recipient immediately after extraction. In addition to regular hive updates, the package includes 5 jars of honey (350g). The recipient will also receive a diploma of the Adopt a Hive by mail."}
                             </p>
                             <div className="mt-4 text-right">
                                 <button
@@ -145,8 +145,8 @@ export default function Products() {
                         <div className="p-8">
                             <h5 className="text-2xl font-semibold text-white">
                                 {language === "fi"
-                                    ? "Pieni kummipesä"
-                                    : "Small beehive"}
+                                    ? "Pieni Kummipesä"
+                                    : "Small Adopt a Hive"}
                             </h5>
                             <h6 className="font-bold mt-1 text-[1.3rem] text-white">
                                 35,00 €
@@ -159,7 +159,7 @@ export default function Products() {
                             <p className="mt-4 text-sky-100">
                                 {language === "fi"
                                     ? "Kiinnostaako mehiläistarhaus ja pidät hunajasta? Kummipesä on hyvä vaihtoehto seurata mehiläispesän elämää yhden hoitokauden verran. Se sopii mainiosti lahjaksi mehiläisistä kiinnostuneelle. Ostaessasi kummipesän lähetämme säännöllisesti terveiset mehiläispesältä sähköpostiisi. Totta kai satokauden päätteeksi kerätään hunajat ja ne toimitetaan saajalle heti linkouksen jälkeen. Pakettiin kuuluu säännöllisten pesäterveisten lisäksi 3 purkkia hunajaa (350g). Näiden lisäksi saajalle toimitetaan diplomi kummipesästä postitse."
-                                    : "Interested in beekeeping and love honey? Beehive is a great way to observe the life of a beehive for one season. It is also a great gift for someone interested in bees. When you buy a beehive, we will regularly send you updates from the beehive via email. Of course, at the end of the harvest season, we will collect the honey and deliver it to the recipient immediately after extraction. In addition to regular hive updates, the package includes 3 jars of honey (350g). The recipient will also receive a diploma of the beehive by mail."}
+                                    : "Interested in beekeeping and love honey? Adopt a Hive is a great way to observe the life of a beehive for one season. It is also a great gift for someone interested in bees. When you buy a Adopt a Hive, we will regularly send you updates from the beehive via email. Of course, at the end of the harvest season, we will collect the honey and deliver it to the recipient immediately after extraction. In addition to regular hive updates, the package includes 3 jars of honey (350g). The recipient will also receive a diploma of the Adopt a Hive by mail."}
                             </p>
                             <div className="mt-4 text-right">
                                 <button
