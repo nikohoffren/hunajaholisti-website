@@ -24,7 +24,7 @@ export default function Gallery() {
                 >
                     <div>
                         {isLoading && <Spinner />}
-                        <img src="gallery1.png" alt="" />
+                        <img src="gallery7.png" alt="" />
                         {/* <p className="legend">
                             {language === "fi" ? "Mehiläiset" : "Bees"}
                         </p> */}
@@ -51,7 +51,7 @@ export default function Gallery() {
                     </div>
                     <div>
                         {isLoading && <Spinner />}
-                        <img src="gallery7.png" alt="" onLoad={imageLoaded} />
+                        <img src="gallery1.png" alt="" onLoad={imageLoaded} />
                     </div>
                     <div>
                         {isLoading && <Spinner />}
