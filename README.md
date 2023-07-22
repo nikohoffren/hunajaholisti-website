@@ -76,17 +76,11 @@ If you have any questions about the repo, open an issue or contact me directly a
 ## List of Contributors
 
 felixmaathz
-
 DuiNotDoy
-
 anubhav1206
-
 ducksblock
-
 versacodes
-
 matteobandoni
-
 
 ## License
 
