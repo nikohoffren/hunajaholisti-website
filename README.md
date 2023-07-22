@@ -75,9 +75,8 @@ In the next phase of this project, i aim to introduce more interactive elements 
 If you have any questions about the repo, open an issue or contact me directly at niko.hoffren@gmail.com.
 
 ## List of Contributors
-n- [kabszac](https://github.com/kabszac)
 
-Massive thanks to all of the these fine individuals who contributed to this project!
+[kabszac](https://github.com/kabszac)
 
 [felixmaathz](https://github.com/felixmaathz)
 
