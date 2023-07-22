@@ -18,6 +18,7 @@ This repository contains the code for our Hunajaholistin Hunaja E-commerce websi
 -   [Contributing](#contributing)
 -   [Reflection](#reflection)
 -   [Questions](#questions)
+-   [List of Contributors](#list-of-contributors)
 -   [License](#license)
 
 ## Technologies Used
@@ -71,6 +72,15 @@ In the next phase of this project, i aim to introduce more interactive elements 
 ## Questions
 
 If you have any questions about the repo, open an issue or contact me directly at niko.hoffren@gmail.com.
+
+## List of Contributors
+
+felixmaathz
+DuiNotDoy
+anubhav1206
+ducksblock
+versacodes
+matteobandoni
 
 ## License
 
