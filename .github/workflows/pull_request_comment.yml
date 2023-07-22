@@ -22,11 +22,13 @@ jobs:
         run: |
           gh pr comment "${{ github.event.pull_request.number }}" --body "## Pull request merged
 
+          > This is an automated message from Hunajaholisti [BOT].
+
           Thank you for your contribution! Your pull request has been merged.
 
-          ## What's next?
+          ### What's next?
 
-          If you're looking for more ways to contribute, I invite you to check out my other projects. Just click my username to find more."
+          If you're looking for more ways to contribute, I invite you to check out my other projects [here](https://github.com/nikohoffren?tab=repositories)."
         env:
           GH_TOKEN: ${{ secrets.HUNAJAHOLISTI_BOT }}
           GH_REPO: ${{ github.repository }}
