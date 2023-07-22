@@ -16,6 +16,10 @@ jobs:
         with:
           token: ${{ secrets.HUNAJAHOLISTI_BOT }}
 
+      - name: Setup GitHub CLI
+        run: |
+          gh auth login --with-token <<< "${{ secrets.HUNAJAHOLISTI_BOT }}"
+
       - name: Add contributor to README
         run: |
           if ! grep -q "${{ github.event.pull_request.user.login }}" README.md
@@ -27,10 +31,6 @@ jobs:
             git commit -m "Add ${{ github.event.pull_request.user.login }} to contributors list"
             git push
           fi
-
-      - name: Setup GitHub CLI
-        run: |
-          gh auth login --with-token <<< "${{ secrets.HUNAJAHOLISTI_BOT }}"
 
       - name: Comment on PR
         run: |
