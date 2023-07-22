@@ -75,11 +75,18 @@ If you have any questions about the repo, open an issue or contact me directly a
 
 ## List of Contributors
 
+Massive thanks to all of the these fine individuals who contributed to this project!
+
 [felixmaathz](https://github.com/felixmaathz)
+
 [DuiNotDoy](https://github.com/DuiNotDoy)
+
 [anubhav1206](https://github.com/anubhav1206)
+
 [ducksblock](https://github.com/ducksblock)
+
 [versacodes](https://github.com/versacodes)
+
 [matteobandoni](https://github.com/matteobandoni)
 
 ## License
