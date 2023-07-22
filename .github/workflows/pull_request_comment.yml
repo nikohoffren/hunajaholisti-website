@@ -1,0 +1,32 @@
+name: Pull Request Comment
+
+on:
+  pull_request_target:
+    types:
+      - closed
+
+jobs:
+
+  comment:
+    runs-on: ubuntu-latest
+    if: github.event.pull_request.merged == true
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+        with:
+          token: ${{ secrets.HUNAJAHOLISTI_BOT }}
+      - name: Setup GitHub CLI
+        run: |
+          gh auth login --with-token <<< "${{ secrets.HUNAJAHOLISTI_BOT }}"
+      - name: Comment on PR
+        run: |
+          gh pr comment "${{ github.event.pull_request.number }}" --body "## Pull request merged
+
+          Thank you for your contribution! Your pull request has been merged.
+
+          ## What's next?
+
+          If you're looking for more ways to contribute, I invite you to check out my other projects. Just click my username to find more."
+        env:
+          GH_TOKEN: ${{ secrets.HUNAJAHOLISTI_BOT }}
+          GH_REPO: ${{ github.repository }}
