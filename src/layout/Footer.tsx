@@ -70,7 +70,7 @@ export default function Footer() {
                         </Link>
                         <br />
                         <a
-                            href="https://hunaja.fi/hunajasta-ja-mehilaisista/lisatietoja-hunajasta/"
+                            href=" https://hunaja.net/hunajatietoa/hunaja/"
                             className="text-white hover:text-blue-600 py-2"
                             target="_blank"
                             rel="noreferrer"
@@ -81,7 +81,7 @@ export default function Footer() {
                         </a>
                         <br />
                         <a
-                            href="https://hunaja.fi/reseptit/"
+                            href="https://www.valio.fi/reseptiryhmat/hunajareseptit/"
                             className="text-white hover:text-blue-600 py-2"
                             target="_blank"
                             rel="noreferrer"
