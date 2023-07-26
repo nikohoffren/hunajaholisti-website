@@ -53,10 +53,7 @@ function App() {
                                     path="/tuotteemme"
                                     element={<Products />}
                                 />
-                                <Route
-                                    path="/galleria"
-                                    element={<Gallery />}
-                                />
+                                <Route path="/galleria" element={<Gallery />} />
                                 <Route
                                     path="/myyntiehdot"
                                     element={<SalesAndDeliveryConditions />}

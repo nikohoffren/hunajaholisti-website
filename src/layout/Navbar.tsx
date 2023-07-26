@@ -4,6 +4,7 @@ import LanguageSelector from "../components/LanguageSelector";
 import { LanguageContext } from "../components/LanguageContext";
 import { CartContext } from "../components/CartContext";
 import React from "react";
+
 interface CustomLinkProps {
     to: string;
     children: React.ReactNode;
@@ -24,10 +25,35 @@ export default function Navbar() {
         setIsOpen(!isOpen);
     };
 
+    const logo = (
+        <Link to="/" onClick={toggleSideNav} className="lg:hidden">
+            <div className="group-hover:border-white">
+                <img
+                    className="header-logo h-12 w-12 transition-transform duration-200 ease-in-out transform hover:scale-105"
+                    src="HHlogo.jpg"
+                    alt="Hunajaholistin Hunaja logo"
+                />
+            </div>
+        </Link>
+    );
+
+    const desktopLogo = (
+        <Link to="/" onClick={toggleSideNav} className="hidden lg:block">
+            <div className="group-hover:border-white">
+                <img
+                    className="header-logo h-12 w-12 transition-transform duration-200 ease-in-out transform hover:scale-105"
+                    src="HHlogo.jpg"
+                    alt="Hunajaholistin Hunaja logo"
+                />
+            </div>
+        </Link>
+    );
+
     return (
         <>
-            <nav className="bg-black bg-opacity-75 p-3 pl-8 pr-8 fixed flex items-center justify-between top-0 w-full z-50 lg:backdrop-blur">
+            <nav className="bg-black bg-opacity-75 p-3 pl-20 pr-20 fixed flex items-center justify-between top-0 w-full z-50 lg:backdrop-blur">
                 <div className="flex justify-between items-center w-full lg:w-auto">
+                    {desktopLogo}
                     <button
                         className="inline-block lg:hidden w-8 h-8 bg-black-500 text-white p-1 ml-3"
                         onClick={toggleSideNav}
@@ -40,18 +66,10 @@ export default function Navbar() {
                 <ul
                     className={`fixed backdrop-blur transform top-0 left-0 w-full h-full bg-black bg-opacity-75 text-white pt-20 pb-5 space-y-3 transition-transform duration-200 ease-in-out overflow-auto ${
                         isOpen ? "translate-x-0" : "-translate-x-full"
-                    } lg:static lg:translate-x-0 lg:flex lg:items-center lg:w-auto lg:space-y-0 lg:space-x-10 lg:pt-0 lg:pb-0 lg:bg-transparent`}
+                    } lg:static lg:translate-x-0 lg:flex lg:items-center lg:w-auto lg:space-y-0 lg:space-x-10 lg:pt-0 lg:pb-0 lg:bg-transparent lg:justify-end`}
                 >
-                    <li className="mobile-img">
-                        <Link to="/" onClick={toggleSideNav}>
-                            <div className="group-hover:border-white">
-                                <img
-                                    className="header-logo h-12 w-12 transition-transform duration-200 ease-in-out transform hover:scale-105"
-                                    src="HHlogo.jpg"
-                                    alt="Hunajaholistin Hunaja logo"
-                                />
-                            </div>
-                        </Link>
+                    <li className="pl-8 lg:hidden">
+                        {logo}
                     </li>
                     <li>
                         <Link
@@ -80,16 +98,6 @@ export default function Navbar() {
                             {language === "fi" ? "GALLERIA" : "GALLERY"}
                         </Link>
                     </li>
-                    {/* <li>
-                        <a
-                            className="block px-6 mx-2 py-3 transition-colors duration-200 ease-in-out hover:bg-gray-800 hover:text-white lg:px-0 lg:py-0 lg:hover:bg-transparent lg:hover:text-yellow-300 hover:scale-105"
-                            href="https://holvi.com/shop/WbXD2B/"
-                            target="_blank"
-                            onClick={toggleSideNav}
-                        >
-                            {language === "fi" ? "VERKKOKAUPPA" : "ONLINE SHOP"}
-                        </a>
-                    </li> */}
                     <li className="px-5 py-3 lg:px-0 lg:py-0 mobile-img-flag">
                         <LanguageSelector
                             setLanguage={setLanguage}
@@ -109,7 +117,6 @@ export default function Navbar() {
                                     {cartItemsCount}
                                 </span>
                             )}
-                            {/* {language === "fi" ? " Ostoskori" : " Cart"} */}
                         </Link>
                     </li>
                 </ul>
