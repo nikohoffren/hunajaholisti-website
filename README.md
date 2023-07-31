@@ -78,6 +78,7 @@ If you have any questions about the repo, open an issue or contact me directly a
 ## List of Contributors
 
 Massive thanks to all of the these fine individuals who contributed to this project!
+[DarshanDixit05](https://github.com/DarshanDixit05)
 
 [kabszac](https://github.com/kabszac)
 
