@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { LanguageContext } from "./LanguageContext";
 
 interface LanguageSelectorProps {
@@ -11,9 +11,19 @@ const LanguageSelector: React.FC<LanguageSelectorProps> = ({
     hoverClass,
 }) => {
     const { language } = useContext(LanguageContext);
+    const [activeFin, setActiveFin] = useState(true); //set to fin language as default
+    const [activeEn, setActiveEn] = useState(false);
 
     const handleClick = (lang: string) => {
         setLanguage(lang);
+
+        if(lang=="fi"){
+            setActiveFin(true);
+            setActiveEn(false);
+        }else{
+            setActiveFin(false);
+            setActiveEn(true);
+        }
     };
 
     return (
@@ -27,7 +37,7 @@ const LanguageSelector: React.FC<LanguageSelectorProps> = ({
                 <img
                     src="./Flag_of_Finland.svg.png"
                     alt="Flag of Finland"
-                    className="cursor-pointer h-6 w-10 transition-transform duration-200 ease-in-out transform hover:scale-105"
+                    className={`cursor-pointer h-6 w-10 transition-transform duration-200 ease-in-out transform ${activeFin? `scale-105`:``} hover:scale-105`}
                 />
             </button>
             <button
@@ -39,7 +49,7 @@ const LanguageSelector: React.FC<LanguageSelectorProps> = ({
                 <img
                     src="./flag-of-uk-and-us.jpg"
                     alt="Flag of UK"
-                    className="cursor-pointer h-6 w-10 transition-transform duration-200 ease-in-out transform hover:scale-105"
+                    className={`cursor-pointer h-6 w-10 transition-transform duration-200 ease-in-out transform ${activeEn? `scale-105`:``} hover:scale-105`}
                 />
             </button>
         </div>
