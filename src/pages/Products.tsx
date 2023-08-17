@@ -3,7 +3,7 @@ import { LanguageContext } from "../components/LanguageContext";
 import { useState } from "react";
 import Spinner from "../components/Spinner";
 
-import { Product, productsData } from "src/components/productsData";
+import { Product, productsData } from "src/productsData";
 import { ProductAddToCart, ProductMessageUs, ProductSoon } from "src/components/ProductCard";
 
 const productByName: Record<string, Product> = {};
@@ -109,7 +109,8 @@ export default function Products() {
                             {language === "fi"
                                 ? "Sis. ALV 24,00%"
                                 : "VAT 24.00% included"}
-                        </p></></ProductSoon>
+                        </p></>
+                </ProductSoon>
                 {/* Propolis */}
                 <ProductSoon
                     product={productByName["Propolis"]}
@@ -125,12 +126,12 @@ export default function Products() {
                             onLoad={() => imageLoaded()}
                         />
                     </>}
-                />
-                ><p className="text-gray-300 smaller-text font-semibold">
-                        {language === "fi"
-                            ? "Myyn propolista lastuina"
-                            : "I sell propolis as chips"}
-                    </p>
+                ><>
+                        <p className="text-gray-300 smaller-text font-semibold">
+                            {language === "fi"
+                                ? "Myyn propolista lastuina"
+                                : "I sell propolis as chips"}
+                        </p></>
                 </ProductSoon>
             </div >
         </>
