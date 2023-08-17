@@ -17,7 +17,7 @@ export interface Product {
   fi: LocalizedData;
   en: LocalizedData;
   image: string;
-  extraUrl?: string;
+  moreInfoUrl?: string;
   cta: "add_to_cart" | "message_us" | "coming_soon";
 }
 export const productsData: Product[] = [
@@ -124,7 +124,7 @@ export const productsData: Product[] = [
       alt: "Pollen",
     },
     image: "HHkuvaSiitepoly.jpeg",
-    extraUrl:
+    moreInfoUrl:
       "https://hunaja.net/hunajatietoa/muut-mehilaistuotteet/siitepoly/",
     cta: "coming_soon",
   },
@@ -138,7 +138,7 @@ export const productsData: Product[] = [
     fi: {
       name: "PROPOLIS",
       description: [
-        "Mehiläisten keräämä siitepöly sisältää ainakin proteiinia, aminohappoja, rasvoja, aminohappoja, A-, B-, C- ja E- vitamiineja, mineraalea, fytosteroleita, flavonoideja ja hiilihydraatteja. Mehiläiset keräävät tätä proteiinipitoista ruokaa toukilleen ruuaksi. Mehiläispesä tarvitsee siitepölyä noin 30-40kg vuodessa. Ihminenkin voi käyttää siitepölyä proteiinin lähteenä. Itse sekoittelen aamujogurttiini siitepölyä pari teelusikallista iltasella tekeytymään.",
+        "Propolikseksi sanotaan ainetta jolla mehiläiset kittaavat turhat raot pesässä. Propoliksella on desinfioiva vaikutus mehiläispesässä. Mehiläiset keräävät aineksia propolikseen pensaiden ja puiden silmuista. Silmut erittävät pihkamaisia ja tuoksuvia hartsimaisia aineita.",
         "Lisätietoa propoliksesta voit lukea esimerkiksi täältä: ",
       ],
       alt: "Siitepöly",
@@ -152,7 +152,8 @@ export const productsData: Product[] = [
       alt: "Pollen",
     },
     image: "HHlogo.jpg",
-    extraUrl: "https://hunaja.net/hunajatietoa/muut-mehilaistuotteet/propolis/",
+    moreInfoUrl:
+      "https://hunaja.net/hunajatietoa/muut-mehilaistuotteet/propolis/",
     cta: "coming_soon",
   },
 ];
