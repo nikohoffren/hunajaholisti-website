@@ -3,8 +3,14 @@ import { LanguageContext } from "../components/LanguageContext";
 import { useState } from "react";
 import Spinner from "../components/Spinner";
 
-import { productsData } from "src/components/productsData";
-import ProductCard from "src/components/ProductCard";
+import { Product, productsData } from "src/components/productsData";
+import { ProductAddToCart, ProductMessageUs, ProductSoon } from "src/components/ProductCard";
+
+const productByName: Record<string, Product> = {};
+
+productsData.forEach(product => {
+    productByName[product.indexName] = product;
+});
 
 
 export default function Products() {
@@ -17,6 +23,11 @@ export default function Products() {
     const imageLoaded = () => {
         setIsLoading(false);
     };
+    const productsByIdx: { [idx: number]: Product } = {};
+    //
+    productsData.forEach((product, idx) => {
+        productsByIdx[idx] = product;
+    });
 
     return (
         <>
@@ -29,60 +40,86 @@ export default function Products() {
             <div className="container mx-auto my-8">
                 <hr />
             </div>
-
             <div className="container mx-auto grid md:grid-cols-3 gap-8 mb-4">
+                {/* Hunaja */}
+                <ProductMessageUs
+                    product={productByName["Honey350"]}
+                    lang={language}
+                    image={<> {isLoading && <Spinner />}
+                        <img
+                            className="w-full h-48 object-cover"
+                            src={productByName["Honey350"].image}
+                            alt={language === "fi"
+                                ? productByName["Honey350"].fi.alt
+                                : productByName["Honey350"].en.alt}
+                            onLoad={() => imageLoaded()}
+                        /></>}
+                />
+                {/* Iso kummipesä */}
+                <ProductAddToCart
+                    product={productByName["BigHive"]}
+                    lang={language}
+                    image={<> {isLoading && <Spinner />}
+                        <img
+                            className="w-full h-48 object-cover"
+                            src={productByName["BigHive"].image}
+                            alt={language === "fi"
+                                ? productByName["BigHive"].fi.alt
+                                : productByName["BigHive"].en.alt}
+                            onLoad={() => imageLoaded()}
+                        /></>}
+                />
+                {/* Pieni kummipesä */}
+                <ProductAddToCart
+                    product={productByName["SmallHive"]}
+                    lang={language}
+                    image={<>
+                        {isLoading && <Spinner />}
+                        <img
+                            className="w-full h-48 object-cover"
+                            src={productByName["SmallHive"].image}
+                            alt={language === "fi"
+                                ? productByName["SmallHive"].fi.alt
+                                : productByName["SmallHive"].en.alt}
+                            onLoad={() => imageLoaded()}
+                        />
+                    </>}
+                />
 
-
-                {productsData.map((p, idx) => (
-                    <ProductCard
-                        key={idx}
-                        product={p}
-                        lang={language}
-                        head={<> {isLoading && <Spinner />}
-                            <img
-                                className="w-full h-48 object-cover"
-                                src={p.image}
-                                alt={language === "fi"
-                                    ? p.fi.alt
-                                    : p.en.alt}
-                                onLoad={() => imageLoaded()}
-                            /></>}
-                        body={<>
-                            <h5 className="text-2xl font-semibold text-white">
-                                {language === "fi"
-                                    ? p.fi.name
-                                    : p.en.name}
-                            </h5>
-                            {
-                                // since the code uses p.fi.description to iterate,
-                                // instead of using p.fi.description[idx] in the loop
-                                // it uses fiDescription
-                                p.fi.description.map((fiDescription, idx) => (
-                                    <p key={idx} className="mt-4 text-sky-100">
-                                        {
-                                            language === "fi" ? fiDescription : p.en.description[idx]
-                                        }
-                                    </p>
-
-
-                                ))
-                            }
-                            {
-                                // conditionally place a url
-                                p.exInfoURL ?
-                                    <a
-                                        href={p.exInfoURL}
-                                        target="_blank"
-                                        className="text-yellow-600 hover:text-yellow-800"
-                                    >
-                                        {p.exInfoURL}
-                                    </a> : "x"
-                            }
-                        </>}
-                    />
-                ))
-                }
+                {/* Siitepöly */}
+                <ProductSoon
+                    product={productByName["Pollen250"]}
+                    lang={language}
+                    image={<>
+                        {isLoading && <Spinner />}
+                        <img
+                            className="w-full h-48 object-cover"
+                            src={productByName["Pollen250"].image}
+                            alt={language === "fi"
+                                ? productByName["Pollen250"].fi.alt
+                                : productByName["Pollen250"].en.alt}
+                            onLoad={() => imageLoaded()}
+                        />
+                    </>}
+                />
+                {/* Propolis */}
+                <ProductSoon
+                    product={productByName["Propolis"]}
+                    lang={language}
+                    image={<>
+                        {isLoading && <Spinner />}
+                        <img
+                            className="w-full h-48 object-cover"
+                            src={productByName["Propolis"].image}
+                            alt={language === "fi"
+                                ? productByName["Propolis"].fi.alt
+                                : productByName["Propolis"].en.alt}
+                            onLoad={() => imageLoaded()}
+                        />
+                    </>}
+                />
             </div >
         </>
     );
 }
+
