@@ -101,7 +101,15 @@ export default function Products() {
                             onLoad={() => imageLoaded()}
                         />
                     </>}
-                />
+                > <>
+                        <h6 className="font-bold mt-1 text-[1.3rem] text-white">
+                            35,00 €
+                        </h6>
+                        <p className="mt-4 text-white">
+                            {language === "fi"
+                                ? "Sis. ALV 24,00%"
+                                : "VAT 24.00% included"}
+                        </p></></ProductSoon>
                 {/* Propolis */}
                 <ProductSoon
                     product={productByName["Propolis"]}
@@ -118,6 +126,12 @@ export default function Products() {
                         />
                     </>}
                 />
+                ><p className="text-gray-300 smaller-text font-semibold">
+                        {language === "fi"
+                            ? "Myyn propolista lastuina"
+                            : "I sell propolis as chips"}
+                    </p>
+                </ProductSoon>
             </div >
         </>
     );
