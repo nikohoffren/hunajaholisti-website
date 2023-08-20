@@ -4,6 +4,29 @@ import { CartContext } from "../components/CartContext";
 import { useState } from "react";
 import Spinner from "../components/Spinner";
 
+
+const productsData = [
+    {
+        id: "1",
+        nameFi: "Iso kummipesä",
+        nameEn: "Big beehive",
+        price: 4900,
+        image: "HHkuva5.jpg",
+        alt: "Iso kummipesä"
+
+    },
+    {
+        id: "2",
+        nameFi: "Pieni kummipesä",
+        nameEn: "Small beehive",
+        price: 3500,
+        image: "HHkuva5.jpg",
+        alt: "Iso kummipesä"
+
+    },
+
+];
+
 export default function Products() {
     const { language } = useContext(LanguageContext) as {
         language: string;
@@ -79,8 +102,8 @@ export default function Products() {
                             {isLoading && <Spinner />}
                             <img
                                 className="w-full h-48 object-cover"
-                                src="HHkuva5.jpg"
-                                alt="Iso kummipesä"
+                                src={productsData[0].image}
+                                alt={productsData[0].alt}
                                 onLoad={() => imageLoaded()}
                             />
                         </div>
@@ -107,12 +130,14 @@ export default function Products() {
                                 <button
                                     onClick={() => {
                                         const itemToAdd = {
-                                            id: "1",
+                                            id: productsData[0].id,
                                             name:
                                                 language === "fi"
-                                                    ? "Iso kummipesä"
-                                                    : "Big beehive",
-                                            price: 4900,
+                                                    ? productsData[0].nameFi
+                                                    : productsData[0].nameEn,
+                                            price: productsData[0].price,
+                                            image: productsData[0].image,
+                                            alt: productsData[0].alt
                                         };
                                         dispatch({
                                             type: "ADD",
@@ -137,8 +162,8 @@ export default function Products() {
                             {isLoading && <Spinner />}
                             <img
                                 className="w-full h-48 object-cover"
-                                src="HHkuva5.jpg"
-                                alt="Pieni kummipesä"
+                                src={productsData[1].image}
+                                alt={productsData[1].alt}
                                 onLoad={() => imageLoaded()}
                             />
                         </div>
@@ -165,12 +190,14 @@ export default function Products() {
                                 <button
                                     onClick={() => {
                                         const itemToAdd = {
-                                            id: "2",
+                                            id: productsData[1].id,
                                             name:
                                                 language === "fi"
-                                                    ? "Pieni kummipesä"
-                                                    : "Small beehive",
-                                            price: 3500,
+                                                    ? productsData[1].nameFi
+                                                    : productsData[1].nameEn,
+                                            price: productsData[1].price,
+                                            image: productsData[1].image,
+                                            alt: productsData[1].alt
                                         };
                                         dispatch({
                                             type: "ADD",

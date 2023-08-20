@@ -8,6 +8,8 @@ interface IItem {
     name: string;
     price: number;
     quantity: number;
+    image: string;
+    alt: string;
 }
 
 const Cart = () => {
@@ -73,6 +75,11 @@ const Cart = () => {
                                     className="flex justify-between items-center py-4"
                                 >
                                     <div className="flex justify-between items-center">
+                                        <img
+                                            className="rounded-full mr-2 w-8 h-8 object-fill"
+                                            src={item.image}
+                                            alt={item.alt}
+                                        />
                                         <h3 className="text-lg font-semibold text-gray-100 mr-4">
                                             {item.name}
                                         </h3>
