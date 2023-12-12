@@ -22,60 +22,51 @@ import Gallery from "./pages/Gallery";
 
 //* Call loadStripe outside of a component's render to avoid recreating the Stripe object on every render
 const stripePromise = loadStripe(
-    import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY ?? ""
+  import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY ?? ""
 );
 
 function App() {
-    const [language, setLanguage] = useState("fi");
-    const [cookieConsent, setCookieConsent] = useState(
-        () => localStorage.getItem("cookieConsent") ?? ""
-    );
+  const [language, setLanguage] = useState("fi");
+  const [cookieConsent, setCookieConsent] = useState(
+    () => localStorage.getItem("cookieConsent") ?? ""
+  );
 
-    const contextValue = useMemo(
-        () => ({ language, setLanguage }),
-        [language, setLanguage]
-    );
+  const contextValue = useMemo(
+    () => ({ language, setLanguage }),
+    [language, setLanguage]
+  );
 
-    return (
-        <div className="flex flex-col min-h-screen">
-            <CartProvider cookieConsent={cookieConsent}>
-                <LanguageContext.Provider value={contextValue}>
-                    <Navbar />
-                    <div className="flex-grow">
-                        <Elements stripe={stripePromise}>
-                            <Routes>
-                                <Route path="/" element={<Home />} />
-                                <Route
-                                    path="/tarinamme"
-                                    element={<OurStory />}
-                                />
-                                <Route
-                                    path="/tuotteemme"
-                                    element={<Products />}
-                                />
-                                <Route path="/galleria" element={<Gallery />} />
-                                <Route
-                                    path="/myyntiehdot"
-                                    element={<SalesAndDeliveryConditions />}
-                                />
-                                <Route
-                                    path="/tietosuojaseloste"
-                                    element={<PrivacyPolicy />}
-                                />
-                                <Route path="/payment" element={<Payment />} />
-                                <Route path="/cart" element={<Cart />} />
-                                <Route
-                                    path="/checkout"
-                                    element={
-                                        <PrivateRoute
-                                            path="/checkout"
-                                            redirectTo="/"
-                                            element={<Checkout />}
-                                        />
-                                    }
-                                />
-                                <Route path="/success" element={<Success />} />
-                                {/* <Route
+  return (
+    <div className="flex flex-col min-h-screen">
+      <CartProvider cookieConsent={cookieConsent}>
+        <LanguageContext.Provider value={contextValue}>
+          <Navbar />
+          <div className="flex-grow">
+            <Elements stripe={stripePromise}>
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/tarinamme" element={<OurStory />} />
+                <Route path="/tuotteemme" element={<Products />} />
+                <Route path="/galleria" element={<Gallery />} />
+                <Route
+                  path="/myyntiehdot"
+                  element={<SalesAndDeliveryConditions />}
+                />
+                <Route path="/tietosuojaseloste" element={<PrivacyPolicy />} />
+                <Route path="/payment" element={<Payment />} />
+                <Route path="/cart" element={<Cart />} />
+                <Route
+                  path="/checkout"
+                  element={
+                    <PrivateRoute
+                      path="/checkout"
+                      redirectTo="/"
+                      element={<Checkout />}
+                    />
+                  }
+                />
+                <Route path="/success" element={<Success />} />
+                {/* <Route
                                     path="/success"
                                     element={
                                         <PrivateRoute
@@ -85,26 +76,26 @@ function App() {
                                         />
                                     }
                                 /> */}
-                            </Routes>
-                        </Elements>
-                    </div>
-                    {cookieConsent === "" && (
-                        <Modal
-                            onAccept={() => {
-                                setCookieConsent("true");
-                                localStorage.setItem("cookieConsent", "true");
-                            }}
-                            onReject={() => {
-                                setCookieConsent("false");
-                                localStorage.setItem("cookieConsent", "false");
-                            }}
-                        />
-                    )}
-                    <Footer />
-                </LanguageContext.Provider>
-            </CartProvider>
-        </div>
-    );
+              </Routes>
+            </Elements>
+          </div>
+          {cookieConsent === "" && (
+            <Modal
+              onAccept={() => {
+                setCookieConsent("true");
+                localStorage.setItem("cookieConsent", "true");
+              }}
+              onReject={() => {
+                setCookieConsent("false");
+                localStorage.setItem("cookieConsent", "false");
+              }}
+            />
+          )}
+          <Footer />
+        </LanguageContext.Provider>
+      </CartProvider>
+    </div>
+  );
 }
 
 export default App;

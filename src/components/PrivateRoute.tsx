@@ -3,35 +3,34 @@ import { Navigate, useLocation } from "react-router-dom";
 import { CartContext } from "./CartContext";
 
 interface PrivateRouteProps {
-    element: ReactElement;
-    path: string;
-    redirectTo: string;
+  element: ReactElement;
+  path: string;
+  redirectTo: string;
 }
 
 function PrivateRoute({ element, path, redirectTo }: PrivateRouteProps) {
-    const { state } = useContext(CartContext);
-    const cartIsEmpty = state.cartItems.length === 0;
+  const { state } = useContext(CartContext);
+  const cartIsEmpty = state.cartItems.length === 0;
 
-    const userHasPurchased =
-        localStorage.getItem("userHasPurchased") === "true";
+  const userHasPurchased = localStorage.getItem("userHasPurchased") === "true";
 
-    let condition;
+  let condition;
 
-    if (path === "/checkout") {
-        condition = !cartIsEmpty;
-    } else if (path === "/success") {
-        condition = userHasPurchased;
-    } else {
-        condition = true;
-    }
+  if (path === "/checkout") {
+    condition = !cartIsEmpty;
+  } else if (path === "/success") {
+    condition = userHasPurchased;
+  } else {
+    condition = true;
+  }
 
-    const location = useLocation();
+  const location = useLocation();
 
-    return condition ? (
-        element
-    ) : (
-        <Navigate to={redirectTo} state={{ from: location }} replace />
-    );
+  return condition ? (
+    element
+  ) : (
+    <Navigate to={redirectTo} state={{ from: location }} replace />
+  );
 }
 
 export default PrivateRoute;
