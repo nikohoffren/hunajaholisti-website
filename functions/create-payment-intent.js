@@ -18,6 +18,7 @@ exports.handler = async function (event, context) {
       customerCity: customerDetails.city,
       customerEmail: customerDetails.email,
       customerPhone: customerDetails.phone,
+      customerMessage: customerDetails.message,
     },
   });
 
