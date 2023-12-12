@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { ChangeEventHandler, useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 import {
@@ -20,6 +20,7 @@ const Checkout = () => {
     city?: string;
     email?: string;
     phone?: string;
+    message?: string;
   };
 
   const [orderID, setOrderID] = useState(null);
@@ -30,6 +31,7 @@ const Checkout = () => {
     city: "",
     email: "",
     phone: "",
+    message: "",
   });
   const stripe = useStripe();
   const elements = useElements();
@@ -53,6 +55,7 @@ const Checkout = () => {
         city: customerDetails.city,
         email: customerDetails.email,
         phone: customerDetails.phone,
+        message: customerDetails.message,
         totalAmount,
         products: state.cartItems,
       });
@@ -273,6 +276,19 @@ const Checkout = () => {
               {errors.phone && (
                 <p className="mt-2 text-sm text-red-600">{errors.phone}</p>
               )}
+            </div>
+            <div>
+              <label className="block text-sm font-bold text-gray-100">
+                {language === "fi" ? "Viesti:" : "Message:"}
+              </label>
+              <textarea
+                name="message"
+                value={customerDetails.message}
+                onChange={
+                  handleInputChange as unknown as ChangeEventHandler<HTMLTextAreaElement>
+                }
+                className="mt-1 p-2 w-full border border-gray-300 rounded-md"
+              />
             </div>
             <button
               type="submit"
