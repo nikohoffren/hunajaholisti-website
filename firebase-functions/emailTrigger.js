@@ -16,7 +16,7 @@ exports.sendOrderEmail = functions.firestore
         const products = data.products
             .map(
                 (product) =>
-                    `<li>${product.name}, Quantity: ${product.quantity}</li>`
+                    `<li>${product.name}, Määrä: ${product.quantity}</li>`
             )
             .join("");
         const totalAmount = data.totalAmount;
