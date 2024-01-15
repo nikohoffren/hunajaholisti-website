@@ -91,7 +91,7 @@ export default function Footer() {
       <div className="mt-8 text-center text-m text-gray-200">
         {language === "fi" ? "Tekijänoikeus" : "Copyright"} &#169; 2021-2024{" "}
         <a
-          className="hover:text-red-400"
+          className="text-red-200 hover:text-red-400"
           href="https://nikohoffren.com"
           target="_blank"
           rel="noreferrer"
@@ -100,7 +100,7 @@ export default function Footer() {
         </a>
       </div>
 
-      <div className="mt-2 text-center text-sm text-gray-200">
+      {/* <div className="mt-2 text-center text-sm text-gray-200">
         Developed with React
         <a
           href="https://reactjs.org/"
@@ -184,7 +184,7 @@ export default function Footer() {
             alt="Netlify logo"
           />
         </a>
-      </div>
+      </div> */}
     </footer>
   );
 }
