@@ -1,8 +1,9 @@
-import React, { useState, useContext } from "react";
+import { useState, useContext } from "react";
 import { Link, useMatch, useResolvedPath } from "react-router-dom";
 import LanguageSelector from "../components/LanguageSelector";
 import { LanguageContext } from "../components/LanguageContext";
 import { CartContext } from "../components/CartContext";
+import React from "react";
 
 interface CustomLinkProps {
   to: string;
@@ -20,40 +21,54 @@ export default function Navbar() {
 
   const { language, setLanguage } = useContext(LanguageContext);
   const [isOpen, setIsOpen] = useState(false);
-  const [isUserDropdownOpen, setIsUserDropdownOpen] = useState(false);
-
   const toggleSideNav = () => {
     setIsOpen(!isOpen);
   };
 
-  const toggleUserDropdown = () => {
-    setIsUserDropdownOpen(!isUserDropdownOpen);
-  };
+  const logo = (
+    <Link to="/" onClick={toggleSideNav} className="lg:hidden">
+      <div className="group-hover:border-white">
+        <img
+          className="header-logo h-12 w-12 transition-transform duration-200 ease-in-out transform hover:scale-105"
+          src="HHlogo.jpg"
+          alt="Hunajaholistin Hunaja logo"
+        />
+      </div>
+    </Link>
+  );
+
+  const desktopLogo = (
+    <Link to="/" onClick={toggleSideNav} className="hidden lg:block">
+      <div className="group-hover:border-white">
+        <img
+          className="header-logo h-12 w-12 transition-transform duration-200 ease-in-out transform hover:scale-105"
+          src="HHlogo.jpg"
+          alt="Hunajaholistin Hunaja logo"
+        />
+      </div>
+    </Link>
+  );
 
   return (
-    <nav className="bg-black bg-opacity-75 p-3 pl-20 pr-20 fixed flex items-center justify-between top-0 w-full z-50 lg:backdrop-blur">
-      <div className="flex justify-between items-center w-full lg:w-auto">
-        <Link to="/" >
-          <img
-            className="header-logo h-12 w-12 transition-transform duration-200 ease-in-out transform hover:scale-105"
-            src="HHlogo.jpg"
-            alt="Hunajaholistin Hunaja logo"
-          />
-        </Link>
-        <button
-          className="inline-block lg:hidden w-8 h-8 bg-black-500 text-white p-1 ml-3"
-          onClick={toggleSideNav}
-          id="toggleButton"
-        >
-          {isOpen ? "" : <i className="fa fa-bars"></i>}
-        </button>
-      </div>
+    <>
+      <nav className="bg-black bg-opacity-75 p-3 pl-20 pr-20 fixed flex items-center justify-between top-0 w-full z-50 lg:backdrop-blur">
+        <div className="flex justify-between items-center w-full lg:w-auto">
+          {desktopLogo}
+          <button
+            className="inline-block lg:hidden w-8 h-8 bg-black-500 text-white p-1 ml-3"
+            onClick={toggleSideNav}
+            id="toggleButton"
+          >
+            {isOpen ? "=" : <i className="fa fa-bars"></i>}
+          </button>
+        </div>
 
-      <ul
+        <ul
           className={`fixed backdrop-blur transform top-0 left-0 w-full h-full bg-black bg-opacity-75 text-white pt-20 pb-5 space-y-3 transition-transform duration-200 ease-in-out overflow-auto ${
             isOpen ? "translate-x-0" : "-translate-x-full"
           } lg:static lg:translate-x-0 lg:flex lg:items-center lg:w-auto lg:space-y-0 lg:space-x-10 lg:pt-0 lg:pb-0 lg:bg-transparent lg:justify-end`}
         >
+          <li className="pl-8 lg:hidden">{logo}</li>
           <li>
             <Link
               className="block px-6 mx-2 py-3 transition-colors duration-200 ease-in-out hover:bg-gray-800 hover:text-white lg:px-0 lg:py-0 lg:hover:bg-transparent lg:hover:text-yellow-300 hover:scale-105"
@@ -102,37 +117,9 @@ export default function Navbar() {
               )}
             </Link>
           </li>
-          {/* include dropdown */}
-          <li className="relative">
-            <button
-              className="block px-6 mx-2 py-3 transition-colors duration-200 ease-in-out hover:bg-gray-800 hover:text-white lg:px-0 lg:py-0 lg:hover:bg-transparent lg:hover:text-yellow-300 hover:scale-105"
-              onClick={toggleUserDropdown}
-            >
-              <i className="fas fa-user"></i>
-            </button>
-           {/* Dropdown menu */}
-           {isUserDropdownOpen && (
-              <ul className={`absolute top-0 right-0 bg-black text-white mt-2 rounded-lg shadow-lg z-1000`}>
-                <li className="px-4 py-2">
-                  <Link to="/profile-settings">Profile Settings</Link>
-                </li>
-                <li className="px-4 py-2">
-                  <Link to="/logout">Logout</Link>
-                </li>
-              </ul>
-            )}
-          </li>
-          {/* Added close icon button */}
-          <li className="lg:hidden absolute top-3 right-3">
-            <button
-              className="block px-6 mx-2 py-3 transition-colors duration-200 ease-in-out hover:bg-gray-800 hover:text-white lg:px-0 lg:py-0 lg:hover:bg-transparent lg:hover:text-yellow-300 hover:scale-105"
-              onClick={toggleSideNav}
-            >
-              <i className="fas fa-times"></i>
-            </button>
-          </li>
         </ul>
-    </nav>
+      </nav>
+    </>
   );
 }
 
