@@ -28,9 +28,9 @@ const ProfileMenu = () => {
       </button>
       {isOpen && (
         <div className="absolute top-full right-0 mt-2 w-48 bg-white rounded-md shadow-lg">
-          <MenuItem href="#" text="Profile" closeDropdown={closeDropdown} />
+          <MenuItem href="/profile" text="Profile" closeDropdown={closeDropdown} />
           <MenuItem href="#" text="Settings" closeDropdown={closeDropdown} />
-          <MenuItem href="#" text="Logout" closeDropdown={closeDropdown} />
+          <MenuItem href="/login" text="Logout" closeDropdown={closeDropdown} />
         </div>
       )}
     </div>
