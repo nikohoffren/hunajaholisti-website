@@ -3,7 +3,7 @@ import { Link, useMatch, useResolvedPath } from "react-router-dom";
 import LanguageSelector from "../components/LanguageSelector";
 import { LanguageContext } from "../components/LanguageContext";
 import { CartContext } from "../components/CartContext";
-import DropdownMenu from "src/components/DropDownMenu";
+import ProfileMenu from "src/components/ProfileMenu";
 
 interface CustomLinkProps {
   to: string;
@@ -84,7 +84,7 @@ export default function Navbar() {
               </button>
             </li>
           </ul>
-          {!isOpen && <DropdownMenu  />}
+          {!isOpen && <ProfileMenu  />}
           <button className="inline-block lg:hidden w-8 h-8 bg-black-500 text-white p-1 ml-3" onClick={toggleSideNav} id="toggleButton">
             {isOpen ? "" : <i className="fa fa-bars"></i>}
           </button>

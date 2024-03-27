@@ -6,7 +6,7 @@ interface MenuItemProps {
   closeDropdown: () => void; // New prop to close dropdown
 }
 
-const DropdownMenu = () => {
+const ProfileMenu = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleDropdown = () => {
@@ -54,4 +54,4 @@ const MenuItem = ({ href, text, closeDropdown }: MenuItemProps) => {
   );
 };
 
-export default DropdownMenu;
+export default ProfileMenu;
