@@ -20,14 +20,14 @@ export default function Navbar() {
 
   const { language, setLanguage } = useContext(LanguageContext);
   const [isOpen, setIsOpen] = useState(false);
- 
+  const [isUserDropdownOpen, setIsUserDropdownOpen] = useState(false);
 
   const toggleSideNav = () => {
     setIsOpen(!isOpen);
   };
 
-  const closeSideNav = () => {
-    setIsOpen(false);
+  const toggleUserDropdown = () => {
+    setIsUserDropdownOpen(!isUserDropdownOpen);
   };
 
   return (
@@ -54,22 +54,11 @@ export default function Navbar() {
             isOpen ? "translate-x-0" : "-translate-x-full"
           } lg:static lg:translate-x-0 lg:flex lg:items-center lg:w-auto lg:space-y-0 lg:space-x-10 lg:pt-0 lg:pb-0 lg:bg-transparent lg:justify-end`}
         >
-         {isOpen && (
-            <li>
-            <Link
-              className="block px-6 mx-2 py-3 transition-colors duration-200 ease-in-out hover:bg-gray-800 hover:text-white lg:px-0 lg:py-0 lg:hover:bg-transparent lg:hover:text-yellow-300 hover:scale-105"
-              to="/"
-              onClick={closeSideNav}
-            >
-              {language === "fi" ? "KOTISIVU" : "HOME"}
-            </Link>
-          </li>
-           )}
           <li>
             <Link
               className="block px-6 mx-2 py-3 transition-colors duration-200 ease-in-out hover:bg-gray-800 hover:text-white lg:px-0 lg:py-0 lg:hover:bg-transparent lg:hover:text-yellow-300 hover:scale-105"
               to="/tarinamme"
-              onClick={closeSideNav}
+              onClick={toggleSideNav}
             >
               {language === "fi" ? "TARINAMME" : "OUR STORY"}
             </Link>
@@ -78,7 +67,7 @@ export default function Navbar() {
             <Link
               className="block px-6 mx-2 py-3 transition-colors duration-200 ease-in-out hover:bg-gray-800 hover:text-white lg:px-0 lg:py-0 lg:hover:bg-transparent lg:hover:text-yellow-300 hover:scale-105"
               to="/tuotteemme"
-              onClick={closeSideNav}
+              onClick={toggleSideNav}
             >
               {language === "fi" ? "TUOTTEEMME" : "PRODUCTS"}
             </Link>
@@ -87,7 +76,7 @@ export default function Navbar() {
             <Link
               className="block px-6 mx-2 py-3 transition-colors duration-200 ease-in-out hover:bg-gray-800 hover:text-white lg:px-0 lg:py-0 lg:hover:bg-transparent lg:hover:text-yellow-300 hover:scale-105"
               to="/galleria"
-              onClick={closeSideNav}
+              onClick={toggleSideNav}
             >
               {language === "fi" ? "GALLERIA" : "GALLERY"}
             </Link>
@@ -102,7 +91,7 @@ export default function Navbar() {
             <Link
               className="block px-6 mx-2 py-3 transition-colors duration-200 ease-in-out hover:bg-gray-800 hover:text-white lg:px-0 lg:py-0 lg:hover:bg-transparent lg:hover:text-yellow-300 hover:scale-105"
               to="/cart"
-              onClick={closeSideNav}
+              onClick={toggleSideNav}
             >
               <i className="fas fa-shopping-cart"></i>
 
@@ -113,12 +102,25 @@ export default function Navbar() {
               )}
             </Link>
           </li>
+          {/* include dropdown */}
           <li className="relative">
             <button
               className="block px-6 mx-2 py-3 transition-colors duration-200 ease-in-out hover:bg-gray-800 hover:text-white lg:px-0 lg:py-0 lg:hover:bg-transparent lg:hover:text-yellow-300 hover:scale-105"
+              onClick={toggleUserDropdown}
             >
               <i className="fas fa-user"></i>
             </button>
+           {/* Dropdown menu */}
+           {isUserDropdownOpen && (
+              <ul className={`absolute top-0 right-0 bg-black text-white mt-2 rounded-lg shadow-lg z-1000`}>
+                <li className="px-4 py-2">
+                  <Link to="/profile-settings">Profile Settings</Link>
+                </li>
+                <li className="px-4 py-2">
+                  <Link to="/logout">Logout</Link>
+                </li>
+              </ul>
+            )}
           </li>
           {/* Added close icon button */}
           <li className="lg:hidden absolute top-3 right-3">
