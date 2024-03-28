@@ -183,7 +183,7 @@ const Checkout = () => {
           <h2 className="text-2xl font-bold mb-4 text-gray-100">
             {language === "fi" ? "Kassa" : "Checkout"}
           </h2>
-          <form onSubmit={handleSubmit} className="space-y-4">
+          <form onSubmit={handleSubmit} className="space-y-4 text-white">
             <div className="p-4 border border-gray-300 rounded-md bg-white">
               <CardElement className="p-2 bg-white" />
             </div>
@@ -196,7 +196,7 @@ const Checkout = () => {
                 type="text"
                 value={customerDetails.name}
                 onChange={handleInputChange}
-                className="mt-1 p-2 w-full border border-gray-300 rounded-md"
+                className="mt-1 p-2 w-full border border-gray-300 rounded-md bg-white bg-opacity-20"
               />
               {errors.name && (
                 <p className="mt-2 text-sm text-red-600">{errors.name}</p>
@@ -211,7 +211,7 @@ const Checkout = () => {
                 type="text"
                 value={customerDetails.address}
                 onChange={handleInputChange}
-                className="mt-1 p-2 w-full border border-gray-300 rounded-md"
+                className="mt-1 p-2 w-full border border-gray-300 rounded-md bg-white bg-opacity-20"
               />
               {errors.address && (
                 <p className="mt-2 text-sm text-red-600">{errors.address}</p>
@@ -226,7 +226,7 @@ const Checkout = () => {
                 type="number"
                 value={customerDetails.zip}
                 onChange={handleInputChange}
-                className="mt-1 p-2 w-full border border-gray-300 rounded-md"
+                className="mt-1 p-2 w-full border border-gray-300 rounded-md bg-white bg-opacity-20"
               />
               {errors.zip && (
                 <p className="mt-2 text-sm text-red-600">{errors.zip}</p>
@@ -241,7 +241,7 @@ const Checkout = () => {
                 type="text"
                 value={customerDetails.city}
                 onChange={handleInputChange}
-                className="mt-1 p-2 w-full border border-gray-300 rounded-md"
+                className="mt-1 p-2 w-full border border-gray-300 rounded-md bg-white bg-opacity-20"
               />
               {errors.city && (
                 <p className="mt-2 text-sm text-red-600">{errors.city}</p>
@@ -256,7 +256,7 @@ const Checkout = () => {
                 type="email"
                 value={customerDetails.email}
                 onChange={handleInputChange}
-                className="mt-1 p-2 w-full border border-gray-300 rounded-md"
+                className="mt-1 p-2 w-full border border-gray-300 rounded-md bg-white bg-opacity-20"
               />
               {errors.email && (
                 <p className="mt-2 text-sm text-red-600">{errors.email}</p>
@@ -271,7 +271,7 @@ const Checkout = () => {
                 type="tel"
                 value={customerDetails.phone}
                 onChange={handleInputChange}
-                className="mt-1 p-2 w-full border border-gray-300 rounded-md"
+                className="mt-1 p-2 w-full border border-gray-300 rounded-md bg-white bg-opacity-20"
               />
               {errors.phone && (
                 <p className="mt-2 text-sm text-red-600">{errors.phone}</p>
@@ -287,7 +287,7 @@ const Checkout = () => {
                 onChange={
                   handleInputChange as unknown as ChangeEventHandler<HTMLTextAreaElement>
                 }
-                className="mt-1 p-2 w-full border border-gray-300 rounded-md"
+                className="mt-1 p-2 w-full border border-gray-300 rounded-md bg-white bg-opacity-20"
               />
             </div>
             <button
