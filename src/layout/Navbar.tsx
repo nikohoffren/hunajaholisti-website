@@ -10,7 +10,7 @@ interface CustomLinkProps {
   children: React.ReactNode;
   className?: string;
   onClick?: () => void;
-  closeNav?: () => void; // New prop to close the navigation
+  closeNav?: () => void; 
 }
 
 export default function Navbar() {
@@ -22,6 +22,7 @@ export default function Navbar() {
   const closeSideNav = () => setIsOpen(false);
 
   const cartItemsCount = state.cartItems.reduce((count: any, item: { quantity: any }) => count + item.quantity, 0);
+  
   const logo = (
     <Link to="/" onClick={closeSideNav}>
       <div className="group-hover:border-white">

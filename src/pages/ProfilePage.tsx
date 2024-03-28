@@ -1,4 +1,3 @@
-// ProfilePage.js
 import React from 'react';
 
 function ProfilePage() {

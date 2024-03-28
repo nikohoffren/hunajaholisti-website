@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 interface MenuItemProps {
   href: string;
   text: string;
-  closeDropdown: () => void; // New prop to close dropdown
+  closeDropdown: () => void; 
 }
 
 const ProfileMenu = () => {
@@ -27,7 +27,7 @@ const ProfileMenu = () => {
         <i className="fas fa-user text-white"></i>
       </button>
       {isOpen && (
-        <div className="absolute top-full right-0 mt-2 w-48 bg-white rounded-md shadow-lg">
+        <div className="absolute top-full right-0 mt-2 w-48 rounded-md shadow-lg  border-white bg-black bg-opacity-60">
           <MenuItem href="/profile" text="Profile" closeDropdown={closeDropdown} />
           <MenuItem href="#" text="Settings" closeDropdown={closeDropdown} />
           <MenuItem href="/login" text="Logout" closeDropdown={closeDropdown} />
@@ -46,7 +46,7 @@ const MenuItem = ({ href, text, closeDropdown }: MenuItemProps) => {
   return (
     <a
       href={href}
-      className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+      className="block px-4 py-3 text-sm text-white hover:bg-yellow-300"
       onClick={handleClick} // Handle click event
     >
       {text}

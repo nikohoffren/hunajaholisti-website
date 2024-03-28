@@ -1,4 +1,3 @@
-// App.js
 import React, { useState, useMemo } from 'react';
 import { Route, Routes, useLocation } from 'react-router-dom';
 import { Elements } from '@stripe/react-stripe-js';
