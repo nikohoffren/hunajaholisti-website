@@ -19,7 +19,6 @@ export default function Home() {
   }, []);
 
   return (
-    <>
       <main className="flex flex-col items-center my-20">
         <div className="sm:py-20"></div>
         <div className="py-5"></div>
@@ -52,6 +51,5 @@ export default function Home() {
 
         <div className="sm:my-28"></div>
       </main>
-    </>
   );
 }
