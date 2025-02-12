@@ -19,6 +19,7 @@
         "autoprefixer": "^10.4.14",
         "firebase": "^10.0.0",
         "heroicons": "^2.0.18",
+        "hunajaholisti-homepage": "file:",
         "i18n": "^0.15.1",
         "i18next": "^22.4.13",
         "js-cookie": "^3.0.5",
