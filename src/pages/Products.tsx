@@ -296,7 +296,7 @@ export default function Products() {
                     </a>
                     <br />
                     <br />
-                    (Tulossa lisää 2024!)
+                    (Tulossa lisää 2025!)
                     <br />
                     <br />
                   </>
@@ -318,7 +318,7 @@ export default function Products() {
                     </a>
                     <br />
                     <br />
-                    (Coming soon 2024!)
+                    (Coming soon 2025!)
                     <br />
                     <br />
                   </>
@@ -331,7 +331,7 @@ export default function Products() {
                   rel="noreferrer"
                   className="text-blue-500 hover:text-blue-700 hover:underline"
                 >
-                  {language === "fi" ? "TULOSSA 2024" : "COMING IN 2024"}
+                  {language === "fi" ? "TULOSSA 2025" : "COMING IN 2025"}
                 </a>
               </div>
             </div>
@@ -378,7 +378,7 @@ export default function Products() {
                     </a>
                     <br />
                     <br />
-                    (Tulossa lisää 2024!)
+                    (Tulossa lisää 2025!)
                   </>
                 ) : (
                   <>
@@ -399,7 +399,7 @@ export default function Products() {
                     </a>
                     <br />
                     <br />
-                    (Coming soon 2024!)
+                    (Coming soon 2025!)
                   </>
                 )}
               </p>
@@ -410,7 +410,7 @@ export default function Products() {
                   rel="noreferrer"
                   className="text-blue-500 hover:text-blue-700 hover:underline"
                 >
-                  {language === "fi" ? "TULOSSA 2024" : "COMING IN 2024"}
+                  {language === "fi" ? "TULOSSA 2025" : "COMING IN 2025"}
                 </a>
               </div>
             </div>
