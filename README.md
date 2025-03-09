@@ -39,10 +39,7 @@ This repository contains the code for our Hunajaholistin Hunaja E-commerce websi
 Contributions are what make the open-source community such an amazing place to learn, inspire, and create. Any contributions you make are greatly appreciated.
 
 1. Fork the repository
-2. Clone the repository to your local machine `git clone https://github.com/your-username/hunajaholisti-homepage.git`
-
-Replace 'your-username' with your GitHub username.
-
+2. Clone the repository to your local machine `git clone https://github.com/nikohoffren/hunajaholisti-homepage.git`
 3. Change directory to the project directory `cd hunajaholisti-homepage`
 4. Install necessary dependencies `npm install`
 5. Make sure you have Vite installed globally `npm install -g create-vite`
