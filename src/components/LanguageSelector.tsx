@@ -17,7 +17,7 @@ const LanguageSelector: React.FC<LanguageSelectorProps> = ({
   const handleClick = (lang: string) => {
     setLanguage(lang);
 
-    if (lang == "fi") {
+    if (lang === "fi") {
       setActiveFin(true);
       setActiveEn(false);
     } else {
@@ -30,27 +30,21 @@ const LanguageSelector: React.FC<LanguageSelectorProps> = ({
     <div className="flex space-x-2">
       <button
         onClick={() => handleClick("fi")}
-        className={`focus:outline-none ${language === "fi" ? hoverClass : ""}`}
+        className={`px-3 py-1 rounded-md transition-all duration-200 ease-in-out
+          ${language === "fi"
+            ? "bg-yellow-600 text-white"
+            : "text-white hover:bg-yellow-600/50"}`}
       >
-        <img
-          src="./Flag_of_Finland.svg.png"
-          alt="Flag of Finland"
-          className={`cursor-pointer h-6 w-10 transition-transform duration-200 ease-in-out transform ${
-            activeFin ? `scale-105` : ``
-          } hover:scale-105`}
-        />
+        FI
       </button>
       <button
         onClick={() => handleClick("en")}
-        className={`focus:outline-none ${language === "en" ? hoverClass : ""}`}
+        className={`px-3 py-1 rounded-md transition-all duration-200 ease-in-out
+          ${language === "en"
+            ? "bg-yellow-600 text-white"
+            : "text-white hover:bg-yellow-600/50"}`}
       >
-        <img
-          src="./flag-of-uk-and-us.jpg"
-          alt="Flag of UK"
-          className={`cursor-pointer h-6 w-10 transition-transform duration-200 ease-in-out transform ${
-            activeEn ? `scale-105` : ``
-          } hover:scale-105`}
-        />
+        EN
       </button>
     </div>
   );
