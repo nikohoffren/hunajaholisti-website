@@ -36,7 +36,7 @@ const Checkout = () => {
   });
   const [paymentMethod, setPaymentMethod] = useState("card");
   const [isGooglePayAvailable, setIsGooglePayAvailable] = useState(true);
-  const [isMobilePayAvailable, setIsMobilePayAvailable] = useState(true);
+  const [isApplePayAvailable, setIsApplePayAvailable] = useState(true);
   const [isPayPalAvailable, setIsPayPalAvailable] = useState(true);
 
   const stripe = useStripe();
@@ -55,9 +55,9 @@ const Checkout = () => {
   //* Check for Google Pay, Mobile Pay, and PayPal availability
   useEffect(() => {
     if (stripe) {
-      // Always show Google Pay and Mobile Pay buttons
+      // Always show Google Pay and Apple Pay buttons
       setIsGooglePayAvailable(true);
-      setIsMobilePayAvailable(true);
+      setIsApplePayAvailable(true);
       setIsPayPalAvailable(false); //! Disable PayPal for now
 
       const paymentRequest = stripe.paymentRequest({
@@ -90,7 +90,7 @@ const Checkout = () => {
 
           console.log("Payment methods final status:", {
             googlePay: result?.googlePay,
-            mobilePay: result?.mobilepay,
+            applePay: result?.applePay,
             isMobileDevice,
             environment: process.env.NODE_ENV,
             userAgent: navigator.userAgent,
@@ -234,7 +234,7 @@ const Checkout = () => {
     }
   };
 
-  const handleGooglePayPayment = async () => {
+  const handleApplePayPayment = async () => {
     if (!stripe) return;
 
     const paymentRequest = stripe.paymentRequest({
@@ -248,14 +248,14 @@ const Checkout = () => {
       requestPayerEmail: true,
     });
 
-    //* Check if Google Pay is available before showing
+    //* Check if Apple Pay is available before showing
     const canMakePayment = await paymentRequest.canMakePayment();
 
-    if (!canMakePayment || !canMakePayment.googlePay) {
+    if (!canMakePayment || !canMakePayment.applePay) {
       alert(
         language === "fi"
-          ? "Google Pay ei ole saatavilla tällä laitteella. Käytä korttimaksua."
-          : "Google Pay is not available on this device. Please use card payment."
+          ? "Apple Pay ei ole saatavilla tällä laitteella. Käytä korttimaksua."
+          : "Apple Pay is not available on this device. Please use card payment."
       );
       setLoading(false);
       return;
@@ -320,7 +320,7 @@ const Checkout = () => {
     paymentRequest.show();
   };
 
-  const handleMobilePayPayment = async () => {
+  const handleGooglePayPayment = async () => {
     if (!stripe) return;
 
     const paymentRequest = stripe.paymentRequest({
@@ -332,26 +332,16 @@ const Checkout = () => {
       },
       requestPayerName: true,
       requestPayerEmail: true,
-      //* Mobile Pay specific configuration
-      disableWallets: ["googlePay"], //* Disable Google Pay when using Mobile Pay
     });
 
-    //* Check if Mobile Pay is available before showing
+    //* Check if Google Pay is available before showing
     const canMakePayment = await paymentRequest.canMakePayment();
 
-    if (process.env.NODE_ENV === "development") {
-      console.log("Mobile Pay canMakePayment result:", canMakePayment);
-    }
-
-    if (!canMakePayment || !canMakePayment.mobilepay) {
-      console.log(
-        "Mobile Pay not available. Available methods:",
-        canMakePayment
-      );
+    if (!canMakePayment || !canMakePayment.googlePay) {
       alert(
         language === "fi"
-          ? "Mobile Pay ei ole saatavilla tällä laitteella. Käytä korttimaksua."
-          : "Mobile Pay is not available on this device. Please use card payment."
+          ? "Google Pay ei ole saatavilla tällä laitteella. Käytä korttimaksua."
+          : "Google Pay is not available on this device. Please use card payment."
       );
       setLoading(false);
       return;
@@ -485,8 +475,8 @@ const Checkout = () => {
       case "google_pay":
         await handleGooglePayPayment();
         break;
-      case "mobilepay":
-        await handleMobilePayPayment();
+      case "apple_pay":
+        await handleApplePayPayment();
         break;
       case "paypal":
         await handlePayPalPayment();
@@ -576,19 +566,19 @@ const Checkout = () => {
                 </button>
               )}
 
-              {isMobilePayAvailable && (
+              {isApplePayAvailable && (
                 <button
                   type="button"
-                  onClick={() => setPaymentMethod("mobilepay")}
+                  onClick={() => setPaymentMethod("apple_pay")}
                   className={`p-4 border-2 rounded-lg transition-all duration-300 relative ${
-                    paymentMethod === "mobilepay"
+                    paymentMethod === "apple_pay"
                       ? "border-blue-500 bg-blue-50 shadow-lg ring-2 ring-blue-200"
                       : "border-gray-300 bg-white hover:border-blue-300 hover:bg-blue-25 hover:shadow-md hover:scale-105"
                   }`}
                 >
                   <div className="text-center relative">
-                    <PaymentIcons type="mobilepay" className="h-20 mx-auto" />
-                    {paymentMethod === "mobilepay" && (
+                    <PaymentIcons type="apple_pay" className="h-20 mx-auto" />
+                    {paymentMethod === "apple_pay" && (
                       <div className="absolute -top-2 -right-2 bg-blue-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-xs">
                         ✓
                       </div>
