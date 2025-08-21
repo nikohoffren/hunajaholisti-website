@@ -408,35 +408,24 @@ const Checkout = () => {
         return;
       }
 
-      // Use Stripe's confirmPayment for PayPal
+      // For PayPal, we need to redirect to Stripe's hosted payment page
+      // This will handle the PayPal flow properly
       const { error } = await stripe.confirmPayment({
         clientSecret: data.clientSecret,
         confirmParams: {
           return_url: `${window.location.origin}/success`,
-          payment_method_data: {
-            billing_details: {
-              name: customerDetails.name,
-              email: customerDetails.email,
-              address: {
-                line1: customerDetails.address,
-                postal_code: customerDetails.zip,
-                city: customerDetails.city,
-                country: "FI",
-              },
-            },
-          },
         },
       });
 
       if (error) {
-        alert(error.message);
+        if (process.env.NODE_ENV === "development") {
+          console.error("PayPal confirmation error:", error);
+        }
+        alert(`PayPal Error: ${error.message}`);
         setLoading(false);
-      } else {
-        // Payment successful - this will redirect to success page
-        localStorage.setItem("userHasPurchased", "true");
-        addOrderToFirestore();
-        dispatch({ type: "CLEAR" });
       }
+      // If no error, the user will be redirected to PayPal's payment page
+      // and then back to the success page
     } catch (error) {
       if (process.env.NODE_ENV === "development") {
         console.error("PayPal payment error:", error);
