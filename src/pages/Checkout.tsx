@@ -76,7 +76,6 @@ const Checkout = () => {
   //* Check for Google Pay, Mobile Pay, and PayPal availability
   useEffect(() => {
     if (stripe) {
-      // Always show Google Pay and Apple Pay buttons
       setIsGooglePayAvailable(true);
       setIsApplePayAvailable(true);
       setIsPayPalAvailable(false); //! Disable PayPal for now
