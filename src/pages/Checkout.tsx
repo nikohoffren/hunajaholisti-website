@@ -55,19 +55,12 @@ const Checkout = () => {
   //* Check for Google Pay, Mobile Pay, and PayPal availability
   useEffect(() => {
     if (stripe) {
-      const mobilePayRequest = stripe.paymentRequest({
-        country: "FI",
-        currency: "eur",
-        total: {
-          label: language === "fi" ? "Hunajaholisti" : "Hunajaholisti",
-          amount: totalAmount,
-        },
-        requestPayerName: true,
-        requestPayerEmail: true,
-        disableWallets: ["googlePay"],
-      });
+      // Always show Google Pay and Mobile Pay buttons
+      setIsGooglePayAvailable(true);
+      setIsMobilePayAvailable(true);
+      setIsPayPalAvailable(false); //! Disable PayPal for now
 
-      const googlePayRequest = stripe.paymentRequest({
+      const paymentRequest = stripe.paymentRequest({
         country: "FI",
         currency: "eur",
         total: {
@@ -78,10 +71,10 @@ const Checkout = () => {
         requestPayerEmail: true,
       });
 
-      mobilePayRequest
+      paymentRequest
         .canMakePayment()
-        .then((mobilePayResult: any) => {
-          console.log("Mobile Pay availability check:", mobilePayResult);
+        .then((result: any) => {
+          console.log("Payment method availability check:", result);
           console.log("User agent:", navigator.userAgent);
           console.log(
             "Is mobile:",
@@ -89,45 +82,23 @@ const Checkout = () => {
               navigator.userAgent
             )
           );
+
           const isMobileDevice =
             /Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
               navigator.userAgent
             );
-          const isMobilePayDetected = !!mobilePayResult?.mobilepay;
 
-          setIsMobilePayAvailable(isMobilePayDetected || isMobileDevice);
-
-          console.log("Mobile Pay final decision:", {
-            detected: isMobilePayDetected,
+          console.log("Payment methods final status:", {
+            googlePay: result?.googlePay,
+            mobilePay: result?.mobilepay,
             isMobileDevice,
-            willShow: isMobilePayDetected || isMobileDevice,
             environment: process.env.NODE_ENV,
             userAgent: navigator.userAgent,
           });
         })
         .catch((error) => {
-          if (process.env.NODE_ENV === "development") {
-            console.log("Mobile Pay detection error:", error);
-          }
-          setIsMobilePayAvailable(false);
+          console.log("Payment method detection error:", error);
         });
-
-      googlePayRequest
-        .canMakePayment()
-        .then((googlePayResult: any) => {
-          if (process.env.NODE_ENV === "development") {
-            console.log("Google Pay availability check:", googlePayResult);
-          }
-          setIsGooglePayAvailable(!!googlePayResult?.googlePay);
-        })
-        .catch((error) => {
-          if (process.env.NODE_ENV === "development") {
-            console.log("Google Pay detection error:", error);
-          }
-          setIsGooglePayAvailable(false);
-        });
-
-      setIsPayPalAvailable(false); //! Disable PayPal for now
     }
   }, [stripe, totalAmount, language]);
 
@@ -283,8 +254,8 @@ const Checkout = () => {
     if (!canMakePayment || !canMakePayment.googlePay) {
       alert(
         language === "fi"
-          ? "Google Pay ei ole saatavilla tällä laitteella."
-          : "Google Pay is not available on this device."
+          ? "Google Pay ei ole saatavilla tällä laitteella. Käytä korttimaksua."
+          : "Google Pay is not available on this device. Please use card payment."
       );
       setLoading(false);
       return;
@@ -373,16 +344,14 @@ const Checkout = () => {
     }
 
     if (!canMakePayment || !canMakePayment.mobilepay) {
-      if (process.env.NODE_ENV === "development") {
-        console.log(
-          "Mobile Pay not available. Available methods:",
-          canMakePayment
-        );
-      }
+      console.log(
+        "Mobile Pay not available. Available methods:",
+        canMakePayment
+      );
       alert(
         language === "fi"
-          ? "Mobile Pay ei ole saatavilla tällä laitteella."
-          : "Mobile Pay is not available on this device."
+          ? "Mobile Pay ei ole saatavilla tällä laitteella. Käytä korttimaksua."
+          : "Mobile Pay is not available on this device. Please use card payment."
       );
       setLoading(false);
       return;
