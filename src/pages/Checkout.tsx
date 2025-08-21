@@ -73,10 +73,10 @@ const Checkout = () => {
             console.log("Payment method availability:", result);
           }
           if (result) {
-            // Temporarily disable other payment methods for production testing
-            setIsGooglePayAvailable(false);
-            setIsMobilePayAvailable(false);
-            setIsPayPalAvailable(true); // Enable PayPal for testing
+            // Enable Card and Google Pay for production
+            setIsGooglePayAvailable(!!result.googlePay);
+            setIsMobilePayAvailable(false); // Disable Mobile Pay for now
+            setIsPayPalAvailable(false); // Disable PayPal for now
 
             if (process.env.NODE_ENV === "development") {
               console.log("Available payment methods:", {
@@ -525,7 +525,7 @@ const Checkout = () => {
                 </div>
               </button>
 
-              {/* {isGooglePayAvailable && (
+              {isGooglePayAvailable && (
                 <button
                   type="button"
                   onClick={() => setPaymentMethod("google_pay")}
@@ -544,28 +544,28 @@ const Checkout = () => {
                     )}
                   </div>
                 </button>
-              )} */}
+              )}
 
               {/* {isMobilePayAvailable && (
-                <button
-                  type="button"
-                  onClick={() => setPaymentMethod("mobilepay")}
-                  className={`p-4 border-2 rounded-lg transition-all duration-300 relative ${
-                    paymentMethod === "mobilepay"
-                      ? "border-blue-500 bg-blue-50 shadow-lg ring-2 ring-blue-200"
-                      : "border-gray-300 bg-white hover:border-blue-300 hover:bg-blue-25 hover:shadow-md hover:scale-105"
-                  }`}
-                >
-                  <div className="text-center relative">
-                    <PaymentIcons type="mobilepay" className="h-20 mx-auto" />
-                    {paymentMethod === "mobilepay" && (
-                      <div className="absolute -top-2 -right-2 bg-blue-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-xs">
-                        ✓
-                      </div>
-                    )}
-                  </div>
-                </button>
-              )} */}
+                 <button
+                   type="button"
+                   onClick={() => setPaymentMethod("mobilepay")}
+                   className={`p-4 border-2 rounded-lg transition-all duration-300 relative ${
+                     paymentMethod === "mobilepay"
+                       ? "border-blue-500 bg-blue-50 shadow-lg ring-2 ring-blue-200"
+                       : "border-gray-300 bg-white hover:border-blue-300 hover:bg-blue-25 hover:shadow-md hover:scale-105"
+                   }`}
+                 >
+                   <div className="text-center relative">
+                     <PaymentIcons type="mobilepay" className="h-20 mx-auto" />
+                     {paymentMethod === "mobilepay" && (
+                       <div className="absolute -top-2 -right-2 bg-blue-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-xs">
+                         ✓
+                       </div>
+                     )}
+                   </div>
+                 </button>
+               )} */}
 
               {/* {isPayPalAvailable && (
                 <button
@@ -587,7 +587,6 @@ const Checkout = () => {
                   </div>
                 </button>
               )} */}
-
             </div>
           </div>
 
