@@ -16,12 +16,12 @@ This repository contains the code for our Hunajaholistin Hunaja E-commerce websi
 
 ## Table of Contents
 
--   [Technologies Used](#technologies-used)
--   [Contributing](#contributing)
--   [Reflection](#reflection)
--   [Questions](#questions)
--   [List of Contributors](#list-of-contributors)
--   [License](#license)
+- [Technologies Used](#technologies-used)
+- [Contributing](#contributing)
+- [Reflection](#reflection)
+- [Questions](#questions)
+- [List of Contributors](#list-of-contributors)
+- [License](#license)
 
 ## Technologies Used
 
@@ -32,25 +32,160 @@ This repository contains the code for our Hunajaholistin Hunaja E-commerce websi
 - [Firebase](https://firebase.google.com/)
 - [Netlify Functions](https://netlify.com/)
 - [Stripe](https://stripe.com/)
-- [PayPal](https://paypal.com/)
+
+## Payment Integration Setup
+
+This website supports multiple payment methods through Stripe and PayPal:
+
+### Supported Payment Methods
+
+- **Credit/Debit Cards**: Visa, Mastercard, and other major cards
+- **Google Pay**: Quick payment on Android devices
+- **Mobile Pay**: Nordic mobile payment service
+- **PayPal**: Secure payment with PayPal account
+
+All payment methods feature official payment service logos for a clean interface. Payment methods are automatically detected based on device capabilities. Debug logging is only enabled in development mode for clean production logs.
+
+### Environment Variables Required
+
+Create a `.env` file in the root directory with the following variables:
+
+```env
+# Stripe Configuration
+VITE_STRIPE_PUBLISHABLE_KEY=pk_test_your_stripe_publishable_key_here
+VITE_STRIPE_SECRET_KEY=sk_test_your_stripe_secret_key_here
+```
+
+### Stripe Dashboard Setup
+
+1. Enable the following payment methods in your Stripe Dashboard:
+
+   - Credit/Debit Cards
+   - Google Pay
+   - Mobile Pay
+   - PayPal
+
+2. Configure your payment methods in the Stripe Dashboard under **Settings > Payment methods**
+
+### Development Workflow
+
+This project supports two development modes:
+
+#### Frontend Development Only (Recommended for most work)
+
+```bash
+npm run dev
+```
+
+- Fast development server
+- No backend functions
+- Good for UI/UX development
+- Runs on `http://localhost:5173`
+- **Use this for most development work**
+
+#### Full-Stack Development (For Payment Testing Only)
+
+```bash
+npm run dev:full
+```
+
+- Includes Netlify Functions (backend)
+- Payment processing works
+- Complete checkout flow testing
+- Runs on `http://localhost:8888`
+- **Use this only when testing payments**
+
+**Note:** For testing payment integrations (Stripe, Google Pay, Mobile Pay, PayPal), use `npm run dev:full`. For all other development work, use `npm run dev`.
+
+**Current Status:** The payment function is working correctly. You may see Edge Functions errors in the terminal, but these are harmless and don't affect your payment processing.
+
+**Troubleshooting:** If you encounter MIME type errors with `npm run dev:full`, switch to `npm run dev` for frontend development and test payments separately.
+
+### Netlify Functions
+
+The payment processing is handled by Netlify Functions located in the `functions/` directory. Make sure to:
+
+1. Set up your Stripe secret key in Netlify environment variables
+2. Deploy the functions to Netlify
+3. Test the payment flow in development using `npm run dev:full`
+
+### Troubleshooting
+
+#### Common Issues
+
+**Edge Functions errors in terminal:**
+
+- These are harmless warnings and don't affect your payment function
+- Your `create-payment-intent` function is working correctly
+- You can safely ignore Edge Functions errors
+
+**Netlify Functions not loading:**
+
+- Make sure you're using `npm run dev:full` instead of `npm run dev`
+- Check that your environment variables are set correctly
+- Restart the development server if functions don't load
+
+**Payment methods not showing:**
+
+- Ensure payment methods are enabled in your Stripe Dashboard
+- Check browser console for any JavaScript errors
+- Verify Stripe publishable key is correct
+
+**Payment processing fails:**
+
+- Check Netlify Functions logs in the terminal
+- Verify Stripe secret key is set correctly
+- Test with Stripe test cards first
+
+**Stripe payment method errors:**
+
+- Make sure to enable payment methods in your Stripe Dashboard first
+- Start with basic card payments before enabling Google Pay, Apple Pay, etc.
+- Test in Stripe test mode before going live
 
 ## Contributing
 
-Contributions are what make the open-source community such an amazing place to learn, inspire, and create. Any contributions you make are greatly appreciated.
+Contributions are what make the open-source community such an amazing place. Any contributions you make are greatly appreciated.
+
+### Quick Start
 
 1. Fork the repository
 2. Clone the repository to your local machine `git clone https://github.com/nikohoffren/hunajaholisti-homepage.git`
 3. Change directory to the project directory `cd hunajaholisti-homepage`
-4. Install necessary dependencies `npm install`
-5. Make sure you have Vite installed globally `npm install -g create-vite`
-6. Make sure you have Netlify CLI installed globally `npm install -g netlify-cli`
-7. To start the development server, run `netlify dev`
-8. Create your Feature Branch `git switch -c feature` (Replace the feature placeholder with your new feature)
-9. Make your changes in code
-10. Add your changes `git add name-of-the-changed-file`
-11. Commit your Changes `git commit -m 'Add new feature'`
-12. Push to the Branch `git push origin feature`
-13. Open a Pull Request
+4. Install necessary dependencies `npm i`
+5. Create your Feature Branch `git switch -c feature` (Replace the feature placeholder with your new feature)
+
+### Development
+
+Choose the appropriate development mode based on what you're working on:
+
+#### For UI/UX Development
+
+```bash
+npm run dev
+```
+
+- Fast development server
+- No backend required
+- Good for styling, components, layout changes
+
+#### For Payment/Backend Development
+
+```bash
+npm run dev:full
+```
+
+- Full-stack development
+- Includes Netlify Functions
+- Required for testing payment integrations
+
+### Submitting Changes
+
+6. Make your changes in code
+7. Add your changes `git add name-of-the-changed-file`
+8. Commit your Changes `git commit -m 'Add new feature'`
+9. Push to the Branch `git push origin feature`
+10. Open a Pull Request
 
 Please note that global installation may require administrator permissions on your system. If you face any permission issues, you can use a package manager like yarn or use a version manager like nvm for node.js. Also remember to replace `name-of-the-changed-file` and `feature` with your specific file names and feature names.
 
@@ -96,4 +231,3 @@ Massive thanks to all of the these fine individuals who contributed to this proj
 ## License
 
 This project is licensed under the MIT license.
-

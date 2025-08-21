@@ -21,14 +21,14 @@ const productsData = [
     image: "HHkuva5.jpg",
     alt: "Iso kummipesä",
   },
-  // {
-  //   id: "3",
-  //   nameFi: "Testi",
-  //   nameEn: "Test",
-  //   price: 100,
-  //   image: "HHkuva5.jpg",
-  //   alt: "Iso kummipesä",
-  // },
+  {
+    id: "3",
+    nameFi: "Testi",
+    nameEn: "Test",
+    price: 100,
+    image: "HHkuva5.jpg",
+    alt: "Testi kummipesä",
+  },
 ];
 
 export default function Products() {
@@ -55,6 +55,7 @@ export default function Products() {
       </div>
 
       <div className="container mx-auto grid md:grid-cols-3 gap-8 mb-4">
+        
         {/* Hunaja */}
         <div className="h-full">
           <div className="backdrop-blur max-w-md mx-auto bg-white bg-opacity-10 rounded-xl shadow-md overflow-hidden md:max-w-2xl h-full flex flex-col">
@@ -92,6 +93,68 @@ export default function Products() {
           </div>
         </div>
 
+
+
+        {/* Testi */}
+        <div className="h-full">
+          <div className="backdrop-blur max-w-md mx-auto bg-white bg-opacity-10 rounded-xl shadow-md overflow-hidden md:max-w-2xl h-full flex flex-col">
+            <div className="text-center">
+              {isLoading && <Spinner />}
+              <img
+                className="w-full h-48 object-cover"
+                src={productsData[2].image}
+                alt={productsData[2].alt}
+                onLoad={() => imageLoaded()}
+              />
+            </div>
+            <div className="p-8 flex flex-col h-full justify-between">
+              <div>
+                <h5 className="text-2xl font-semibold text-white">
+                  {language === "fi" ? "Pieni Testipesä" : "Small Adopt a Hive"}
+                </h5>
+                <h6 className="font-bold mt-1 text-[1.3rem] text-white">
+                  1,00 €
+                </h6>
+                <p className="mt-4 text-white">
+                  {language === "fi"
+                    ? "Sis. ALV 24,00%"
+                    : "VAT 24.00% included"}
+                </p>
+                <p className="mt-4 text-sky-100">
+                  {language === "fi"
+                    ? "Kiinnostaako mehiläistarhaus ja pidät hunajasta? Kummipesä on hyvä vaihtoehto seurata mehiläispesän elämää yhden hoitokauden verran. Se sopii mainiosti lahjaksi mehiläisistä kiinnostuneelle. Ostaessasi kummipesän lähetämme säännöllisesti terveiset mehiläispesältä sähköpostiisi. Totta kai satokauden päätteeksi kerätään hunajat ja ne toimitetaan saajalle heti linkouksen jälkeen. Pakettiin kuuluu säännöllisten pesäterveisten lisäksi 3 purkkia hunajaa (350g). Näiden lisäksi saajalle toimitetaan diplomi kummipesästä postitse."
+                    : "Interested in beekeeping and love honey? Adopt a Hive is a great way to observe the life of a beehive for one season. It is also a great gift for someone interested in bees. When you buy a Adopt a Hive, we will regularly send you updates from the beehive via email. Of course, at the end of the harvest season, we will collect the honey and deliver it to the recipient immediately after extraction. In addition to regular hive updates, the package includes 3 jars of honey (350g). The recipient will also receive a diploma of the Adopt a Hive by mail."}
+                </p>
+              </div>
+              <div className="mt-4 text-right">
+                <button
+                  onClick={() => {
+                    const itemToAdd = {
+                      id: productsData[2].id,
+                      name:
+                        language === "fi"
+                          ? productsData[2].nameFi
+                          : productsData[2].nameEn,
+                      price: productsData[2].price,
+                      image: productsData[2].image,
+                      alt: productsData[2].alt,
+                    };
+                    dispatch({
+                      type: "ADD",
+                      item: itemToAdd,
+                    });
+                  }}
+                  className="text-blue-500 hover:text-blue-700 hover:underline"
+                >
+                  {language === "fi" ? "LISÄÄ KORIIN" : "ADD TO CART"}
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
         {/* Pieni kummipesä */}
         <div className="h-full">
           <div className="backdrop-blur max-w-md mx-auto bg-white bg-opacity-10 rounded-xl shadow-md overflow-hidden md:max-w-2xl h-full flex flex-col">
@@ -109,9 +172,13 @@ export default function Products() {
                 <h5 className="text-2xl font-semibold text-white">
                   {language === "fi" ? "Pieni Kummipesä" : "Small Adopt a Hive"}
                 </h5>
-                <h6 className="font-bold mt-1 text-[1.3rem] text-white">35,00 €</h6>
+                <h6 className="font-bold mt-1 text-[1.3rem] text-white">
+                  35,00 €
+                </h6>
                 <p className="mt-4 text-white">
-                  {language === "fi" ? "Sis. ALV 24,00%" : "VAT 24.00% included"}
+                  {language === "fi"
+                    ? "Sis. ALV 24,00%"
+                    : "VAT 24.00% included"}
                 </p>
                 <p className="mt-4 text-sky-100">
                   {language === "fi"
@@ -163,9 +230,13 @@ export default function Products() {
                 <h5 className="text-2xl font-semibold text-white">
                   {language === "fi" ? "Iso Kummipesä" : "Big Adopt a Hive"}
                 </h5>
-                <h6 className="font-bold mt-1 text-[1.3rem] text-white">49,00 €</h6>
+                <h6 className="font-bold mt-1 text-[1.3rem] text-white">
+                  49,00 €
+                </h6>
                 <p className="mt-4 text-gray-100">
-                  {language === "fi" ? "Sis. ALV 24,00%" : "VAT 24.00% included"}
+                  {language === "fi"
+                    ? "Sis. ALV 24,00%"
+                    : "VAT 24.00% included"}
                 </p>
                 <p className="mt-4 text-sky-100">
                   {language === "fi"
@@ -217,9 +288,13 @@ export default function Products() {
                 <h5 className="text-2xl font-semibold text-white">
                   {language === "fi" ? "SIITEPÖLY 250g" : "POLLEN 250g"}
                 </h5>
-                <h6 className="font-bold mt-1 text-[1.3rem] text-white">35,00 €</h6>
+                <h6 className="font-bold mt-1 text-[1.3rem] text-white">
+                  35,00 €
+                </h6>
                 <p className="mt-4 text-white">
-                  {language === "fi" ? "Sis. ALV 24,00%" : "VAT 24.00% included"}
+                  {language === "fi"
+                    ? "Sis. ALV 24,00%"
+                    : "VAT 24.00% included"}
                 </p>
                 <p className="mt-4 text-sky-100">
                   {language === "fi" ? (
@@ -227,12 +302,13 @@ export default function Products() {
                       Mehiläisten keräämä siitepöly sisältää ainakin proteiinia,
                       aminohappoja, rasvoja, aminohappoja, A-, B-, C- ja E-
                       vitamiineja, mineraalea, fytosteroleita, flavonoideja ja
-                      hiilihydraatteja. Mehiläiset keräävät tätä proteiinipitoista
-                      ruokaa toukilleen ruuaksi. Mehiläispesä tarvitsee siitepölyä
-                      noin 30-40kg vuodessa. Ihminenkin voi käyttää siitepölyä
-                      proteiinin lähteenä. Itse sekoittelen aamujogurttiini
-                      siitepölyä pari teelusikallista iltasella tekeytymään.
-                      Lisätietoa siitepölystä saa esimerkiksi täältä:{" "}
+                      hiilihydraatteja. Mehiläiset keräävät tätä
+                      proteiinipitoista ruokaa toukilleen ruuaksi. Mehiläispesä
+                      tarvitsee siitepölyä noin 30-40kg vuodessa. Ihminenkin voi
+                      käyttää siitepölyä proteiinin lähteenä. Itse sekoittelen
+                      aamujogurttiini siitepölyä pari teelusikallista iltasella
+                      tekeytymään. Lisätietoa siitepölystä saa esimerkiksi
+                      täältä:{" "}
                       <a
                         href="https://hunaja.net/hunajatietoa/muut-mehilaistuotteet/siitepoly/"
                         target="_blank"
@@ -311,8 +387,8 @@ export default function Products() {
                       Propolikseksi sanotaan ainetta jolla mehiläiset kittaavat
                       turhat raot pesässä. Propoliksella on desinfioiva vaikutus
                       mehiläispesässä. Mehiläiset keräävät aineksia propolikseen
-                      pensaiden ja puiden silmuista. Silmut erittävät pihkamaisia
-                      ja tuoksuvia hartsimaisia aineita.
+                      pensaiden ja puiden silmuista. Silmut erittävät
+                      pihkamaisia ja tuoksuvia hartsimaisia aineita.
                       <br />
                       <br />
                       Lisätietoa propoliksesta voit lukea esimerkiksi täältä:{" "}
@@ -329,11 +405,11 @@ export default function Products() {
                     </>
                   ) : (
                     <>
-                      Propolis is a substance bees use to seal off unwanted holes
-                      in the hive. Propolis has a disinfectant effect in the
-                      beehive. Bees collect the ingredients for propolis from the
-                      buds of trees and shrubs. Buds secrete resinous and fragrant
-                      resinous substances.
+                      Propolis is a substance bees use to seal off unwanted
+                      holes in the hive. Propolis has a disinfectant effect in
+                      the beehive. Bees collect the ingredients for propolis
+                      from the buds of trees and shrubs. Buds secrete resinous
+                      and fragrant resinous substances.
                       <br />
                       <br />
                       More information about propolis can be found here:{" "}

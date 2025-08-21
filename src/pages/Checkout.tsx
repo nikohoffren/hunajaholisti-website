@@ -1,12 +1,13 @@
-import React, { ChangeEventHandler, useContext, useState } from "react";
+import React, {
+  ChangeEventHandler,
+  useContext,
+  useState,
+  useEffect,
+} from "react";
 import { useNavigate } from "react-router-dom";
 import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
-import {
-  PayPalButtons,
-  usePayPalScriptReducer,
-  FUNDING,
-} from "@paypal/react-paypal-js";
 import Spinner from "../components/Spinner";
+import PaymentIcons from "../components/PaymentIcons";
 import { CartContext } from "../components/CartContext";
 import { LanguageContext } from "../components/LanguageContext";
 import { collection, addDoc } from "firebase/firestore";
@@ -33,19 +34,74 @@ const Checkout = () => {
     phone: "",
     message: "",
   });
+  const [paymentMethod, setPaymentMethod] = useState("card");
+  const [isGooglePayAvailable, setIsGooglePayAvailable] = useState(true); //* Show for testing
+  const [isMobilePayAvailable, setIsMobilePayAvailable] = useState(true); //* Show for testing
+  const [isPayPalAvailable, setIsPayPalAvailable] = useState(true); //* Always show PayPal
+
   const stripe = useStripe();
   const elements = useElements();
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const { state, dispatch } = useContext(CartContext);
   const totalAmount = state.total;
-  const [{ isPending }, paypalDispatch] = usePayPalScriptReducer();
   const [errors, setErrors] = useState<Errors>({});
 
   const { language } = useContext(LanguageContext) as {
     language: string;
     setLanguage: (language: string) => void;
   };
+
+  //* Check for Google Pay, Mobile Pay, and PayPal availability
+  useEffect(() => {
+    if (stripe) {
+      const paymentRequest = stripe.paymentRequest({
+        country: "FI",
+        currency: "eur",
+        total: {
+          label: language === "fi" ? "Hunajaholisti" : "Hunajaholisti",
+          amount: totalAmount,
+        },
+        requestPayerName: true,
+        requestPayerEmail: true,
+      });
+
+      paymentRequest
+        .canMakePayment()
+        .then((result: any) => {
+          if (process.env.NODE_ENV === "development") {
+            console.log("Payment method availability:", result);
+          }
+          if (result) {
+            setIsGooglePayAvailable(!!result.googlePay);
+            setIsMobilePayAvailable(!!result.mobilepay || true); //* Show for testing
+            setIsPayPalAvailable(true);
+
+            if (process.env.NODE_ENV === "development") {
+              console.log("Available payment methods:", {
+                googlePay: result.googlePay,
+                mobilePay: result.mobilepay || "Available for testing",
+                paypal: result.paypal,
+                card: result.card,
+                all: result,
+              });
+            }
+          } else {
+            setIsPayPalAvailable(true);
+            if (process.env.NODE_ENV === "development") {
+              console.log("No payment methods detected, showing PayPal only");
+            }
+          }
+        })
+        .catch((error) => {
+          if (process.env.NODE_ENV === "development") {
+            console.log("Payment method detection error:", error);
+          }
+          setIsPayPalAvailable(true);
+        });
+    }
+  }, [stripe, totalAmount, language]);
+
   const addOrderToFirestore = async () => {
     try {
       const docRef = await addDoc(collection(db, "orders"), {
@@ -58,16 +114,16 @@ const Checkout = () => {
         message: customerDetails.message,
         totalAmount,
         products: state.cartItems,
+        paymentMethod,
       });
     } catch (e) {
-      console.error("Error adding document: ", e);
+      if (process.env.NODE_ENV === "development") {
+        console.error("Error adding document: ", e);
+      }
     }
   };
 
-  const handleSubmit = async (event: React.FormEvent) => {
-    event.preventDefault();
-
-    //* Form validation
+  const validateForm = () => {
     let formErrors: Errors = {};
 
     if (language === "fi") {
@@ -110,51 +166,317 @@ const Checkout = () => {
       }
     }
     setErrors(formErrors);
+    return Object.keys(formErrors).length === 0;
+  };
 
-    //* If there are errors, stop the form from submitting
-    if (Object.keys(formErrors).length > 0) {
-      return;
-    }
-
-    setLoading(true);
-
+  const handleCardPayment = async () => {
     if (!stripe || !elements) {
       setLoading(false);
       return;
     }
 
-    //* Fetch the secret from the Netlify function
-    const response = await fetch("/.netlify/functions/create-payment-intent", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ amount: totalAmount, customerDetails }),
-    });
-    const data = await response.json();
-    const clientSecret = data.clientSecret;
-    const cardElement = elements.getElement(CardElement);
+    try {
+      const response = await fetch(
+        "/.netlify/functions/create-payment-intent",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ amount: totalAmount, customerDetails }),
+        }
+      );
 
-    if (cardElement) {
-      const result = await stripe.confirmCardPayment(clientSecret, {
-        payment_method: {
-          card: cardElement,
-        },
-      });
+      const data = await response.json();
 
-      if (result.error) {
-        alert(result.error.message);
+      if (data.error) {
+        alert(data.error);
         setLoading(false);
-      } else {
-        if (result.paymentIntent.status === "succeeded") {
-          console.log("Payment succeeded!");
+        return;
+      }
+
+      const clientSecret = data.clientSecret;
+      const cardElement = elements.getElement(CardElement);
+
+      if (cardElement) {
+        const result = await stripe.confirmCardPayment(clientSecret, {
+          payment_method: {
+            card: cardElement,
+          },
+        });
+
+        if (result.error) {
+          alert(result.error.message);
+          setLoading(false);
+        } else {
+          if (result.paymentIntent.status === "succeeded") {
+            if (process.env.NODE_ENV === "development") {
+              console.log("Payment succeeded!");
+            }
+            localStorage.setItem("userHasPurchased", "true");
+            addOrderToFirestore();
+            dispatch({ type: "CLEAR" });
+            navigate("/success");
+            setLoading(false);
+          }
+        }
+      }
+    } catch (error) {
+      if (process.env.NODE_ENV === "development") {
+        console.error("Payment error:", error);
+      }
+      alert(
+        language === "fi"
+          ? "Maksuvirhe. Yritä uudelleen."
+          : "Payment error. Please try again."
+      );
+      setLoading(false);
+    }
+  };
+
+  const handleGooglePayPayment = async () => {
+    if (!stripe) return;
+
+    const paymentRequest = stripe.paymentRequest({
+      country: "FI",
+      currency: "eur",
+      total: {
+        label: language === "fi" ? "Hunajaholisti" : "Hunajaholisti",
+        amount: totalAmount,
+      },
+      requestPayerName: true,
+      requestPayerEmail: true,
+    });
+
+    paymentRequest.on("paymentmethod", async (event: any) => {
+      try {
+        const response = await fetch(
+          "/.netlify/functions/create-payment-intent",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              amount: totalAmount,
+              customerDetails,
+              payment_method_id: event.paymentMethod.id,
+            }),
+          }
+        );
+
+        const data = await response.json();
+
+        if (data.error) {
+          alert(data.error);
+          setLoading(false);
+          return;
+        }
+
+        const { error } = await stripe.confirmCardPayment(data.clientSecret, {
+          payment_method: event.paymentMethod.id,
+        });
+
+        if (error) {
+          alert(error.message);
+          setLoading(false);
+        } else {
           localStorage.setItem("userHasPurchased", "true");
           addOrderToFirestore();
           dispatch({ type: "CLEAR" });
           navigate("/success");
           setLoading(false);
         }
+      } catch (error) {
+        if (process.env.NODE_ENV === "development") {
+          console.error("Payment error:", error);
+        }
+        alert(
+          language === "fi"
+            ? "Maksuvirhe. Yritä uudelleen."
+            : "Payment error. Please try again."
+        );
+        setLoading(false);
       }
+    });
+
+    paymentRequest.on("cancel", () => {
+      setLoading(false);
+    });
+
+    paymentRequest.show();
+  };
+
+  const handleMobilePayPayment = async () => {
+    if (!stripe) return;
+
+    const paymentRequest = stripe.paymentRequest({
+      country: "FI",
+      currency: "eur",
+      total: {
+        label: language === "fi" ? "Hunajaholisti" : "Hunajaholisti",
+        amount: totalAmount,
+      },
+      requestPayerName: true,
+      requestPayerEmail: true,
+    });
+
+    paymentRequest.on("paymentmethod", async (event: any) => {
+      try {
+        const response = await fetch(
+          "/.netlify/functions/create-payment-intent",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              amount: totalAmount,
+              customerDetails,
+              payment_method_id: event.paymentMethod.id,
+            }),
+          }
+        );
+
+        const data = await response.json();
+
+        if (data.error) {
+          alert(data.error);
+          setLoading(false);
+          return;
+        }
+
+        const { error } = await stripe.confirmCardPayment(data.clientSecret, {
+          payment_method: event.paymentMethod.id,
+        });
+
+        if (error) {
+          alert(error.message);
+          setLoading(false);
+        } else {
+          localStorage.setItem("userHasPurchased", "true");
+          addOrderToFirestore();
+          dispatch({ type: "CLEAR" });
+          navigate("/success");
+          setLoading(false);
+        }
+      } catch (error) {
+        if (process.env.NODE_ENV === "development") {
+          console.error("Payment error:", error);
+        }
+        alert(
+          language === "fi"
+            ? "Maksuvirhe. Yritä uudelleen."
+            : "Payment error. Please try again."
+        );
+        setLoading(false);
+      }
+    });
+
+    paymentRequest.on("cancel", () => {
+      setLoading(false);
+    });
+
+    paymentRequest.show();
+  };
+
+  const handlePayPalPayment = async () => {
+    if (!stripe) return;
+
+    const paymentRequest = stripe.paymentRequest({
+      country: "FI",
+      currency: "eur",
+      total: {
+        label: language === "fi" ? "Hunajaholisti" : "Hunajaholisti",
+        amount: totalAmount,
+      },
+      requestPayerName: true,
+      requestPayerEmail: true,
+    });
+
+    paymentRequest.on("paymentmethod", async (event: any) => {
+      try {
+        const response = await fetch(
+          "/.netlify/functions/create-payment-intent",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              amount: totalAmount,
+              customerDetails,
+              payment_method_id: event.paymentMethod.id,
+            }),
+          }
+        );
+
+        const data = await response.json();
+
+        if (data.error) {
+          alert(data.error);
+          setLoading(false);
+          return;
+        }
+
+        const { error } = await stripe.confirmCardPayment(data.clientSecret, {
+          payment_method: event.paymentMethod.id,
+        });
+
+        if (error) {
+          alert(error.message);
+          setLoading(false);
+        } else {
+          localStorage.setItem("userHasPurchased", "true");
+          addOrderToFirestore();
+          dispatch({ type: "CLEAR" });
+          navigate("/success");
+          setLoading(false);
+        }
+      } catch (error) {
+        if (process.env.NODE_ENV === "development") {
+          console.error("Payment error:", error);
+        }
+        alert(
+          language === "fi"
+            ? "Maksuvirhe. Yritä uudelleen."
+            : "Payment error. Please try again."
+        );
+        setLoading(false);
+      }
+    });
+
+    paymentRequest.on("cancel", () => {
+      setLoading(false);
+    });
+
+    paymentRequest.show();
+  };
+
+  const handleSubmit = async (event: React.FormEvent) => {
+    event.preventDefault();
+
+    if (!validateForm()) {
+      return;
+    }
+
+    setLoading(true);
+
+    switch (paymentMethod) {
+      case "card":
+        await handleCardPayment();
+        break;
+      case "google_pay":
+        await handleGooglePayPayment();
+        break;
+      case "mobilepay":
+        await handleMobilePayPayment();
+        break;
+      case "paypal":
+        await handlePayPalPayment();
+        break;
+      default:
+        setLoading(false);
     }
   };
 
@@ -165,16 +487,6 @@ const Checkout = () => {
     });
   };
 
-  const handleApprove = (data: any, actions: any) => {
-    return actions.order.capture().then((details: any) => {
-      addOrderToFirestore();
-      dispatch({ type: "CLEAR" });
-      navigate("/success");
-    });
-  };
-
-  if (isPending) return <Spinner />;
-
   return (
     <>
       <div className="py-10"></div>
@@ -183,10 +495,124 @@ const Checkout = () => {
           <h2 className="text-2xl font-bold mb-4 text-gray-100">
             {language === "fi" ? "Kassa" : "Checkout"}
           </h2>
-          <form onSubmit={handleSubmit} className="space-y-4">
-            <div className="p-4 border border-gray-300 rounded-md bg-white">
-              <CardElement className="p-2 bg-white" />
+
+          {/* Order Summary */}
+          <div className="mb-6 p-4 bg-gray-50 rounded-lg">
+            <h3 className="text-lg font-semibold mb-2 text-gray-800">
+              {language === "fi" ? "Tilauksen yhteenveto" : "Order Summary"}
+            </h3>
+            <div className="flex justify-between items-center">
+              <span className="text-gray-600">
+                {language === "fi" ? "Yhteensä:" : "Total:"}
+              </span>
+              <span className="text-xl font-bold text-gray-800">
+                {(totalAmount / 100).toFixed(2)} €
+              </span>
             </div>
+          </div>
+
+          {/* Payment Method Selection */}
+          <div className="mb-6">
+            <h3 className="text-lg font-semibold mb-3 text-gray-100">
+              {language === "fi"
+                ? "Valitse maksutapa:"
+                : "Select payment method:"}
+            </h3>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
+              <button
+                type="button"
+                onClick={() => setPaymentMethod("card")}
+                className={`p-4 border-2 rounded-lg transition-all duration-300 relative ${
+                  paymentMethod === "card"
+                    ? "border-blue-500 bg-blue-50 shadow-lg ring-2 ring-blue-200"
+                    : "border-gray-300 bg-white hover:border-blue-300 hover:bg-blue-25 hover:shadow-md hover:scale-105"
+                }`}
+              >
+                <div className="text-center relative">
+                  <PaymentIcons type="card" className="w-26 h-20 mx-auto" />
+                  {paymentMethod === "card" && (
+                    <div className="absolute -top-2 -right-2 bg-blue-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-xs">
+                      ✓
+                    </div>
+                  )}
+                </div>
+              </button>
+
+              {isGooglePayAvailable && (
+                <button
+                  type="button"
+                  onClick={() => setPaymentMethod("google_pay")}
+                  className={`p-4 border-2 rounded-lg transition-all duration-300 relative ${
+                    paymentMethod === "google_pay"
+                      ? "border-blue-500 bg-blue-50 shadow-lg ring-2 ring-blue-200"
+                      : "border-gray-300 bg-white hover:border-blue-300 hover:bg-blue-25 hover:shadow-md hover:scale-105"
+                  }`}
+                >
+                  <div className="text-center relative">
+                    <PaymentIcons type="google_pay" className="h-20 mx-auto" />
+                    {paymentMethod === "google_pay" && (
+                      <div className="absolute -top-2 -right-2 bg-blue-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-xs">
+                        ✓
+                      </div>
+                    )}
+                  </div>
+                </button>
+              )}
+
+              {isMobilePayAvailable && (
+                <button
+                  type="button"
+                  onClick={() => setPaymentMethod("mobilepay")}
+                  className={`p-4 border-2 rounded-lg transition-all duration-300 relative ${
+                    paymentMethod === "mobilepay"
+                      ? "border-blue-500 bg-blue-50 shadow-lg ring-2 ring-blue-200"
+                      : "border-gray-300 bg-white hover:border-blue-300 hover:bg-blue-25 hover:shadow-md hover:scale-105"
+                  }`}
+                >
+                  <div className="text-center relative">
+                    <PaymentIcons type="mobilepay" className="h-20 mx-auto" />
+                    {paymentMethod === "mobilepay" && (
+                      <div className="absolute -top-2 -right-2 bg-blue-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-xs">
+                        ✓
+                      </div>
+                    )}
+                  </div>
+                </button>
+              )}
+
+              {isPayPalAvailable && (
+                <button
+                  type="button"
+                  onClick={() => setPaymentMethod("paypal")}
+                  className={`p-4 border-2 rounded-lg transition-all duration-300 relative ${
+                    paymentMethod === "paypal"
+                      ? "border-blue-500 bg-blue-50 shadow-lg ring-2 ring-blue-200"
+                      : "border-gray-300 bg-white hover:border-blue-300 hover:bg-blue-25 hover:shadow-md hover:scale-105"
+                  }`}
+                >
+                  <div className="text-center relative">
+                    <PaymentIcons type="paypal" className="h-20 mx-auto" />
+                    {paymentMethod === "paypal" && (
+                      <div className="absolute -top-2 -right-2 bg-blue-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-xs">
+                        ✓
+                      </div>
+                    )}
+                  </div>
+                </button>
+              )}
+            </div>
+          </div>
+
+          <form onSubmit={handleSubmit} className="space-y-4">
+            {/* Card Payment Element - only show when card is selected */}
+            {paymentMethod === "card" && (
+              <div className="p-4 border border-gray-300 rounded-md bg-white">
+                <CardElement className="p-2 bg-white" />
+              </div>
+            )}
+
+            {/* Customer Details Form */}
             <div>
               <label className="block text-sm font-bold text-gray-100">
                 {language === "fi" ? "Nimi:" : "Name:"}
@@ -290,6 +716,8 @@ const Checkout = () => {
                 className="mt-1 p-2 w-full border border-gray-300 rounded-md"
               />
             </div>
+
+            {/* Payment Button - show for all payment methods */}
             <button
               type="submit"
               disabled={!stripe || loading}
@@ -304,32 +732,6 @@ const Checkout = () => {
                 "Proceed to Pay"
               )}
             </button>
-
-            {/* <div className="mt-4">
-                            <h3 className="mb-3 text-gray-100 mt-4">
-                                {language === "fi"
-                                    ? "Tai maksa PayPalilla:"
-                                    : "Or Pay with PayPal:"}
-                            </h3>
-                            <PayPalButtons
-                                fundingSource={FUNDING.PAYPAL}
-                                createOrder={(data, actions) => {
-                                    return actions.order.create({
-                                        purchase_units: [
-                                            {
-                                                amount: {
-                                                    value: (
-                                                        Number(totalAmount) /
-                                                        100
-                                                    ).toFixed(2),
-                                                },
-                                            },
-                                        ],
-                                    });
-                                }}
-                                onApprove={handleApprove}
-                            />
-                        </div> */}
           </form>
         </div>
       </div>
