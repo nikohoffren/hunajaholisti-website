@@ -39,10 +39,19 @@ export const handler = async function (event, context) {
       };
     }
 
+    // Determine payment method types based on the request
+    let paymentMethodTypes = ["card"]; // Default to card only
+
+    // If this is for Google Pay or Apple Pay, include those methods
+    if (payment_method_id) {
+      // This is likely for Google Pay or Apple Pay
+      paymentMethodTypes = ["card", "google_pay", "apple_pay"];
+    }
+
     const paymentIntentData = {
       amount: amount,
       currency: "eur",
-      payment_method_types: ["card", "google_pay", "apple_pay"], //? Add more payment methods here
+      payment_method_types: paymentMethodTypes,
       metadata: {
         customerName: customerDetails.name || "",
         customerAddress: customerDetails.address || "",
