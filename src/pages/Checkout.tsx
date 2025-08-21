@@ -41,6 +41,25 @@ const Checkout = () => {
 
   const stripe = useStripe();
   const elements = useElements();
+
+  //* Memoize the card element options to prevent unnecessary re-renders
+  const cardElementOptions = React.useMemo(
+    () => ({
+      style: {
+        base: {
+          fontSize: "16px",
+          color: "#424770",
+          "::placeholder": {
+            color: "#aab7c4",
+          },
+        },
+        invalid: {
+          color: "#9e2146",
+        },
+      },
+    }),
+    []
+  );
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const { state, dispatch } = useContext(CartContext);
@@ -486,12 +505,15 @@ const Checkout = () => {
     }
   };
 
-  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setCustomerDetails({
-      ...customerDetails,
-      [event.target.name]: event.target.value,
-    });
-  };
+  const handleInputChange = React.useCallback(
+    (event: React.ChangeEvent<HTMLInputElement>) => {
+      setCustomerDetails((prev) => ({
+        ...prev,
+        [event.target.name]: event.target.value,
+      }));
+    },
+    []
+  );
 
   return (
     <>
@@ -610,11 +632,15 @@ const Checkout = () => {
             </div>
           </div>
 
-          <form onSubmit={handleSubmit} className="space-y-4">
+          <form
+            onSubmit={handleSubmit}
+            className="space-y-4"
+            key={paymentMethod}
+          >
             {/* Card Payment Element - only show when card is selected */}
             {paymentMethod === "card" && (
               <div className="p-4 border border-gray-300 rounded-md bg-white">
-                <CardElement className="p-2 bg-white" />
+                <CardElement key="card-element" options={cardElementOptions} />
               </div>
             )}
 
