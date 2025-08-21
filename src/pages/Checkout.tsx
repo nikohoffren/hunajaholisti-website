@@ -76,7 +76,7 @@ const Checkout = () => {
             // Temporarily disable other payment methods for production testing
             setIsGooglePayAvailable(false);
             setIsMobilePayAvailable(false);
-            setIsPayPalAvailable(false);
+            setIsPayPalAvailable(true); // Enable PayPal for testing
 
             if (process.env.NODE_ENV === "development") {
               console.log("Available payment methods:", {
