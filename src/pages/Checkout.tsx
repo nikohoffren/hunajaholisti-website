@@ -567,7 +567,7 @@ const Checkout = () => {
                 </button>
               )} */}
 
-              {isPayPalAvailable && (
+              {/* {isPayPalAvailable && (
                 <button
                   type="button"
                   onClick={() => setPaymentMethod("paypal")}
@@ -586,7 +586,8 @@ const Checkout = () => {
                     )}
                   </div>
                 </button>
-              )}
+              )} */}
+
             </div>
           </div>
 
