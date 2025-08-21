@@ -541,6 +541,13 @@ const Checkout = () => {
                     </div>
                   )}
                 </div>
+                <div className="mt-2 text-center">
+                  <p className="text-s text-gray-600">
+                    {language === "fi"
+                      ? "Visa / Mastercard"
+                      : "Visa / Mastercard"}
+                  </p>
+                </div>
               </button>
 
               {isGooglePayAvailable && (
@@ -560,6 +567,11 @@ const Checkout = () => {
                         ✓
                       </div>
                     )}
+                  </div>
+                  <div className="mt-2 text-center">
+                    <p className="text-s text-gray-600">
+                      {language === "fi" ? "Google Pay" : "Google Pay"}
+                    </p>
                   </div>
                 </button>
               )}
@@ -581,6 +593,11 @@ const Checkout = () => {
                         ✓
                       </div>
                     )}
+                  </div>
+                  <div className="mt-2 text-center">
+                    <p className="text-s text-gray-600">
+                      {language === "fi" ? "Apple Pay" : "Apple Pay"}
+                    </p>
                   </div>
                 </button>
               )}

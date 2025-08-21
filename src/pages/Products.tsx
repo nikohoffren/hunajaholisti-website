@@ -21,14 +21,14 @@ const productsData = [
     image: "HHkuva5.jpg",
     alt: "Iso kummipesä",
   },
-  {
-    id: "3",
-    nameFi: "Testi",
-    nameEn: "Test",
-    price: 100,
-    image: "HHkuva5.jpg",
-    alt: "Testi kummipesä",
-  },
+  // {
+  //   id: "3",
+  //   nameFi: "Testi",
+  //   nameEn: "Test",
+  //   price: 100,
+  //   image: "HHkuva5.jpg",
+  //   alt: "Testi kummipesä",
+  // },
 ];
 
 export default function Products() {
@@ -55,7 +55,7 @@ export default function Products() {
       </div>
 
       <div className="container mx-auto grid md:grid-cols-3 gap-8 mb-4">
-        
+
         {/* Hunaja */}
         <div className="h-full">
           <div className="backdrop-blur max-w-md mx-auto bg-white bg-opacity-10 rounded-xl shadow-md overflow-hidden md:max-w-2xl h-full flex flex-col">
@@ -96,7 +96,7 @@ export default function Products() {
 
 
         {/* Testi */}
-        <div className="h-full">
+        {/* <div className="h-full">
           <div className="backdrop-blur max-w-md mx-auto bg-white bg-opacity-10 rounded-xl shadow-md overflow-hidden md:max-w-2xl h-full flex flex-col">
             <div className="text-center">
               {isLoading && <Spinner />}
@@ -151,7 +151,7 @@ export default function Products() {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
 
 
 
