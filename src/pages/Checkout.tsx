@@ -49,6 +49,7 @@ const Checkout = () => {
         base: {
           fontSize: "16px",
           color: "#424770",
+          fontFamily: "system-ui, -apple-system, sans-serif",
           "::placeholder": {
             color: "#aab7c4",
           },
@@ -57,6 +58,7 @@ const Checkout = () => {
           color: "#9e2146",
         },
       },
+      hidePostalCode: true,
     }),
     []
   );
@@ -78,48 +80,8 @@ const Checkout = () => {
       setIsGooglePayAvailable(true);
       setIsApplePayAvailable(true);
       setIsPayPalAvailable(false); //! Disable PayPal for now
-
-      const paymentRequest = stripe.paymentRequest({
-        country: "FI",
-        currency: "eur",
-        total: {
-          label: language === "fi" ? "Hunajaholisti" : "Hunajaholisti",
-          amount: totalAmount,
-        },
-        requestPayerName: true,
-        requestPayerEmail: true,
-      });
-
-      paymentRequest
-        .canMakePayment()
-        .then((result: any) => {
-          console.log("Payment method availability check:", result);
-          console.log("User agent:", navigator.userAgent);
-          console.log(
-            "Is mobile:",
-            /Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
-              navigator.userAgent
-            )
-          );
-
-          const isMobileDevice =
-            /Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
-              navigator.userAgent
-            );
-
-          console.log("Payment methods final status:", {
-            googlePay: result?.googlePay,
-            applePay: result?.applePay,
-            isMobileDevice,
-            environment: process.env.NODE_ENV,
-            userAgent: navigator.userAgent,
-          });
-        })
-        .catch((error) => {
-          console.log("Payment method detection error:", error);
-        });
     }
-  }, [stripe, totalAmount, language]);
+  }, [stripe]);
 
   const addOrderToFirestore = async () => {
     try {
@@ -632,17 +594,19 @@ const Checkout = () => {
             </div>
           </div>
 
-          <form
-            onSubmit={handleSubmit}
-            className="space-y-4"
-            key={paymentMethod}
-          >
-            {/* Card Payment Element - only show when card is selected */}
-            {paymentMethod === "card" && (
-              <div className="p-4 border border-gray-300 rounded-md bg-white">
-                <CardElement key="card-element" options={cardElementOptions} />
-              </div>
-            )}
+          <form onSubmit={handleSubmit} className="space-y-4">
+            {/* Card Payment Element - always render but hide when not selected */}
+            <div
+              className={`p-4 border border-gray-300 rounded-md bg-white ${
+                paymentMethod === "card" ? "block" : "hidden"
+              }`}
+            >
+              <CardElement
+                key="card-element"
+                options={cardElementOptions}
+                className="w-full"
+              />
+            </div>
 
             {/* Customer Details Form */}
             <div>
