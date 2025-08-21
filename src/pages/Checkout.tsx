@@ -572,7 +572,7 @@ const Checkout = () => {
                 </button>
               )}
 
-              {/* {isMobilePayAvailable && (
+              {isMobilePayAvailable && (
                  <button
                    type="button"
                    onClick={() => setPaymentMethod("mobilepay")}
@@ -591,7 +591,7 @@ const Checkout = () => {
                      )}
                    </div>
                  </button>
-               )} */}
+               )}
 
               {/* {isPayPalAvailable && (
                 <button
