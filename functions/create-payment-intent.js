@@ -15,7 +15,7 @@ export const handler = async function (event, context) {
     const paymentIntentData = {
       amount: amount,
       currency: "eur",
-      payment_method_types: ["card"],
+      payment_method_types: ["card", "paypal"],
       metadata: {
         customerName: customerDetails.name,
         customerAddress: customerDetails.address,
