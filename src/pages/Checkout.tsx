@@ -157,6 +157,7 @@ const Checkout = () => {
     }
 
     try {
+      console.log("Creating payment intent with amount:", totalAmount);
       const response = await fetch(
         "/.netlify/functions/create-payment-intent",
         {
@@ -168,9 +169,23 @@ const Checkout = () => {
         }
       );
 
+      if (!response.ok) {
+        console.error(
+          "Payment intent response not ok:",
+          response.status,
+          response.statusText
+        );
+        const errorText = await response.text();
+        console.error("Error response:", errorText);
+        alert("Payment intent creation failed. Please try again.");
+        setLoading(false);
+        return;
+      }
+
       const data = await response.json();
 
       if (data.error) {
+        console.error("Payment intent error:", data.error);
         alert(data.error);
         setLoading(false);
         return;
