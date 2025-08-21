@@ -8,22 +8,49 @@ export const handler = async function (event, context) {
       return { statusCode: 405, body: "Method Not Allowed" };
     }
 
+    console.log("Received request body:", event.body);
+
     const { amount, customerDetails, payment_method_id } = JSON.parse(
       event.body
     );
+
+    console.log("Parsed data:", {
+      amount,
+      customerDetails: !!customerDetails,
+      payment_method_id,
+    });
+
+    // Validate required fields
+    if (!amount) {
+      return {
+        statusCode: 400,
+        body: JSON.stringify({
+          error: "Amount is required",
+        }),
+      };
+    }
+
+    if (!customerDetails) {
+      return {
+        statusCode: 400,
+        body: JSON.stringify({
+          error: "Customer details are required",
+        }),
+      };
+    }
 
     const paymentIntentData = {
       amount: amount,
       currency: "eur",
       payment_method_types: ["card", "google_pay", "apple_pay"], //? Add more payment methods here
       metadata: {
-        customerName: customerDetails.name,
-        customerAddress: customerDetails.address,
-        customerZip: customerDetails.zip,
-        customerCity: customerDetails.city,
-        customerEmail: customerDetails.email,
-        customerPhone: customerDetails.phone,
-        customerMessage: customerDetails.message,
+        customerName: customerDetails.name || "",
+        customerAddress: customerDetails.address || "",
+        customerZip: customerDetails.zip || "",
+        customerCity: customerDetails.city || "",
+        customerEmail: customerDetails.email || "",
+        customerPhone: customerDetails.phone || "",
+        customerMessage: customerDetails.message || "",
       },
     };
 
