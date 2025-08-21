@@ -41,8 +41,6 @@ This website supports multiple payment methods through Stripe and PayPal:
 
 - **Credit/Debit Cards**: Visa, Mastercard, and other major cards
 - **Google Pay**: Quick payment on Android devices
-- **Mobile Pay**: Nordic mobile payment service
-- **PayPal**: Secure payment with PayPal account
 
 All payment methods feature official payment service logos for a clean interface. Payment methods are automatically detected based on device capabilities. Debug logging is only enabled in development mode for clean production logs.
 
@@ -62,8 +60,6 @@ VITE_STRIPE_SECRET_KEY=sk_test_your_stripe_secret_key_here
 
    - Credit/Debit Cards
    - Google Pay
-   - Mobile Pay
-   - PayPal
 
 2. Configure your payment methods in the Stripe Dashboard under **Settings > Payment methods**
 
