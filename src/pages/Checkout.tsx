@@ -55,7 +55,19 @@ const Checkout = () => {
   //* Check for Google Pay, Mobile Pay, and PayPal availability
   useEffect(() => {
     if (stripe) {
-      const paymentRequest = stripe.paymentRequest({
+      const mobilePayRequest = stripe.paymentRequest({
+        country: "FI",
+        currency: "eur",
+        total: {
+          label: language === "fi" ? "Hunajaholisti" : "Hunajaholisti",
+          amount: totalAmount,
+        },
+        requestPayerName: true,
+        requestPayerEmail: true,
+        disableWallets: ["googlePay"],
+      });
+
+      const googlePayRequest = stripe.paymentRequest({
         country: "FI",
         currency: "eur",
         total: {
@@ -66,39 +78,56 @@ const Checkout = () => {
         requestPayerEmail: true,
       });
 
-      paymentRequest
+      mobilePayRequest
         .canMakePayment()
-        .then((result: any) => {
-          if (process.env.NODE_ENV === "development") {
-            console.log("Payment method availability:", result);
-          }
-          if (result) {
-            setIsGooglePayAvailable(!!result.googlePay);
-            setIsMobilePayAvailable(!!result.mobilepay);
-            setIsPayPalAvailable(false); //? Disable PayPal for now
+        .then((mobilePayResult: any) => {
+          console.log("Mobile Pay availability check:", mobilePayResult);
+          console.log("User agent:", navigator.userAgent);
+          console.log(
+            "Is mobile:",
+            /Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+              navigator.userAgent
+            )
+          );
+          const isMobileDevice =
+            /Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+              navigator.userAgent
+            );
+          const isMobilePayDetected = !!mobilePayResult?.mobilepay;
 
-            if (process.env.NODE_ENV === "development") {
-              console.log("Available payment methods:", {
-                googlePay: result.googlePay,
-                mobilePay: result.mobilepay,
-                paypal: result.paypal,
-                card: result.card,
-                all: result,
-              });
-            }
-          } else {
-            setIsPayPalAvailable(true);
-            if (process.env.NODE_ENV === "development") {
-              console.log("No payment methods detected, showing PayPal only");
-            }
-          }
+          setIsMobilePayAvailable(isMobilePayDetected || isMobileDevice);
+
+          console.log("Mobile Pay final decision:", {
+            detected: isMobilePayDetected,
+            isMobileDevice,
+            willShow: isMobilePayDetected || isMobileDevice,
+            environment: process.env.NODE_ENV,
+            userAgent: navigator.userAgent,
+          });
         })
         .catch((error) => {
           if (process.env.NODE_ENV === "development") {
-            console.log("Payment method detection error:", error);
+            console.log("Mobile Pay detection error:", error);
           }
-          setIsPayPalAvailable(true);
+          setIsMobilePayAvailable(false);
         });
+
+      googlePayRequest
+        .canMakePayment()
+        .then((googlePayResult: any) => {
+          if (process.env.NODE_ENV === "development") {
+            console.log("Google Pay availability check:", googlePayResult);
+          }
+          setIsGooglePayAvailable(!!googlePayResult?.googlePay);
+        })
+        .catch((error) => {
+          if (process.env.NODE_ENV === "development") {
+            console.log("Google Pay detection error:", error);
+          }
+          setIsGooglePayAvailable(false);
+        });
+
+      setIsPayPalAvailable(false); //! Disable PayPal for now
     }
   }, [stripe, totalAmount, language]);
 
