@@ -523,14 +523,19 @@ const Checkout = () => {
               <button
                 type="button"
                 onClick={() => setPaymentMethod("card")}
-                className={`p-4 border rounded-lg transition-all duration-200 ${
+                className={`p-4 border-2 rounded-lg transition-all duration-300 relative ${
                   paymentMethod === "card"
-                    ? "border-blue-500 bg-blue-50 shadow-md"
-                    : "border-gray-300 bg-white hover:bg-gray-50 hover:shadow-sm"
+                    ? "border-blue-500 bg-blue-50 shadow-lg ring-2 ring-blue-200"
+                    : "border-gray-300 bg-white hover:border-blue-300 hover:bg-blue-25 hover:shadow-md hover:scale-105"
                 }`}
               >
-                <div className="text-center">
-                  <PaymentIcons type="card" className="w-28 h-20 mx-auto" />
+                <div className="text-center relative">
+                  <PaymentIcons type="card" className="w-26 h-20 mx-auto" />
+                  {paymentMethod === "card" && (
+                    <div className="absolute -top-2 -right-2 bg-blue-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-xs">
+                      ✓
+                    </div>
+                  )}
                 </div>
               </button>
 
@@ -538,17 +543,19 @@ const Checkout = () => {
                 <button
                   type="button"
                   onClick={() => setPaymentMethod("google_pay")}
-                  className={`p-4 border rounded-lg transition-all duration-200 ${
+                  className={`p-4 border-2 rounded-lg transition-all duration-300 relative ${
                     paymentMethod === "google_pay"
-                      ? "border-blue-500 bg-blue-50 shadow-md"
-                      : "border-gray-300 bg-white hover:bg-gray-50 hover:shadow-sm"
+                      ? "border-blue-500 bg-blue-50 shadow-lg ring-2 ring-blue-200"
+                      : "border-gray-300 bg-white hover:border-blue-300 hover:bg-blue-25 hover:shadow-md hover:scale-105"
                   }`}
                 >
-                  <div className="text-center">
-                    <PaymentIcons
-                      type="google_pay"
-                      className="w-28 h-20 mx-auto"
-                    />
+                  <div className="text-center relative">
+                    <PaymentIcons type="google_pay" className="h-20 mx-auto" />
+                    {paymentMethod === "google_pay" && (
+                      <div className="absolute -top-2 -right-2 bg-blue-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-xs">
+                        ✓
+                      </div>
+                    )}
                   </div>
                 </button>
               )}
@@ -557,17 +564,19 @@ const Checkout = () => {
                 <button
                   type="button"
                   onClick={() => setPaymentMethod("mobilepay")}
-                  className={`p-4 border rounded-lg transition-all duration-200 ${
+                  className={`p-4 border-2 rounded-lg transition-all duration-300 relative ${
                     paymentMethod === "mobilepay"
-                      ? "border-blue-500 bg-blue-50 shadow-md"
-                      : "border-gray-300 bg-white hover:bg-gray-50 hover:shadow-sm"
+                      ? "border-blue-500 bg-blue-50 shadow-lg ring-2 ring-blue-200"
+                      : "border-gray-300 bg-white hover:border-blue-300 hover:bg-blue-25 hover:shadow-md hover:scale-105"
                   }`}
                 >
-                  <div className="text-center">
-                    <PaymentIcons
-                      type="mobilepay"
-                      className="w-28 h-20 mx-auto"
-                    />
+                  <div className="text-center relative">
+                    <PaymentIcons type="mobilepay" className="h-20 mx-auto" />
+                    {paymentMethod === "mobilepay" && (
+                      <div className="absolute -top-2 -right-2 bg-blue-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-xs">
+                        ✓
+                      </div>
+                    )}
                   </div>
                 </button>
               )}
@@ -576,14 +585,19 @@ const Checkout = () => {
                 <button
                   type="button"
                   onClick={() => setPaymentMethod("paypal")}
-                  className={`p-4 border rounded-lg transition-all duration-200 ${
+                  className={`p-4 border-2 rounded-lg transition-all duration-300 relative ${
                     paymentMethod === "paypal"
-                      ? "border-blue-500 bg-blue-50 shadow-md"
-                      : "border-gray-300 bg-white hover:bg-gray-50 hover:shadow-sm"
+                      ? "border-blue-500 bg-blue-50 shadow-lg ring-2 ring-blue-200"
+                      : "border-gray-300 bg-white hover:border-blue-300 hover:bg-blue-25 hover:shadow-md hover:scale-105"
                   }`}
                 >
-                  <div className="text-center">
-                    <PaymentIcons type="paypal" className="w-28 h-20 mx-auto" />
+                  <div className="text-center relative">
+                    <PaymentIcons type="paypal" className="h-20 mx-auto" />
+                    {paymentMethod === "paypal" && (
+                      <div className="absolute -top-2 -right-2 bg-blue-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-xs">
+                        ✓
+                      </div>
+                    )}
                   </div>
                 </button>
               )}
