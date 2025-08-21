@@ -249,6 +249,19 @@ const Checkout = () => {
       requestPayerEmail: true,
     });
 
+    // Check if Google Pay is available before showing
+    const canMakePayment = await paymentRequest.canMakePayment();
+
+    if (!canMakePayment || !canMakePayment.googlePay) {
+      alert(
+        language === "fi"
+          ? "Google Pay ei ole saatavilla tällä laitteella."
+          : "Google Pay is not available on this device."
+      );
+      setLoading(false);
+      return;
+    }
+
     paymentRequest.on("paymentmethod", async (event: any) => {
       try {
         const response = await fetch(
@@ -321,6 +334,19 @@ const Checkout = () => {
       requestPayerName: true,
       requestPayerEmail: true,
     });
+
+    // Check if Mobile Pay is available before showing
+    const canMakePayment = await paymentRequest.canMakePayment();
+
+    if (!canMakePayment || !canMakePayment.mobilepay) {
+      alert(
+        language === "fi"
+          ? "Mobile Pay ei ole saatavilla tällä laitteella."
+          : "Mobile Pay is not available on this device."
+      );
+      setLoading(false);
+      return;
+    }
 
     paymentRequest.on("paymentmethod", async (event: any) => {
       try {
