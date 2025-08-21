@@ -35,9 +35,9 @@ const Checkout = () => {
     message: "",
   });
   const [paymentMethod, setPaymentMethod] = useState("card");
-  const [isGooglePayAvailable, setIsGooglePayAvailable] = useState(true); //* Show for testing
-  const [isMobilePayAvailable, setIsMobilePayAvailable] = useState(true); //* Show for testing
-  const [isPayPalAvailable, setIsPayPalAvailable] = useState(true); //* Always show PayPal
+  const [isGooglePayAvailable, setIsGooglePayAvailable] = useState(true);
+  const [isMobilePayAvailable, setIsMobilePayAvailable] = useState(true);
+  const [isPayPalAvailable, setIsPayPalAvailable] = useState(true);
 
   const stripe = useStripe();
   const elements = useElements();
@@ -73,15 +73,14 @@ const Checkout = () => {
             console.log("Payment method availability:", result);
           }
           if (result) {
-            // Enable Card and Google Pay for production
             setIsGooglePayAvailable(!!result.googlePay);
-            setIsMobilePayAvailable(false); // Disable Mobile Pay for now
-            setIsPayPalAvailable(false); // Disable PayPal for now
+            setIsMobilePayAvailable(!!result.mobilepay);
+            setIsPayPalAvailable(false); //? Disable PayPal for now
 
             if (process.env.NODE_ENV === "development") {
               console.log("Available payment methods:", {
                 googlePay: result.googlePay,
-                mobilePay: result.mobilepay || "Available for testing",
+                mobilePay: result.mobilepay,
                 paypal: result.paypal,
                 card: result.card,
                 all: result,
@@ -249,7 +248,7 @@ const Checkout = () => {
       requestPayerEmail: true,
     });
 
-    // Check if Google Pay is available before showing
+    //* Check if Google Pay is available before showing
     const canMakePayment = await paymentRequest.canMakePayment();
 
     if (!canMakePayment || !canMakePayment.googlePay) {
@@ -333,12 +332,24 @@ const Checkout = () => {
       },
       requestPayerName: true,
       requestPayerEmail: true,
+      //* Mobile Pay specific configuration
+      disableWallets: ["googlePay"], //* Disable Google Pay when using Mobile Pay
     });
 
-    // Check if Mobile Pay is available before showing
+    //* Check if Mobile Pay is available before showing
     const canMakePayment = await paymentRequest.canMakePayment();
 
+    if (process.env.NODE_ENV === "development") {
+      console.log("Mobile Pay canMakePayment result:", canMakePayment);
+    }
+
     if (!canMakePayment || !canMakePayment.mobilepay) {
+      if (process.env.NODE_ENV === "development") {
+        console.log(
+          "Mobile Pay not available. Available methods:",
+          canMakePayment
+        );
+      }
       alert(
         language === "fi"
           ? "Mobile Pay ei ole saatavilla tällä laitteella."
@@ -411,7 +422,6 @@ const Checkout = () => {
     if (!stripe) return;
 
     try {
-      // Create payment intent for PayPal
       const response = await fetch(
         "/.netlify/functions/create-payment-intent",
         {
@@ -434,8 +444,6 @@ const Checkout = () => {
         return;
       }
 
-      // For PayPal, we need to redirect to Stripe's hosted payment page
-      // This will handle the PayPal flow properly
       const { error } = await stripe.confirmPayment({
         clientSecret: data.clientSecret,
         confirmParams: {
@@ -450,8 +458,6 @@ const Checkout = () => {
         alert(`PayPal Error: ${error.message}`);
         setLoading(false);
       }
-      // If no error, the user will be redirected to PayPal's payment page
-      // and then back to the success page
     } catch (error) {
       if (process.env.NODE_ENV === "development") {
         console.error("PayPal payment error:", error);
@@ -573,25 +579,25 @@ const Checkout = () => {
               )}
 
               {isMobilePayAvailable && (
-                 <button
-                   type="button"
-                   onClick={() => setPaymentMethod("mobilepay")}
-                   className={`p-4 border-2 rounded-lg transition-all duration-300 relative ${
-                     paymentMethod === "mobilepay"
-                       ? "border-blue-500 bg-blue-50 shadow-lg ring-2 ring-blue-200"
-                       : "border-gray-300 bg-white hover:border-blue-300 hover:bg-blue-25 hover:shadow-md hover:scale-105"
-                   }`}
-                 >
-                   <div className="text-center relative">
-                     <PaymentIcons type="mobilepay" className="h-20 mx-auto" />
-                     {paymentMethod === "mobilepay" && (
-                       <div className="absolute -top-2 -right-2 bg-blue-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-xs">
-                         ✓
-                       </div>
-                     )}
-                   </div>
-                 </button>
-               )}
+                <button
+                  type="button"
+                  onClick={() => setPaymentMethod("mobilepay")}
+                  className={`p-4 border-2 rounded-lg transition-all duration-300 relative ${
+                    paymentMethod === "mobilepay"
+                      ? "border-blue-500 bg-blue-50 shadow-lg ring-2 ring-blue-200"
+                      : "border-gray-300 bg-white hover:border-blue-300 hover:bg-blue-25 hover:shadow-md hover:scale-105"
+                  }`}
+                >
+                  <div className="text-center relative">
+                    <PaymentIcons type="mobilepay" className="h-20 mx-auto" />
+                    {paymentMethod === "mobilepay" && (
+                      <div className="absolute -top-2 -right-2 bg-blue-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-xs">
+                        ✓
+                      </div>
+                    )}
+                  </div>
+                </button>
+              )}
 
               {/* {isPayPalAvailable && (
                 <button
