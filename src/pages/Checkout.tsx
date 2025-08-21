@@ -73,9 +73,10 @@ const Checkout = () => {
             console.log("Payment method availability:", result);
           }
           if (result) {
-            setIsGooglePayAvailable(!!result.googlePay);
-            setIsMobilePayAvailable(!!result.mobilepay || true); //* Show for testing
-            setIsPayPalAvailable(true);
+            // Temporarily disable other payment methods for production testing
+            setIsGooglePayAvailable(false);
+            setIsMobilePayAvailable(false);
+            setIsPayPalAvailable(false);
 
             if (process.env.NODE_ENV === "development") {
               console.log("Available payment methods:", {
