@@ -384,74 +384,70 @@ const Checkout = () => {
   const handlePayPalPayment = async () => {
     if (!stripe) return;
 
-    const paymentRequest = stripe.paymentRequest({
-      country: "FI",
-      currency: "eur",
-      total: {
-        label: language === "fi" ? "Hunajaholisti" : "Hunajaholisti",
-        amount: totalAmount,
-      },
-      requestPayerName: true,
-      requestPayerEmail: true,
-    });
-
-    paymentRequest.on("paymentmethod", async (event: any) => {
-      try {
-        const response = await fetch(
-          "/.netlify/functions/create-payment-intent",
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              amount: totalAmount,
-              customerDetails,
-              payment_method_id: event.paymentMethod.id,
-            }),
-          }
-        );
-
-        const data = await response.json();
-
-        if (data.error) {
-          alert(data.error);
-          setLoading(false);
-          return;
+    try {
+      // Create payment intent for PayPal
+      const response = await fetch(
+        "/.netlify/functions/create-payment-intent",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            amount: totalAmount,
+            customerDetails,
+          }),
         }
+      );
 
-        const { error } = await stripe.confirmCardPayment(data.clientSecret, {
-          payment_method: event.paymentMethod.id,
-        });
+      const data = await response.json();
 
-        if (error) {
-          alert(error.message);
-          setLoading(false);
-        } else {
-          localStorage.setItem("userHasPurchased", "true");
-          addOrderToFirestore();
-          dispatch({ type: "CLEAR" });
-          navigate("/success");
-          setLoading(false);
-        }
-      } catch (error) {
-        if (process.env.NODE_ENV === "development") {
-          console.error("Payment error:", error);
-        }
-        alert(
-          language === "fi"
-            ? "Maksuvirhe. Yritä uudelleen."
-            : "Payment error. Please try again."
-        );
+      if (data.error) {
+        alert(data.error);
         setLoading(false);
+        return;
       }
-    });
 
-    paymentRequest.on("cancel", () => {
+      // Use Stripe's confirmPayment for PayPal
+      const { error } = await stripe.confirmPayment({
+        clientSecret: data.clientSecret,
+        confirmParams: {
+          return_url: `${window.location.origin}/success`,
+          payment_method_data: {
+            billing_details: {
+              name: customerDetails.name,
+              email: customerDetails.email,
+              address: {
+                line1: customerDetails.address,
+                postal_code: customerDetails.zip,
+                city: customerDetails.city,
+                country: "FI",
+              },
+            },
+          },
+        },
+      });
+
+      if (error) {
+        alert(error.message);
+        setLoading(false);
+      } else {
+        // Payment successful - this will redirect to success page
+        localStorage.setItem("userHasPurchased", "true");
+        addOrderToFirestore();
+        dispatch({ type: "CLEAR" });
+      }
+    } catch (error) {
+      if (process.env.NODE_ENV === "development") {
+        console.error("PayPal payment error:", error);
+      }
+      alert(
+        language === "fi"
+          ? "Maksuvirhe. Yritä uudelleen."
+          : "Payment error. Please try again."
+      );
       setLoading(false);
-    });
-
-    paymentRequest.show();
+    }
   };
 
   const handleSubmit = async (event: React.FormEvent) => {
@@ -540,7 +536,7 @@ const Checkout = () => {
                 </div>
               </button>
 
-              {isGooglePayAvailable && (
+              {/* {isGooglePayAvailable && (
                 <button
                   type="button"
                   onClick={() => setPaymentMethod("google_pay")}
@@ -559,9 +555,9 @@ const Checkout = () => {
                     )}
                   </div>
                 </button>
-              )}
+              )} */}
 
-              {isMobilePayAvailable && (
+              {/* {isMobilePayAvailable && (
                 <button
                   type="button"
                   onClick={() => setPaymentMethod("mobilepay")}
@@ -580,7 +576,7 @@ const Checkout = () => {
                     )}
                   </div>
                 </button>
-              )}
+              )} */}
 
               {isPayPalAvailable && (
                 <button
