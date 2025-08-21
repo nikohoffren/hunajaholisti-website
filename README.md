@@ -18,7 +18,6 @@ This repository contains the code for our Hunajaholistin Hunaja E-commerce websi
 
 - [Technologies Used](#technologies-used)
 - [Contributing](#contributing)
-- [Reflection](#reflection)
 - [Questions](#questions)
 - [List of Contributors](#list-of-contributors)
 - [License](#license)
@@ -35,12 +34,13 @@ This repository contains the code for our Hunajaholistin Hunaja E-commerce websi
 
 ## Payment Integration Setup
 
-This website supports multiple payment methods through Stripe and PayPal:
+This website supports multiple payment methods through Stripe:
 
 ### Supported Payment Methods
 
 - **Credit/Debit Cards**: Visa, Mastercard, and other major cards
 - **Google Pay**: Quick payment on Android devices
+- **Apple Pay**: Quick payment on iOS devices
 
 All payment methods feature official payment service logos for a clean interface. Payment methods are automatically detected based on device capabilities. Debug logging is only enabled in development mode for clean production logs.
 
@@ -60,6 +60,7 @@ VITE_STRIPE_SECRET_KEY=sk_test_your_stripe_secret_key_here
 
    - Credit/Debit Cards
    - Google Pay
+   - Apple Pay
 
 2. Configure your payment methods in the Stripe Dashboard under **Settings > Payment methods**
 
@@ -192,12 +193,6 @@ If you have some small bug, feature or fix to make, that is not currently on Iss
 For major changes, please open an issue first to discuss what you would like to change. Please make sure to update tests as appropriate.
 
 Also, please read our [Contributing Guidelines](CONTRIBUTING.md) for more information.
-
-## Reflection
-
-I chose to use Vite for this project due to its fast and lean build tool, allowing for a quicker development process. TypeScript was used to provide static type checking, and Tailwind CSS allowed me to style the website easily with low-level utility classes.
-
-In the next phase of this project, i aim to introduce more interactive elements to the website and extend the support of more languages.
 
 ## Questions
 

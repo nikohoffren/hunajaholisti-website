@@ -20,7 +20,6 @@ export const handler = async function (event, context) {
       payment_method_id,
     });
 
-    // Validate required fields
     if (!amount) {
       return {
         statusCode: 400,
@@ -39,12 +38,9 @@ export const handler = async function (event, context) {
       };
     }
 
-    // Determine payment method types based on the request
-    let paymentMethodTypes = ["card"]; // Default to card only
+    let paymentMethodTypes = ["card"]; //* Default to card only
 
-    // If this is for Google Pay or Apple Pay, include those methods
     if (payment_method_id) {
-      // This is likely for Google Pay or Apple Pay
       paymentMethodTypes = ["card", "google_pay", "apple_pay"];
     }
 
