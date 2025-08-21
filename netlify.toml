@@ -6,7 +6,9 @@
 [dev]
   command = "npm run dev"
   port = 8888
-  publish = "dist"
+
+[functions]
+  node_bundler = "esbuild"
 
 [[redirects]]
   from = "/*"

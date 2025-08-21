@@ -1,16 +1,18 @@
-const stripe = require("stripe")(process.env.VITE_STRIPE_SECRET_KEY);
+import Stripe from "stripe";
 
-exports.handler = async function (event, context) {
+const stripe = new Stripe(process.env.VITE_STRIPE_SECRET_KEY);
+
+export const handler = async function (event, context) {
   if (event.httpMethod !== "POST") {
     return { statusCode: 405, body: "Method Not Allowed" };
   }
 
-  const { amount, customerDetails } = JSON.parse(event.body);
+  const { amount, customerDetails, payment_method_id } = JSON.parse(event.body);
 
-  const payment = await stripe.paymentIntents.create({
+  const paymentIntentData = {
     amount: amount,
     currency: "eur",
-    payment_method_types: ["card"],
+    payment_method_types: ["card", "google_pay", "apple_pay", "paypal"],
     metadata: {
       customerName: customerDetails.name,
       customerAddress: customerDetails.address,
@@ -20,7 +22,15 @@ exports.handler = async function (event, context) {
       customerPhone: customerDetails.phone,
       customerMessage: customerDetails.message,
     },
-  });
+  };
+
+  //* If a payment method ID is provided, attach it to the payment intent
+  if (payment_method_id) {
+    paymentIntentData.payment_method = payment_method_id;
+    paymentIntentData.confirm = true;
+  }
+
+  const payment = await stripe.paymentIntents.create(paymentIntentData);
 
   return {
     statusCode: 200,
