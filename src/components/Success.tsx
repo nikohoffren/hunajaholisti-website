@@ -1,12 +1,36 @@
-import React, { useContext } from "react";
-import { Link } from "react-router-dom";
+import React, { useContext, useEffect } from "react";
+import { Link, useSearchParams } from "react-router-dom";
 import { LanguageContext } from "./LanguageContext";
+import { useStripe } from "@stripe/react-stripe-js";
 
 const Success = () => {
   const { language } = useContext(LanguageContext) as {
     language: string;
     setLanguage: (language: string) => void;
   };
+  const stripe = useStripe();
+  const [searchParams] = useSearchParams();
+
+  useEffect(() => {
+    // Handle PayPal return
+    if (stripe) {
+      const payment_intent = searchParams.get("payment_intent");
+      const payment_intent_client_secret = searchParams.get(
+        "payment_intent_client_secret"
+      );
+
+      if (payment_intent && payment_intent_client_secret) {
+        stripe
+          .retrievePaymentIntent(payment_intent_client_secret)
+          .then(({ paymentIntent }) => {
+            if (paymentIntent && paymentIntent.status === "succeeded") {
+              // Payment was successful, order processing is handled by Firebase trigger
+              console.log("Payment successful:", paymentIntent);
+            }
+          });
+      }
+    }
+  }, [stripe, searchParams]);
 
   return (
     <>
