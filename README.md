@@ -41,7 +41,7 @@ This website supports multiple payment methods through Stripe and PayPal:
 
 - **Credit/Debit Cards**: Visa, Mastercard, and other major cards
 - **Google Pay**: Quick payment on Android devices
-- **Mobile Pay**: Finnish mobile payment service
+- **Mobile Pay**: Nordic mobile payment service
 - **PayPal**: Secure payment with PayPal account
 
 All payment methods feature official payment service logos for a clean interface. Payment methods are automatically detected based on device capabilities. Debug logging is only enabled in development mode for clean production logs.

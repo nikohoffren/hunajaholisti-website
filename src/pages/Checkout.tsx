@@ -74,13 +74,13 @@ const Checkout = () => {
           }
           if (result) {
             setIsGooglePayAvailable(!!result.googlePay);
-            setIsMobilePayAvailable(!!result.applePay);
+            setIsMobilePayAvailable(!!result.mobilepay || true); //* Show for testing
             setIsPayPalAvailable(true);
 
             if (process.env.NODE_ENV === "development") {
               console.log("Available payment methods:", {
                 googlePay: result.googlePay,
-                applePay: result.applePay,
+                mobilePay: result.mobilepay || "Available for testing",
                 paypal: result.paypal,
                 card: result.card,
                 all: result,
@@ -466,7 +466,7 @@ const Checkout = () => {
       case "card":
         await handleCardPayment();
         break;
-      case "googlepay":
+      case "google_pay":
         await handleGooglePayPayment();
         break;
       case "mobilepay":
@@ -509,11 +509,6 @@ const Checkout = () => {
                 {(totalAmount / 100).toFixed(2)} €
               </span>
             </div>
-            {/* <div className="mt-2 text-sm text-gray-500">
-              {language === "fi"
-                ? `${state.cartItems.length} tuote(tta)`
-                : `${state.cartItems.length} items`}
-            </div> */}
           </div>
 
           {/* Payment Method Selection */}
@@ -542,16 +537,16 @@ const Checkout = () => {
               {isGooglePayAvailable && (
                 <button
                   type="button"
-                  onClick={() => setPaymentMethod("googlepay")}
+                  onClick={() => setPaymentMethod("google_pay")}
                   className={`p-4 border rounded-lg transition-all duration-200 ${
-                    paymentMethod === "googlepay"
+                    paymentMethod === "google_pay"
                       ? "border-blue-500 bg-blue-50 shadow-md"
                       : "border-gray-300 bg-white hover:bg-gray-50 hover:shadow-sm"
                   }`}
                 >
                   <div className="text-center">
                     <PaymentIcons
-                      type="googlepay"
+                      type="google_pay"
                       className="w-28 h-20 mx-auto"
                     />
                   </div>

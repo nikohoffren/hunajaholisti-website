@@ -1,7 +1,7 @@
 import React from "react";
 
 interface PaymentIconProps {
-  type: "card" | "googlepay" | "mobilepay" | "paypal";
+  type: "card" | "google_pay" | "mobilepay" | "paypal";
   className?: string;
 }
 
@@ -18,7 +18,7 @@ const PaymentIcons: React.FC<PaymentIconProps> = ({
         style={{ objectFit: "contain" }}
       />
     ),
-    googlepay: (
+    google_pay: (
       <img
         src="/google-pay.png"
         alt="Google Pay"
