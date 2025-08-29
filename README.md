@@ -38,7 +38,7 @@ This website supports multiple payment methods through Stripe:
 
 ### Supported Payment Methods
 
-- **Credit/Debit Cards**: Visa, Mastercard, and other major cards
+- **Credit/Debit Cards**: Payment with Visa and Mastercard
 - **Google Pay**: Quick payment on Android devices
 - **Apple Pay**: Quick payment on iOS devices
 
