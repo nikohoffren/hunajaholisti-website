@@ -7,6 +7,7 @@ export default function Footer() {
     language: string;
     setLanguage: (language: string) => void;
   };
+  const currentYear = new Date().getFullYear();
 
   return (
     <footer className="backdrop-blur w-full bg-black bg-opacity-75 text-white py-4 px-8">
@@ -89,7 +90,8 @@ export default function Footer() {
       </div>
 
       <div className="mt-8 text-center text-m text-gray-200">
-        {language === "fi" ? "Tekijänoikeus" : "Copyright"} &#169; 2021-2025{" "}
+        {language === "fi" ? "Tekijänoikeus" : "Copyright"} &#169; 2021-
+        {currentYear}{" "}
         <a
           className="text-red-200 hover:text-red-400"
           href="https://nikohoffren.com"

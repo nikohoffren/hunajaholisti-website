@@ -21,6 +21,7 @@ This repository contains the code for our Hunajaholistin Hunaja E-commerce websi
 - [Questions](#questions)
 - [List of Contributors](#list-of-contributors)
 - [License](#license)
+- [Shop Availability Flag](#shop-availability-flag)
 
 ## Technologies Used
 
@@ -139,6 +140,13 @@ The payment processing is handled by Netlify Functions located in the `functions
 - Make sure to enable payment methods in your Stripe Dashboard first
 - Start with basic card payments before enabling Google Pay, Apple Pay, etc.
 - Test in Stripe test mode before going live
+
+## Shop Availability Flag
+
+The storefront can be toggled on or off via the `SHOP` boolean exported from `src/config.ts`.
+
+- `SHOP = true`: full e-commerce experience is available (cart, checkout, payments, local add-to-cart buttons).
+- `SHOP = false`: all cart/checkout/payment routes redirect home, the navbar hides the cart icon, and the Pieni/Iso Kummipesä cards link directly to Holvi for purchases.
 
 ## Contributing
 

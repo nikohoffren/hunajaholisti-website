@@ -6,7 +6,7 @@ import Products from "./pages/Products";
 import SalesAndDeliveryConditions from "./pages/SalesAndDeliveryConditions";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import Payment from "./Payment";
-import { Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import Footer from "./layout/Footer";
@@ -19,6 +19,7 @@ import Modal from "./components/Modal";
 import PrivateRoute from "./components/PrivateRoute";
 import "./index.css";
 import Gallery from "./pages/Gallery";
+import { SHOP } from "./config";
 
 //* Call loadStripe outside of a component's render to avoid recreating the Stripe object on every render
 const stripePromise = loadStripe(
@@ -53,19 +54,32 @@ function App() {
                   element={<SalesAndDeliveryConditions />}
                 />
                 <Route path="/tietosuojaseloste" element={<PrivacyPolicy />} />
-                <Route path="/payment" element={<Payment />} />
-                <Route path="/cart" element={<Cart />} />
+                <Route
+                  path="/payment"
+                  element={SHOP ? <Payment /> : <Navigate to="/" replace />}
+                />
+                <Route
+                  path="/cart"
+                  element={SHOP ? <Cart /> : <Navigate to="/" replace />}
+                />
                 <Route
                   path="/checkout"
                   element={
-                    <PrivateRoute
-                      path="/checkout"
-                      redirectTo="/"
-                      element={<Checkout />}
-                    />
+                    SHOP ? (
+                      <PrivateRoute
+                        path="/checkout"
+                        redirectTo="/"
+                        element={<Checkout />}
+                      />
+                    ) : (
+                      <Navigate to="/" replace />
+                    )
                   }
                 />
-                <Route path="/success" element={<Success />} />
+                <Route
+                  path="/success"
+                  element={SHOP ? <Success /> : <Navigate to="/" replace />}
+                />
                 {/* <Route
                                     path="/success"
                                     element={

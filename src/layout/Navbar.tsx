@@ -3,6 +3,7 @@ import { Link, useMatch, useResolvedPath } from "react-router-dom";
 import LanguageSelector from "../components/LanguageSelector";
 import { LanguageContext } from "../components/LanguageContext";
 import { CartContext } from "../components/CartContext";
+import { SHOP } from "../config";
 import React from "react";
 
 interface CustomLinkProps {
@@ -102,21 +103,23 @@ export default function Navbar() {
               hoverClass="hover:shadow-lg"
             />
           </li>
-          <li>
-            <Link
-              className="block px-6 mx-2 py-3 transition-colors duration-200 ease-in-out hover:bg-gray-800 hover:text-white lg:px-0 lg:py-0 lg:hover:bg-transparent lg:hover:text-yellow-300 hover:scale-105"
-              to="/cart"
-              onClick={toggleSideNav}
-            >
-              <i className="fas fa-shopping-cart"></i>
+          {SHOP && (
+            <li>
+              <Link
+                className="block px-6 mx-2 py-3 transition-colors duration-200 ease-in-out hover:bg-gray-800 hover:text-white lg:px-0 lg:py-0 lg:hover:bg-transparent lg:hover:text-yellow-300 hover:scale-105"
+                to="/cart"
+                onClick={toggleSideNav}
+              >
+                <i className="fas fa-shopping-cart"></i>
 
-              {cartItemsCount > 0 && (
-                <span className="bg-red-500 rounded-full text-white text-sm w-5 h-5 inline-flex justify-center items-center ml-1">
-                  {cartItemsCount}
-                </span>
-              )}
-            </Link>
-          </li>
+                {cartItemsCount > 0 && (
+                  <span className="bg-red-500 rounded-full text-white text-sm w-5 h-5 inline-flex justify-center items-center ml-1">
+                    {cartItemsCount}
+                  </span>
+                )}
+              </Link>
+            </li>
+          )}
         </ul>
       </nav>
     </>

@@ -3,6 +3,7 @@ import { LanguageContext } from "../components/LanguageContext";
 import { CartContext } from "../components/CartContext";
 import { useState } from "react";
 import Spinner from "../components/Spinner";
+import { SHOP } from "../config";
 
 const productsData = [
   {
@@ -55,7 +56,6 @@ export default function Products() {
       </div>
 
       <div className="container mx-auto grid md:grid-cols-3 gap-8 mb-4">
-
         {/* Hunaja */}
         <div className="h-full">
           <div className="backdrop-blur max-w-md mx-auto bg-white bg-opacity-10 rounded-xl shadow-md overflow-hidden md:max-w-2xl h-full flex flex-col">
@@ -92,8 +92,6 @@ export default function Products() {
             </div>
           </div>
         </div>
-
-
 
         {/* Testi */}
         {/* <div className="h-full">
@@ -153,8 +151,6 @@ export default function Products() {
           </div>
         </div> */}
 
-
-
         {/* Pieni kummipesä */}
         <div className="h-full">
           <div className="backdrop-blur max-w-md mx-auto bg-white bg-opacity-10 rounded-xl shadow-md overflow-hidden md:max-w-2xl h-full flex flex-col">
@@ -182,32 +178,43 @@ export default function Products() {
                 </p>
                 <p className="mt-4 text-sky-100">
                   {language === "fi"
-                    ? "Kiinnostaako mehiläistarhaus ja pidät hunajasta? Kummipesä on hyvä vaihtoehto seurata mehiläispesän elämää yhden hoitokauden verran. Se sopii mainiosti lahjaksi mehiläisistä kiinnostuneelle. Ostaessasi kummipesän lähetämme säännöllisesti terveiset mehiläispesältä sähköpostiisi. Totta kai satokauden päätteeksi kerätään hunajat ja ne toimitetaan saajalle heti linkouksen jälkeen. Pakettiin kuuluu säännöllisten pesäterveisten lisäksi 3 purkkia hunajaa (350g). Näiden lisäksi saajalle toimitetaan diplomi kummipesästä postitse."
-                    : "Interested in beekeeping and love honey? Adopt a Hive is a great way to observe the life of a beehive for one season. It is also a great gift for someone interested in bees. When you buy a Adopt a Hive, we will regularly send you updates from the beehive via email. Of course, at the end of the harvest season, we will collect the honey and deliver it to the recipient immediately after extraction. In addition to regular hive updates, the package includes 3 jars of honey (350g). The recipient will also receive a diploma of the Adopt a Hive by mail."}
+                    ? "Kiinnostaako mehiläistarhaus ja pidät hunajasta? Kummipesän ostaessasi ennakkotilaat hunajaa vuodelle 2026! Kummipesä on hyvä vaihtoehto seurata mehiläispesän elämää yhden hoitokauden verran. Se sopii mainiosti lahjaksi mehiläisistä kiinnostuneelle. Ostaessasi kummipesän lähetämme säännöllisesti terveiset mehiläispesältä sähköpostiisi. Totta kai satokauden päätteeksi kerätään hunajat ja ne toimitetaan saajalle heti linkouksen jälkeen. Pakettiin kuuluu 3 purkkia hunajaa (350g / purkki). Näiden lisäksi saajalle toimitetaan diplomi kummipesästä. Jos ostat kummipesän ystävälle lahjaksi voit olla vielä yhteydessä sähköpostitse niin lähetetään terveiset oikeaan osoitteeseen :) Voit lisätä myös viestin lahjan saajalle. Laita sähköpostia osoitteeseen hunajaholisti@gmail.com"
+                    : "Curious about beekeeping and love honey? By purchasing the Adopt a Hive package you pre-order honey for the 2026 season. It is a great way to follow the life of a hive for one full care season and makes a thoughtful gift for anyone interested in bees. We send regular updates from the hive straight to your email, and once the harvest ends the honey is collected and delivered right after extraction. The package contains 3 jars of honey (350g / jar) and a printed Adopt a Hive diploma. Buying it as a gift? Email us at hunajaholisti@gmail.com and we’ll make sure the greetings go to the right address—you can even include a personal message for the recipient."}
                 </p>
               </div>
               <div className="mt-4 text-right">
-                <button
-                  onClick={() => {
-                    const itemToAdd = {
-                      id: productsData[1].id,
-                      name:
-                        language === "fi"
-                          ? productsData[1].nameFi
-                          : productsData[1].nameEn,
-                      price: productsData[1].price,
-                      image: productsData[1].image,
-                      alt: productsData[1].alt,
-                    };
-                    dispatch({
-                      type: "ADD",
-                      item: itemToAdd,
-                    });
-                  }}
-                  className="text-blue-500 hover:text-blue-700 hover:underline"
-                >
-                  {language === "fi" ? "LISÄÄ KORIIN" : "ADD TO CART"}
-                </button>
+                {SHOP ? (
+                  <button
+                    onClick={() => {
+                      const itemToAdd = {
+                        id: productsData[1].id,
+                        name:
+                          language === "fi"
+                            ? productsData[1].nameFi
+                            : productsData[1].nameEn,
+                        price: productsData[1].price,
+                        image: productsData[1].image,
+                        alt: productsData[1].alt,
+                      };
+                      dispatch({
+                        type: "ADD",
+                        item: itemToAdd,
+                      });
+                    }}
+                    className="text-blue-500 hover:text-blue-700 hover:underline"
+                  >
+                    {language === "fi" ? "LISÄÄ KORIIN" : "ADD TO CART"}
+                  </button>
+                ) : (
+                  <a
+                    href="https://holvi.com/shop/WbXD2B/product/d216cdfbf6aeabecaa77955c217444c7/"
+                    target="_blank"
+                    rel="noreferrer noopener"
+                    className="text-blue-500 hover:text-blue-700 hover:underline"
+                  >
+                    {language === "fi" ? "TILAA TUOTE" : "ORDER PRODUCT"}
+                  </a>
+                )}
               </div>
             </div>
           </div>
@@ -240,32 +247,43 @@ export default function Products() {
                 </p>
                 <p className="mt-4 text-sky-100">
                   {language === "fi"
-                    ? "Kiinnostaako mehiläistarhaus ja pidät hunajasta? Kummipesä on hyvä vaihtoehto seurata mehiläispesän elämää yhden hoitokauden verran. Se sopii mainiosti lahjaksi mehiläisistä kiinnostuneelle. Ostaessasi kummipesän lähetämme säännöllisesti terveiset mehiläispesältä sähköpostiisi. Totta kai satokauden päätteeksi kerätään hunajat ja ne toimitetaan saajalle heti linkouksen jälkeen. Pakettiin kuuluu säännöllisten pesäterveisten lisäksi 5 purkkia hunajaa (350g). Näiden lisäksi saajalle toimitetaan diplomi kummipesästä postitse."
-                    : "Interested in beekeeping and love honey? Adopt a Hive is a great way to observe the life of a beehive for one season. It is also a great gift for someone interested in bees. When you buy a Adopt a Hive, we will regularly send you updates from the beehive via email. Of course, at the end of the harvest season, we will collect the honey and deliver it to the recipient immediately after extraction. In addition to regular hive updates, the package includes 5 jars of honey (350g). The recipient will also receive a diploma of the Adopt a Hive by mail."}
+                    ? "Kiinnostaako mehiläistarhaus ja pidät hunajasta? Kummipesän ostaessasi ennakkotilaat hunajaa vuodelle 2026! Kummipesä on hyvä vaihtoehto seurata mehiläispesän elämää yhden hoitokauden verran. Se sopii mainiosti lahjaksi mehiläisistä kiinnostuneelle. Ostaessasi kummipesän lähetämme säännöllisesti terveiset mehiläispesältä sähköpostiisi. Totta kai satokauden päätteeksi kerätään hunajat ja ne toimitetaan saajalle heti linkouksen jälkeen. Pakettiin kuuluu 5 purkkia hunajaa (350g / purkki). Näiden lisäksi saajalle toimitetaan diplomi kummipesästä. Jos ostat kummipesän ystävälle lahjaksi voit olla vielä yhteydessä sähköpostitse niin lähetetään terveiset oikeaan osoitteeseen :) Voit lisätä myös viestin lahjan saajalle. Laita sähköpostia osoitteeseen hunajaholisti@gmail.com"
+                    : "Curious about beekeeping and fond of honey? Purchasing the Adopt a Hive package pre-orders honey for the 2026 season and lets you follow the hive for an entire care year. The experience suits gifts perfectly for bee enthusiasts. We send you regular greetings from the hive via email, and after the harvest the honey is collected and delivered immediately after spinning. This larger package includes 5 jars of honey (350g / jar) plus a printed Adopt a Hive diploma. Buying it as a gift? Email us at hunajaholisti@gmail.com and we’ll make sure the greetings go to the right address—you can even include a personal message for the recipient."}
                 </p>
               </div>
               <div className="mt-4 text-right">
-                <button
-                  onClick={() => {
-                    const itemToAdd = {
-                      id: productsData[0].id,
-                      name:
-                        language === "fi"
-                          ? productsData[0].nameFi
-                          : productsData[0].nameEn,
-                      price: productsData[0].price,
-                      image: productsData[0].image,
-                      alt: productsData[0].alt,
-                    };
-                    dispatch({
-                      type: "ADD",
-                      item: itemToAdd,
-                    });
-                  }}
-                  className="text-blue-500 hover:text-blue-700 hover:underline"
-                >
-                  {language === "fi" ? "LISÄÄ KORIIN" : "ADD TO CART"}
-                </button>
+                {SHOP ? (
+                  <button
+                    onClick={() => {
+                      const itemToAdd = {
+                        id: productsData[0].id,
+                        name:
+                          language === "fi"
+                            ? productsData[0].nameFi
+                            : productsData[0].nameEn,
+                        price: productsData[0].price,
+                        image: productsData[0].image,
+                        alt: productsData[0].alt,
+                      };
+                      dispatch({
+                        type: "ADD",
+                        item: itemToAdd,
+                      });
+                    }}
+                    className="text-blue-500 hover:text-blue-700 hover:underline"
+                  >
+                    {language === "fi" ? "LISÄÄ KORIIN" : "ADD TO CART"}
+                  </button>
+                ) : (
+                  <a
+                    href="https://holvi.com/shop/WbXD2B/product/74a78df2a6bf30c97d4a5a6bbe3fbb25/"
+                    target="_blank"
+                    rel="noreferrer noopener"
+                    className="text-blue-500 hover:text-blue-700 hover:underline"
+                  >
+                    {language === "fi" ? "TILAA TUOTE" : "ORDER PRODUCT"}
+                  </a>
+                )}
               </div>
             </div>
           </div>
@@ -318,7 +336,7 @@ export default function Products() {
                       </a>
                       <br />
                       <br />
-                      (Tulossa lisää 2025!)
+                      (Tulossa lisää 2026!)
                       <br />
                       <br />
                     </>
@@ -340,7 +358,7 @@ export default function Products() {
                       </a>
                       <br />
                       <br />
-                      (Coming soon 2025!)
+                      (Coming soon 2026!)
                       <br />
                       <br />
                     </>
@@ -354,7 +372,7 @@ export default function Products() {
                   rel="noreferrer"
                   className="text-blue-500 hover:text-blue-700 hover:underline"
                 >
-                  {language === "fi" ? "TULOSSA 2025" : "COMING IN 2025"}
+                  {language === "fi" ? "TULOSSA 2026" : "COMING IN 2026"}
                 </a>
               </div>
             </div>
@@ -401,7 +419,7 @@ export default function Products() {
                       </a>
                       <br />
                       <br />
-                      (Tulossa lisää 2025!)
+                      (Tulossa lisää 2026!)
                     </>
                   ) : (
                     <>
@@ -422,7 +440,7 @@ export default function Products() {
                       </a>
                       <br />
                       <br />
-                      (Coming soon 2025!)
+                      (Coming soon 2026!)
                     </>
                   )}
                 </p>
@@ -434,7 +452,7 @@ export default function Products() {
                   rel="noreferrer"
                   className="text-blue-500 hover:text-blue-700 hover:underline"
                 >
-                  {language === "fi" ? "TULOSSA 2025" : "COMING IN 2025"}
+                  {language === "fi" ? "TULOSSA 2026" : "COMING IN 2026"}
                 </a>
               </div>
             </div>
