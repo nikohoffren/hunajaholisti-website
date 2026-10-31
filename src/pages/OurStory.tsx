@@ -13,96 +13,110 @@ export default function OurStory() {
   };
 
   return (
-    <>
-      <div className="py-5"></div>
-      <div className="container mx-auto text-center mt-20">
-        <h3 className="text-4xl font-semibold text-white">
-          {language === "fi" ? "TARINAMME" : "OUR STORY"}
-        </h3>
-      </div>
-      <div className="container mx-auto my-8">
-        <hr />
-      </div>
-
-      <div className="container mx-auto text-center text-white">
-        <div className="w-full sm:w-1/2 mx-auto">
-          {isLoading && <Spinner />}
+    <main>
+      <section className="relative min-h-[55svh] flex items-end overflow-hidden">
+        <div className="absolute inset-0">
           <img
-            className="w-2/3 h-2/3 sm:w-1/2 sm:h-1/2 object-cover rounded-full mx-auto mb-3"
-            src="HHheidi1.jpg"
-            alt="Heidi Kääriäinen"
-            onLoad={() => imageLoaded()}
+            src="HHkuva1.jpg"
+            alt=""
+            className="h-full w-full object-cover"
+            aria-hidden="true"
           />
+          <div className="absolute inset-0 bg-gradient-to-t from-forest-950/90 via-forest-900/50 to-forest-900/25" />
         </div>
-        <div className="px-4 py-5">
-          <p className="mb-2">
-            {language === "fi"
-              ? "Olen jo pienestä pitäen ollut kiinnostunut luonnosta ja sen monimuotoisuudesta. Mehiläistarhaus tuntui pitkään kaukaiselta haaveelta."
-              : "I have always been interested in nature and its diversity. Beekeeping seemed like a distant dream for a long time."}
+        <div className="relative page-shell w-full pb-12 pt-36 sm:pb-16">
+          <p className="text-amber-300 text-sm font-semibold tracking-[0.18em] uppercase mb-3">
+            Hunajaholisti
           </p>
-          <p className="mb-2">
-            {language === "fi"
-              ? "Satuimme kerran sitten puhumaan yhdessä työkaverini kanssa mehiläisistä. Hän kertoi olleensa joskus pienenä tätinsä kaverina mehiläistarhoilla."
-              : "One day, my colleague and I happened to talk about bees. She told me that she had been a helper at her aunt's beekeeping operation when she was little."}
-          </p>
-          <p className="mb-2">
-            {language === "fi"
-              ? "Aikamme siinä poristuamme kävi ilmi, että ehkäpä mehiläisten pito olisi minullekin täysin mahdollista. Siispä päätin ryhtyä toimeen."
-              : "As we chatted, it became clear that beekeeping might be entirely possible for me too. So I decided to take action."}
-          </p>
-          <br />
-          <br />
-          <p className="mb-2">
-            {language === "fi"
-              ? "On kiehtovaa seurata mehiläisten yhteistyötä ja sitä miten kaikilla pesässä on oma tehtävänsä."
-              : "It is fascinating to observe the collaboration of bees and how each bee has its own task in the hive."}
-          </p>
-          <p className="mb-2">
-            {language === "fi"
-              ? "Tällä hetkellä mehiläistarhani sijaitsee Pohjois-Savossa."
-              : "Currently, my bee farm is located in Northern Savonia."}
-          </p>
-          {language === "fi" ? (
-            <p className="mb-2">
-              Mehiläistarhauksen arkea pääset vakoilemaan seuraamalla
-              Instagramissa tiliä{" "}
-              <a
-                href="https://www.instagram.com/hunajaholisti"
-                target="_blank"
-                className="text-blue-500 hover:text-blue-700"
-              >
-                Hunajaholisti
-              </a>
-              .
-            </p>
-          ) : (
-            <p className="mb-2">
-              You can spy on everyday life in beekeeping by following{" "}
-              <a
-                href="https://www.instagram.com/hunajaholisti"
-                target="_blank"
-                className="text-blue-500 hover:text-blue-700"
-              >
-                Hunajaholisti
-              </a>{" "}
-              on Instagram.
-            </p>
-          )}
+          <h1 className="font-display text-4xl sm:text-5xl md:text-6xl text-white tracking-tight max-w-2xl">
+            {language === "fi" ? "Tarinamme" : "Our story"}
+          </h1>
+        </div>
+      </section>
 
-          <br />
-          <br />
-          <p>
-            <span className="font-bold">
+      <section className="page-shell py-16 sm:py-24">
+        <div className="grid lg:grid-cols-12 gap-10 lg:gap-16 items-start">
+          <div className="lg:col-span-5">
+            <div className="relative sticky top-28">
+              {isLoading && <Spinner />}
+              <img
+                className="w-full aspect-[4/5] object-cover shadow-2xl shadow-forest-900/10"
+                src="HHheidi1.jpg"
+                alt="Heidi Kääriäinen"
+                onLoad={() => imageLoaded()}
+              />
+              <p className="mt-4 font-display text-xl text-forest-900">
+                Heidi Kääriäinen
+              </p>
+              <p className="text-forest-500 text-sm tracking-wide uppercase">
+                {language === "fi" ? "Mehiläistarhaaja" : "Beekeeper"}
+              </p>
+            </div>
+          </div>
+
+          <div className="lg:col-span-7 space-y-5 text-forest-700 text-lg leading-relaxed">
+            <p>
+              {language === "fi"
+                ? "Olen jo pienestä pitäen ollut kiinnostunut luonnosta ja sen monimuotoisuudesta. Mehiläistarhaus tuntui pitkään kaukaiselta haaveelta."
+                : "I have always been interested in nature and its diversity. Beekeeping seemed like a distant dream for a long time."}
+            </p>
+            <p>
+              {language === "fi"
+                ? "Satuimme kerran sitten puhumaan yhdessä työkaverini kanssa mehiläisistä. Hän kertoi olleensa joskus pienenä tätinsä kaverina mehiläistarhoilla."
+                : "One day, my colleague and I happened to talk about bees. She told me that she had been a helper at her aunt's beekeeping operation when she was little."}
+            </p>
+            <p>
+              {language === "fi"
+                ? "Aikamme siinä poristuamme kävi ilmi, että ehkäpä mehiläisten pito olisi minullekin täysin mahdollista. Siispä päätin ryhtyä toimeen."
+                : "As we chatted, it became clear that beekeeping might be entirely possible for me too. So I decided to take action."}
+            </p>
+            <p>
+              {language === "fi"
+                ? "On kiehtovaa seurata mehiläisten yhteistyötä ja sitä miten kaikilla pesässä on oma tehtävänsä."
+                : "It is fascinating to observe the collaboration of bees and how each bee has its own task in the hive."}
+            </p>
+            <p>
+              {language === "fi"
+                ? "Tällä hetkellä mehiläistarhani sijaitsee Pohjois-Savossa."
+                : "Currently, my bee farm is located in Northern Savonia."}
+            </p>
+            {language === "fi" ? (
+              <p>
+                Mehiläistarhauksen arkea pääset vakoilemaan seuraamalla
+                Instagramissa tiliä{" "}
+                <a
+                  href="https://www.instagram.com/hunajaholisti"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="text-amber-700 hover:text-amber-800 font-semibold underline underline-offset-2"
+                >
+                  Hunajaholisti
+                </a>
+                .
+              </p>
+            ) : (
+              <p>
+                You can spy on everyday life in beekeeping by following{" "}
+                <a
+                  href="https://www.instagram.com/hunajaholisti"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="text-amber-700 hover:text-amber-800 font-semibold underline underline-offset-2"
+                >
+                  Hunajaholisti
+                </a>{" "}
+                on Instagram.
+              </p>
+            )}
+
+            <p className="pt-6 font-display text-2xl text-forest-900">
               {language === "fi"
                 ? "Hunajaisin terveisin, Heidi"
                 : "With honey-filled regards, Heidi"}
-            </span>
-          </p>
-          <div className="container mx-auto my-5 px-4 md:w-1/4">
-            <hr className="border-gray-400" />
+            </p>
           </div>
         </div>
-      </div>
-    </>
+      </section>
+    </main>
   );
 }

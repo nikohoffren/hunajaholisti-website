@@ -3,7 +3,7 @@ import React from "react";
 
 const Spinner = () => (
   <div className="flex items-center justify-center h-full">
-    <RefreshIcon className="animate-spin h-8 w-8 text-gray-500" />
+    <RefreshIcon className="animate-spin h-8 w-8 text-forest-500" />
   </div>
 );
 

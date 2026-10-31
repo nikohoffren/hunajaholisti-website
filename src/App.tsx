@@ -2,7 +2,8 @@ import React, { useState, useMemo } from "react";
 import Navbar from "./layout/Navbar";
 import Home from "./pages/Home";
 import OurStory from "./pages/OurStory";
-import Products from "./pages/Products";
+// Products page kept in the codebase but disabled from public access.
+// import Products from "./pages/Products";
 import SalesAndDeliveryConditions from "./pages/SalesAndDeliveryConditions";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import Payment from "./Payment";
@@ -47,7 +48,10 @@ function App() {
               <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/tarinamme" element={<OurStory />} />
-                <Route path="/tuotteemme" element={<Products />} />
+                <Route
+                  path="/tuotteemme"
+                  element={<Navigate to="/" replace />}
+                />
                 <Route path="/galleria" element={<Gallery />} />
                 <Route
                   path="/myyntiehdot"

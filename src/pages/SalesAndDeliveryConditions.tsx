@@ -8,22 +8,18 @@ export default function SalesAndDeliveryConditions() {
   };
 
   return (
-    <div className="container mx-auto py-8">
-      <div className="py-10"></div>
-      <div className="container mx-auto text-center mt-20">
-        <h3 className="text-4xl font-semibold text-white">
+    <div className="pt-28 pb-20 page-shell">
+      <div className="text-center mb-10">
+        <h1 className="section-heading">
           {language === "fi"
             ? "Yleiset myynti- ja toimitusehdot"
             : "General Sales and Delivery Conditions"}
-        </h3>
-      </div>
-      <div className="container mx-auto my-8">
-        <hr className="border-gray-300" />
+        </h1>
       </div>
 
-      <div className="bg-black text-white shadow-md rounded-lg p-8">
-        <div className="px-4 py-5">
-          <h2 className="font-semibold text-2xl mb-4">
+      <div className="bg-honey-soft border border-amber-200/50 p-8 sm:p-10 text-forest-700">
+        <div className="space-y-6 leading-relaxed">
+          <h2 className="font-display text-2xl text-forest-900">
             {language === "fi" ? "§ 1 Voimassaolo" : "§ 1 Validity"}
           </h2>
           <p className="mb-2">
@@ -32,7 +28,7 @@ export default function SalesAndDeliveryConditions() {
               : "(1) These terms apply to contracts made with the service provider, made with Hunajaholistin Hunaja, business ID 3163385-5 in the online store www.hunajaholisti.fi."}
           </p>
 
-          <h2 className="font-semibold text-2xl mb-4">
+          <h2 className="font-display text-2xl text-forest-900 mt-8">
             {language === "fi"
               ? "§ 2 Sopimuskumppani"
               : "§ 2 Contractual Partner"}
@@ -43,7 +39,7 @@ export default function SalesAndDeliveryConditions() {
               : "Company name: Hunajaholistin Hunaja,\nAddress: Liitokuja 4 C, 03100 VIHTI, SUOMI FINLAND,\nEmail: hunajaholisti@gmail.com,\nPhone: +358 (0) 44 0550575"}
           </p>
 
-          <h2 className="font-semibold text-2xl mb-4">
+          <h2 className="font-display text-2xl text-forest-900 mt-8">
             {language === "fi" ? "§ 3 Sopimusehdot" : "§ 3 Contract Terms"}
           </h2>
           <p className="mb-2">
@@ -67,7 +63,7 @@ export default function SalesAndDeliveryConditions() {
               : "(4) You will receive order confirmation and payment confirmation by email. The order confirmation will show the ordered products, any discounts, and delivery costs. The processing of the order and the provision of all necessary information in connection with the conclusion of the contract will be partly automated by email. Therefore, please ensure that the email address you use for your purchase is correct and that the receipt of email messages is technically possible and not blocked by spam filters."}
           </p>
 
-          <h2 className="font-semibold text-2xl mb-4">
+          <h2 className="font-display text-2xl text-forest-900 mt-8">
             {language === "fi" ? "§ 4 Maksaminen" : "§ 4 Payment"}
           </h2>
           <p className="mb-2">
@@ -86,7 +82,7 @@ export default function SalesAndDeliveryConditions() {
               : "(3) All payment methods available in the online store are processed securely. Payments are made through an encrypted SSL connection (Secure Sockets Layer)."}
           </p>
 
-          <h2 className="font-semibold text-2xl mb-4">
+          <h2 className="font-display text-2xl text-forest-900 mt-8">
             {language === "fi"
               ? "§ 5 Toimitus-, vastuu- ja virhetilanteet"
               : "§ 5 Delivery, Liability, and Error Situations"}
@@ -107,7 +103,7 @@ export default function SalesAndDeliveryConditions() {
               : "(3) The risk of loss or damage to the products in the order passes to you or the authorized recipient upon delivery. If the package is clearly damaged during transportation, you must immediately make a complaint to the transportation company."}
           </p>
 
-          <h2 className="font-semibold text-2xl mb-4">
+          <h2 className="font-display text-2xl text-forest-900 mt-8">
             {language === "fi" ? "§ 6 Palautukset" : "§ 6 Returns"}
           </h2>
           <p className="mb-2">
@@ -131,7 +127,7 @@ export default function SalesAndDeliveryConditions() {
               : "(4) You are only liable for any diminished value of the goods resulting from the handling other than what is necessary to establish the nature, characteristics, and functioning of the goods. You may examine the product and try it out in the same way as you would in a store, but you may not put it into actual use."}
           </p>
 
-          <h2 className="font-semibold text-2xl mb-4">
+          <h2 className="font-display text-2xl text-forest-900 mt-8">
             {language === "fi" ? "§ 7 Reklamaatiot" : "§ 7 Complaints"}
           </h2>
           <p className="mb-2">
@@ -145,7 +141,7 @@ export default function SalesAndDeliveryConditions() {
               : "(2) Complaints are usually processed without delay. If necessary, we may ask you to provide additional information or photographs to support the complaint. Compensations or reimbursements related to accepted complaints are made in accordance with the contract."}
           </p>
 
-          <h2 className="font-semibold text-2xl mb-4">
+          <h2 className="font-display text-2xl text-forest-900 mt-8">
             {language === "fi" ? "§ 8 Ylivoimainen este" : "§ 8 Force Majeure"}
           </h2>
           <p className="mb-2">
@@ -154,7 +150,7 @@ export default function SalesAndDeliveryConditions() {
               : "We are not liable for delays or damages caused by an obstacle beyond our control, which we could not reasonably have anticipated or which significantly affects the fulfillment of the contract, such as a strike, fire, war, official order, traffic disruption, or other similar force majeure."}
           </p>
 
-          <h2 className="font-semibold text-2xl mb-4">
+          <h2 className="font-display text-2xl text-forest-900 mt-8">
             {language === "fi"
               ? "§ 9 Riitojen ratkaisu"
               : "§ 9 Dispute Resolution"}

@@ -27,22 +27,28 @@ const LanguageSelector: React.FC<LanguageSelectorProps> = ({
   };
 
   return (
-    <div className="flex space-x-2">
+    <div className={`inline-flex rounded-md border border-amber-700/15 overflow-hidden bg-transparent ${hoverClass}`}>
       <button
         onClick={() => handleClick("fi")}
-        className={`px-3 py-1 rounded-md transition-all duration-200 ease-in-out
-          ${language === "fi"
-            ? "bg-yellow-600 text-white"
-            : "text-white hover:bg-yellow-600/50"}`}
+        className={`px-3 py-1.5 text-xs font-bold tracking-wider transition-colors duration-200
+          ${
+            language === "fi"
+              ? "bg-forest-700/90 text-white"
+              : "bg-transparent text-forest-700 hover:bg-honey/40"
+          }`}
+        aria-pressed={language === "fi"}
       >
         FI
       </button>
       <button
         onClick={() => handleClick("en")}
-        className={`px-3 py-1 rounded-md transition-all duration-200 ease-in-out
-          ${language === "en"
-            ? "bg-yellow-600 text-white"
-            : "text-white hover:bg-yellow-600/50"}`}
+        className={`px-3 py-1.5 text-xs font-bold tracking-wider transition-colors duration-200
+          ${
+            language === "en"
+              ? "bg-forest-700/90 text-white"
+              : "bg-transparent text-forest-700 hover:bg-honey/40"
+          }`}
+        aria-pressed={language === "en"}
       >
         EN
       </button>
