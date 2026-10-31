@@ -35,102 +35,98 @@ const Cart = () => {
 
   if (cartItems.length < 1) {
     return (
-      <>
-        <div className="py-20"></div>
-        <div className="container backdrop-blur bg-white bg-opacity-5 mx-auto p-6 shadow-md rounded-lg">
-          <h2 className="text-2xl font-bold mb-4 text-gray-100">
-            {language === "fi" ? "Ostoskorisi" : "Your Cart"}
-          </h2>
-          <p className="text-white text-2xl text-center py-4">
-            {language === "fi" ? "Ostoskori on tyhjä!" : "Cart is empty!"}
+      <div className="pt-28 pb-20 page-shell">
+        <div className="max-w-2xl mx-auto bg-honey-soft border border-amber-200/50 p-10 text-center">
+          <h1 className="section-heading text-3xl mb-4">
+            {language === "fi" ? "Ostoskorisi" : "Your cart"}
+          </h1>
+          <p className="text-forest-600 text-lg mb-8">
+            {language === "fi" ? "Ostoskori on tyhjä." : "Your cart is empty."}
           </p>
-          <div className="text-center py-4">
-            <Link
-              to={"/tuotteemme"}
-              className="inline-block px-8 py-4 text-lg text-white bg-yellow-600 rounded-lg transform transition-all duration-200 hover:bg-yellow-500 hover:scale-105"
-            >
-              {language === "fi" ? "Aloita ostaminen" : "Start Shopping"}
-            </Link>
-          </div>
+          <Link to="/tuotteemme" className="btn-primary">
+            {language === "fi" ? "Aloita ostaminen" : "Start shopping"}
+          </Link>
         </div>
-      </>
-    );
-  } else {
-    return (
-      <>
-        <div className="py-20"></div>
-        <div className="container backdrop-blur bg-opacity-5 mx-auto p-6 bg-white shadow-md rounded-lg">
-          <h2 className="text-2xl font-bold mb-4 text-gray-100">
-            {language === "fi" ? "Ostoskorisi" : "Your Cart"}
-          </h2>
-          <div className="space-y-4">
-            {cartItems &&
-              cartItems.map((item: IItem) => (
-                <div
-                  key={item.id}
-                  className="flex justify-between items-center py-4"
-                >
-                  <div className="flex justify-between items-center">
-                    <img
-                      className="rounded-full mr-2 w-8 h-8 object-fill"
-                      src={item.image}
-                      alt={item.alt}
-                    />
-                    <h3 className="text-lg font-semibold text-gray-100 mr-4">
-                      {item.name}
-                    </h3>
-                    <div className="flex items-center gap-2">
-                      <button
-                        onClick={() => handleDecrease(item.id)}
-                        className="bg-red-400 text-white px-2 py-1 rounded"
-                      >
-                        -
-                      </button>
-                      <span className="text-white ">{item.quantity}</span>
-                      <button
-                        onClick={() => handleIncrease(item.id)}
-                        className="bg-green-400 text-white px-2 py-1 rounded"
-                      >
-                        +
-                      </button>
-                    </div>
-                  </div>
-                  <div className="flex items-center">
-                    <p className="font-bold text-white mr-4">
-                      {item.price / 100} € / kpl
-                    </p>
-                    <button
-                      onClick={() => handleRemove(item.id)}
-                      className="text-sm text-red-500 underline hover:text-red-600"
-                    >
-                      {language === "fi" ? "Poista" : "Remove"}
-                    </button>
-                  </div>
-                </div>
-              ))}
-          </div>
-          {cartItems && cartItems.length > 0 && (
-            <div className="flex justify-between items-center mt-6 pt-6 border-t">
-              <div className="flex items-center">
-                <span className="text-gray-100 font-semibold">
-                  {language === "fi" ? "Yhteensä:" : "Total:"}
-                </span>
-                <span className="text-white font-bold text-lg ml-2">
-                  {total / 100} €
-                </span>
-              </div>
-              <Link
-                to="/checkout"
-                className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors duration-300"
-              >
-                {language === "fi" ? "Siirry kassalle" : "Proceed to Checkout"}
-              </Link>
-            </div>
-          )}
-        </div>
-      </>
+      </div>
     );
   }
+
+  return (
+    <div className="pt-28 pb-20 page-shell">
+      <div className="max-w-3xl mx-auto bg-honey-soft border border-amber-200/50 p-6 sm:p-10">
+        <h1 className="section-heading text-3xl mb-8">
+          {language === "fi" ? "Ostoskorisi" : "Your cart"}
+        </h1>
+        <div className="space-y-6">
+          {cartItems &&
+            cartItems.map((item: IItem) => (
+              <div
+                key={item.id}
+                className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 py-4 border-b border-forest-100"
+              >
+                <div className="flex items-center gap-4">
+                  <img
+                    className="rounded-full w-14 h-14 object-cover ring-2 ring-amber-200"
+                    src={item.image}
+                    alt={item.alt}
+                  />
+                  <div>
+                    <h3 className="font-display text-xl text-forest-900">
+                      {item.name}
+                    </h3>
+                    <p className="text-forest-600 text-sm mt-0.5">
+                      {item.price / 100} € / {language === "fi" ? "kpl" : "pc"}
+                    </p>
+                  </div>
+                </div>
+                <div className="flex items-center gap-4">
+                  <div className="flex items-center gap-2">
+                    <button
+                      onClick={() => handleDecrease(item.id)}
+                      className="w-8 h-8 border border-forest-200 text-forest-800 hover:bg-forest-50 rounded"
+                      aria-label="Decrease quantity"
+                    >
+                      -
+                    </button>
+                    <span className="w-8 text-center font-semibold text-forest-900">
+                      {item.quantity}
+                    </span>
+                    <button
+                      onClick={() => handleIncrease(item.id)}
+                      className="w-8 h-8 border border-forest-200 text-forest-800 hover:bg-forest-50 rounded"
+                      aria-label="Increase quantity"
+                    >
+                      +
+                    </button>
+                  </div>
+                  <button
+                    onClick={() => handleRemove(item.id)}
+                    className="text-sm text-forest-500 underline underline-offset-2 hover:text-amber-700"
+                  >
+                    {language === "fi" ? "Poista" : "Remove"}
+                  </button>
+                </div>
+              </div>
+            ))}
+        </div>
+        {cartItems && cartItems.length > 0 && (
+          <div className="flex flex-col sm:flex-row justify-between items-center gap-4 mt-8 pt-6 border-t border-forest-100">
+            <div className="flex items-baseline gap-2">
+              <span className="text-forest-600 font-medium">
+                {language === "fi" ? "Yhteensä:" : "Total:"}
+              </span>
+              <span className="font-display text-2xl text-forest-900">
+                {total / 100} €
+              </span>
+            </div>
+            <Link to="/checkout" className="btn-primary">
+              {language === "fi" ? "Siirry kassalle" : "Proceed to checkout"}
+            </Link>
+          </div>
+        )}
+      </div>
+    </div>
+  );
 };
 
 export default Cart;

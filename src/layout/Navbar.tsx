@@ -3,7 +3,7 @@ import { Link, useMatch, useResolvedPath } from "react-router-dom";
 import LanguageSelector from "../components/LanguageSelector";
 import { LanguageContext } from "../components/LanguageContext";
 import { CartContext } from "../components/CartContext";
-import { SHOP } from "../config";
+import { HOLVI_SHOP_URL, SHOP } from "../config";
 import React from "react";
 
 interface CustomLinkProps {
@@ -26,94 +26,154 @@ export default function Navbar() {
     setIsOpen(!isOpen);
   };
 
+  const closeNav = () => setIsOpen(false);
+
+  const desktopLinkClass =
+    "text-sm font-semibold tracking-wide uppercase text-forest-800 bg-transparent transition-colors duration-200 hover:text-amber-600";
+
+  const mobileLinkClass =
+    "block px-6 py-4 text-base font-semibold tracking-wide uppercase text-forest-900";
+
   const logo = (
-    <Link to="/" onClick={toggleSideNav} className="lg:hidden">
-      <div className="group-hover:border-white">
-        <img
-          className="header-logo h-12 w-12 transition-transform duration-200 ease-in-out transform hover:scale-105"
-          src="HHlogo.jpg"
-          alt="Hunajaholistin Hunaja logo"
-        />
-      </div>
+    <Link to="/" onClick={closeNav} className="flex items-center gap-3 group">
+      <img
+        className="h-11 w-11 rounded-full object-cover ring-2 ring-amber-400/60 transition-transform duration-200 group-hover:scale-105"
+        src="HHlogo.jpg"
+        alt="Hunajaholistin Hunaja logo"
+      />
+      <span className="hidden sm:block font-display text-lg text-forest-900 tracking-tight leading-tight">
+        Hunajaholistin
+        <span className="block text-sm text-amber-700 font-sans font-semibold tracking-wide uppercase">
+          Hunaja
+        </span>
+      </span>
     </Link>
   );
 
-  const desktopLogo = (
-    <Link to="/" onClick={toggleSideNav} className="hidden lg:block">
-      <div className="group-hover:border-white">
-        <img
-          className="header-logo h-12 w-12 transition-transform duration-200 ease-in-out transform hover:scale-105"
-          src="HHlogo.jpg"
-          alt="Hunajaholistin Hunaja logo"
-        />
-      </div>
-    </Link>
+  const navItems = (
+    <>
+      <li>
+        <Link
+          className={desktopLinkClass}
+          to="/tarinamme"
+          onClick={closeNav}
+        >
+          {language === "fi" ? "Tarinamme" : "Our story"}
+        </Link>
+      </li>
+      <li>
+        <a
+          className={desktopLinkClass}
+          href={HOLVI_SHOP_URL}
+          target="_blank"
+          rel="noreferrer noopener"
+          onClick={closeNav}
+        >
+          {language === "fi" ? "Tuotteemme" : "Products"}
+        </a>
+      </li>
+      <li>
+        <Link className={desktopLinkClass} to="/galleria" onClick={closeNav}>
+          {language === "fi" ? "Galleria" : "Gallery"}
+        </Link>
+      </li>
+      <li>
+        <LanguageSelector setLanguage={setLanguage} hoverClass="" />
+      </li>
+      {SHOP && (
+        <li>
+          <Link
+            className={`${desktopLinkClass} relative inline-flex items-center gap-2`}
+            to="/cart"
+            onClick={closeNav}
+            aria-label={language === "fi" ? "Ostoskori" : "Cart"}
+          >
+            <i className="fas fa-shopping-bag"></i>
+            {cartItemsCount > 0 && (
+              <span className="absolute -right-3 -top-2 bg-amber-500 text-forest-950 text-xs font-bold w-5 h-5 inline-flex justify-center items-center rounded-full">
+                {cartItemsCount}
+              </span>
+            )}
+          </Link>
+        </li>
+      )}
+    </>
   );
 
   return (
-    <>
-      <nav className="bg-black bg-opacity-75 p-3 pl-20 pr-20 fixed flex items-center justify-between top-0 w-full z-50 lg:backdrop-blur">
-        <div className="flex justify-between items-center w-full lg:w-auto">
-          {desktopLogo}
+    <nav className="fixed top-0 w-full z-50">
+      {/* Blur lives on this inner bar only — backdrop-filter traps fixed children */}
+      <div className="border-b border-amber-700/10 bg-honey/80 backdrop-blur-md">
+        <div className="page-shell flex items-center justify-between py-3">
+          {logo}
+
           <button
-            className="inline-block lg:hidden w-8 h-8 bg-black-500 text-white p-1 ml-3"
+            className="inline-flex lg:hidden items-center justify-center w-10 h-10 text-forest-800 bg-transparent"
             onClick={toggleSideNav}
             id="toggleButton"
+            aria-label={isOpen ? "Close menu" : "Open menu"}
+            aria-expanded={isOpen}
           >
-            {isOpen ? "=" : <i className="fa fa-bars"></i>}
+            <i className={`fa ${isOpen ? "fa-times" : "fa-bars"} text-xl`}></i>
           </button>
-        </div>
 
-        <ul
-          className={`fixed backdrop-blur transform top-0 left-0 w-full h-full bg-black bg-opacity-75 text-white pt-20 pb-5 space-y-3 transition-transform duration-200 ease-in-out overflow-auto ${
-            isOpen ? "translate-x-0" : "-translate-x-full"
-          } lg:static lg:translate-x-0 lg:flex lg:items-center lg:w-auto lg:space-y-0 lg:space-x-10 lg:pt-0 lg:pb-0 lg:bg-transparent lg:justify-end`}
-        >
-          <li className="pl-8 lg:hidden">{logo}</li>
+          <ul className="hidden lg:flex lg:items-center lg:space-x-8">
+            {navItems}
+          </ul>
+        </div>
+      </div>
+
+      {/* Mobile drawer — sibling of blur bar so fixed positioning uses the viewport */}
+      <div
+        className={`lg:hidden fixed inset-0 top-[4.25rem] z-50 bg-honey transition-transform duration-300 ease-out ${
+          isOpen ? "translate-x-0" : "-translate-x-full"
+        }`}
+      >
+        <ul className="pt-4 pb-8 space-y-1 overflow-auto h-full">
           <li>
             <Link
-              className="block px-6 mx-2 py-3 transition-colors duration-200 ease-in-out hover:bg-gray-800 hover:text-white lg:px-0 lg:py-0 lg:hover:bg-transparent lg:hover:text-yellow-300 hover:scale-105"
+              className={mobileLinkClass}
               to="/tarinamme"
-              onClick={toggleSideNav}
+              onClick={closeNav}
             >
-              {language === "fi" ? "TARINAMME" : "OUR STORY"}
+              {language === "fi" ? "Tarinamme" : "Our story"}
             </Link>
           </li>
           <li>
-            <Link
-              className="block px-6 mx-2 py-3 transition-colors duration-200 ease-in-out hover:bg-gray-800 hover:text-white lg:px-0 lg:py-0 lg:hover:bg-transparent lg:hover:text-yellow-300 hover:scale-105"
-              to="/tuotteemme"
-              onClick={toggleSideNav}
+            <a
+              className={mobileLinkClass}
+              href={HOLVI_SHOP_URL}
+              target="_blank"
+              rel="noreferrer noopener"
+              onClick={closeNav}
             >
-              {language === "fi" ? "TUOTTEEMME" : "PRODUCTS"}
-            </Link>
+              {language === "fi" ? "Tuotteemme" : "Products"}
+            </a>
           </li>
           <li>
             <Link
-              className="block px-6 mx-2 py-3 transition-colors duration-200 ease-in-out hover:bg-gray-800 hover:text-white lg:px-0 lg:py-0 lg:hover:bg-transparent lg:hover:text-yellow-300 hover:scale-105"
+              className={mobileLinkClass}
               to="/galleria"
-              onClick={toggleSideNav}
+              onClick={closeNav}
             >
-              {language === "fi" ? "GALLERIA" : "GALLERY"}
+              {language === "fi" ? "Galleria" : "Gallery"}
             </Link>
           </li>
-          <li className="px-5 py-3 lg:px-0 lg:py-0 mobile-img-flag">
-            <LanguageSelector
-              setLanguage={setLanguage}
-              hoverClass="hover:shadow-lg"
-            />
+          <li className="px-6 pt-3">
+            <LanguageSelector setLanguage={setLanguage} hoverClass="" />
           </li>
           {SHOP && (
             <li>
               <Link
-                className="block px-6 mx-2 py-3 transition-colors duration-200 ease-in-out hover:bg-gray-800 hover:text-white lg:px-0 lg:py-0 lg:hover:bg-transparent lg:hover:text-yellow-300 hover:scale-105"
+                className={`${mobileLinkClass} inline-flex items-center gap-2`}
                 to="/cart"
-                onClick={toggleSideNav}
+                onClick={closeNav}
+                aria-label={language === "fi" ? "Ostoskori" : "Cart"}
               >
-                <i className="fas fa-shopping-cart"></i>
-
+                <i className="fas fa-shopping-bag"></i>
+                {language === "fi" ? "Ostoskori" : "Cart"}
                 {cartItemsCount > 0 && (
-                  <span className="bg-red-500 rounded-full text-white text-sm w-5 h-5 inline-flex justify-center items-center ml-1">
+                  <span className="bg-amber-500 text-forest-950 text-xs font-bold w-5 h-5 inline-flex justify-center items-center rounded-full">
                     {cartItemsCount}
                   </span>
                 )}
@@ -121,8 +181,8 @@ export default function Navbar() {
             </li>
           )}
         </ul>
-      </nav>
-    </>
+      </div>
+    </nav>
   );
 }
 

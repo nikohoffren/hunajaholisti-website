@@ -492,24 +492,22 @@ const Checkout = () => {
   );
 
   return (
-    <>
-      <div className="py-10"></div>
-      <div className="container mx-auto px-4 pt-16">
-        <div className="p-6 backdrop-blur bg-white bg-opacity-5 shadow-md rounded-md">
-          <h2 className="text-2xl font-bold mb-4 text-gray-100">
+    <div className="pt-28 pb-20 page-shell">
+        <div className="max-w-3xl mx-auto p-6 sm:p-10 bg-honey-soft border border-amber-200/50">
+          <h1 className="section-heading text-3xl mb-8">
             {language === "fi" ? "Kassa" : "Checkout"}
-          </h2>
+          </h1>
 
           {/* Order Summary */}
-          <div className="mb-6 p-4 bg-gray-50 rounded-lg">
-            <h3 className="text-lg font-semibold mb-2 text-gray-800">
+          <div className="mb-6 p-4 bg-mist rounded-lg border border-forest-100">
+            <h3 className="text-lg font-semibold mb-2 text-forest-900">
               {language === "fi" ? "Tilauksen yhteenveto" : "Order Summary"}
             </h3>
             <div className="flex justify-between items-center">
-              <span className="text-gray-600">
+              <span className="text-forest-600">
                 {language === "fi" ? "Yhteensä:" : "Total:"}
               </span>
-              <span className="text-xl font-bold text-gray-800">
+              <span className="font-display text-2xl text-forest-900">
                 {(totalAmount / 100).toFixed(2)} €
               </span>
             </div>
@@ -517,7 +515,7 @@ const Checkout = () => {
 
           {/* Payment Method Selection */}
           <div className="mb-6">
-            <h3 className="text-lg font-semibold mb-3 text-gray-100">
+            <h3 className="text-lg font-semibold mb-3 text-forest-900">
               {language === "fi"
                 ? "Valitse maksutapa:"
                 : "Select payment method:"}
@@ -529,14 +527,14 @@ const Checkout = () => {
                 onClick={() => setPaymentMethod("card")}
                 className={`p-4 border-2 rounded-lg transition-all duration-300 relative ${
                   paymentMethod === "card"
-                    ? "border-blue-500 bg-blue-50 shadow-lg ring-2 ring-blue-200"
-                    : "border-gray-300 bg-white hover:border-blue-300 hover:bg-blue-25 hover:shadow-md hover:scale-105"
+                    ? "border-forest-700 bg-forest-50 shadow-lg ring-2 ring-forest-200"
+                    : "border-amber-200/60 bg-honey-soft hover:border-amber-400 hover:bg-honey hover:shadow-md hover:scale-105"
                 }`}
               >
                 <div className="text-center relative">
                   <PaymentIcons type="card" className="w-26 h-20 mx-auto" />
                   {paymentMethod === "card" && (
-                    <div className="absolute -top-2 -right-2 bg-blue-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-xs">
+                    <div className="absolute -top-2 -right-2 bg-forest-700 text-white rounded-full w-6 h-6 flex items-center justify-center text-xs">
                       ✓
                     </div>
                   )}
@@ -556,14 +554,14 @@ const Checkout = () => {
                   onClick={() => setPaymentMethod("google_pay")}
                   className={`p-4 border-2 rounded-lg transition-all duration-300 relative ${
                     paymentMethod === "google_pay"
-                      ? "border-blue-500 bg-blue-50 shadow-lg ring-2 ring-blue-200"
-                      : "border-gray-300 bg-white hover:border-blue-300 hover:bg-blue-25 hover:shadow-md hover:scale-105"
+                      ? "border-forest-700 bg-forest-50 shadow-lg ring-2 ring-forest-200"
+                      : "border-amber-200/60 bg-honey-soft hover:border-amber-400 hover:bg-honey hover:shadow-md hover:scale-105"
                   }`}
                 >
                   <div className="text-center relative">
                     <PaymentIcons type="google_pay" className="h-20 mx-auto" />
                     {paymentMethod === "google_pay" && (
-                      <div className="absolute -top-2 -right-2 bg-blue-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-xs">
+                      <div className="absolute -top-2 -right-2 bg-forest-700 text-white rounded-full w-6 h-6 flex items-center justify-center text-xs">
                         ✓
                       </div>
                     )}
@@ -582,14 +580,14 @@ const Checkout = () => {
                   onClick={() => setPaymentMethod("apple_pay")}
                   className={`p-4 border-2 rounded-lg transition-all duration-300 relative ${
                     paymentMethod === "apple_pay"
-                      ? "border-blue-500 bg-blue-50 shadow-lg ring-2 ring-blue-200"
-                      : "border-gray-300 bg-white hover:border-blue-300 hover:bg-blue-25 hover:shadow-md hover:scale-105"
+                      ? "border-forest-700 bg-forest-50 shadow-lg ring-2 ring-forest-200"
+                      : "border-amber-200/60 bg-honey-soft hover:border-amber-400 hover:bg-honey hover:shadow-md hover:scale-105"
                   }`}
                 >
                   <div className="text-center relative">
                     <PaymentIcons type="apple_pay" className="h-20 mx-auto" />
                     {paymentMethod === "apple_pay" && (
-                      <div className="absolute -top-2 -right-2 bg-blue-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-xs">
+                      <div className="absolute -top-2 -right-2 bg-forest-700 text-white rounded-full w-6 h-6 flex items-center justify-center text-xs">
                         ✓
                       </div>
                     )}
@@ -608,14 +606,14 @@ const Checkout = () => {
                   onClick={() => setPaymentMethod("paypal")}
                   className={`p-4 border-2 rounded-lg transition-all duration-300 relative ${
                     paymentMethod === "paypal"
-                      ? "border-blue-500 bg-blue-50 shadow-lg ring-2 ring-blue-200"
-                      : "border-gray-300 bg-white hover:border-blue-300 hover:bg-blue-25 hover:shadow-md hover:scale-105"
+                      ? "border-forest-700 bg-forest-50 shadow-lg ring-2 ring-forest-200"
+                      : "border-amber-200/60 bg-honey-soft hover:border-amber-400 hover:bg-honey hover:shadow-md hover:scale-105"
                   }`}
                 >
                   <div className="text-center relative">
                     <PaymentIcons type="paypal" className="h-20 mx-auto" />
                     {paymentMethod === "paypal" && (
-                      <div className="absolute -top-2 -right-2 bg-blue-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-xs">
+                      <div className="absolute -top-2 -right-2 bg-forest-700 text-white rounded-full w-6 h-6 flex items-center justify-center text-xs">
                         ✓
                       </div>
                     )}
@@ -628,7 +626,7 @@ const Checkout = () => {
           <form onSubmit={handleSubmit} className="space-y-4">
             {/* Card Payment Element - always render but hide when not selected */}
             <div
-              className={`p-4 border border-gray-300 rounded-md bg-white ${
+              className={`p-4 border border-amber-200/60 rounded-md bg-honey-soft ${
                 paymentMethod === "card" ? "block" : "hidden"
               }`}
             >
@@ -641,7 +639,7 @@ const Checkout = () => {
 
             {/* Customer Details Form */}
             <div>
-              <label className="block text-sm font-bold text-gray-100">
+              <label className="block text-sm font-bold text-forest-900">
                 {language === "fi" ? "Nimi:" : "Name:"}
               </label>
               <input
@@ -656,7 +654,7 @@ const Checkout = () => {
               )}
             </div>
             <div>
-              <label className="block text-sm font-bold text-gray-100">
+              <label className="block text-sm font-bold text-forest-900">
                 {language === "fi" ? "Postiosoite:" : "Address:"}
               </label>
               <input
@@ -671,7 +669,7 @@ const Checkout = () => {
               )}
             </div>
             <div>
-              <label className="block text-sm font-bold text-gray-100">
+              <label className="block text-sm font-bold text-forest-900">
                 {language === "fi" ? "Postinumero:" : "Zip:"}
               </label>
               <input
@@ -686,7 +684,7 @@ const Checkout = () => {
               )}
             </div>
             <div>
-              <label className="block text-sm font-bold text-gray-100">
+              <label className="block text-sm font-bold text-forest-900">
                 {language === "fi" ? "Kaupunki:" : "City:"}
               </label>
               <input
@@ -701,7 +699,7 @@ const Checkout = () => {
               )}
             </div>
             <div>
-              <label className="block text-sm font-bold text-gray-100">
+              <label className="block text-sm font-bold text-forest-900">
                 {language === "fi" ? "Sähköposti:" : "Email:"}
               </label>
               <input
@@ -716,7 +714,7 @@ const Checkout = () => {
               )}
             </div>
             <div>
-              <label className="block text-sm font-bold text-gray-100">
+              <label className="block text-sm font-bold text-forest-900">
                 {language === "fi" ? "Puhelinnumero:" : "Phone:"}
               </label>
               <input
@@ -731,7 +729,7 @@ const Checkout = () => {
               )}
             </div>
             <div>
-              <label className="block text-sm font-bold text-gray-100">
+              <label className="block text-sm font-bold text-forest-900">
                 {language === "fi" ? "Viesti:" : "Message:"}
               </label>
               <textarea
@@ -748,7 +746,7 @@ const Checkout = () => {
             <button
               type="submit"
               disabled={!stripe || loading}
-              className="mt-4 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors duration-300 w-full md:w-auto flex justify-center items-center"
+              className="mt-4 px-4 py-2 bg-forest-700 text-white rounded-md hover:bg-forest-600 transition-colors duration-300 w-full md:w-auto flex justify-center items-center"
               style={{ minWidth: "150px" }}
             >
               {loading ? (
@@ -761,9 +759,7 @@ const Checkout = () => {
             </button>
           </form>
         </div>
-      </div>
-      <div className="py-5"></div>
-    </>
+    </div>
   );
 };
 
